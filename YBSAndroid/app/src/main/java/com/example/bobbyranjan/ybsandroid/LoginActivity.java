@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private TextView mNewUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,17 @@ public class LoginActivity extends AppCompatActivity {
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+        mNewUser = (TextView) findViewById(R.id.newUser);
+        mNewUser.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showSignUp();
+            }
+        });
+    }
+
+    private void showSignUp() {
+        startActivity(new Intent(this, SignUpActivity.class));
     }
 
     private void attemptLogin() {
