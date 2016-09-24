@@ -56,7 +56,7 @@ public class PatientMedicalHistoryListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_item_list2, container, false);
+        View view = inflater.inflate(R.layout.fragment_patient_medical_history_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -67,7 +67,7 @@ public class PatientMedicalHistoryListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter2(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new PatientMedicalHistoryListViewAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
     }

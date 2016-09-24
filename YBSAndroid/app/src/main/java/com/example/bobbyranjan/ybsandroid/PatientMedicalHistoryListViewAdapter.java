@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.bobbyranjan.ybsandroid.PatientListFragment.OnListFragmentInteractionListener;
+import com.example.bobbyranjan.ybsandroid.PatientMedicalHistoryListFragment.OnListFragmentInteractionListener;
 import com.example.bobbyranjan.ybsandroid.dummy.DummyContent.DummyItem;
 
 import java.util.List;
@@ -16,12 +16,12 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
+public class PatientMedicalHistoryListViewAdapter extends RecyclerView.Adapter<PatientMedicalHistoryListViewAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyItemRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public PatientMedicalHistoryListViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -29,7 +29,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_item, parent, false);
+                .inflate(R.layout.fragment_patient_medical_history_list_view_adapter, parent, false);
         return new ViewHolder(view);
     }
 
