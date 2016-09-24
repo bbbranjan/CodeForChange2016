@@ -25,7 +25,8 @@
         <activity
             android:name=".NavigationActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SignUpActivity"></activity>
     </application>
 
 </manifest>
