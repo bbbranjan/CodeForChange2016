@@ -12,20 +12,11 @@
     android:weightSum="1">
 
     <!-- Login progress -->
-    <ProgressBar
-        android:id="@+id/login_progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone" />
-
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
         android:layout_height="194dp"
-        android:layout_weight="0.09"
-        android:layout_below="@id/login_progress">
+        android:layout_weight="0.09">
 
         <LinearLayout
             android:id="@+id/email_login_form"
