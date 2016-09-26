@@ -123,4 +123,25 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="AddNewPatientTitle">Adding New Patient</string>
     <string name="NewPatientName">Patient Name</string>
+
+    <!-- Start strings related to "Add Medical Record" -->
+    <string name="med_ScreenHeader">Add a Medical Record</string>
+    <string name="med_PatientName">Patient Name</string>
+    <string name="med_SubHeader1">Pregnancy</string>
+    <string name="med_PregField1">G</string>
+    <string name="med_PregField2">P</string>
+    <string name="med_PregField3">A</string>
+    <string name="med_PregField4">AH</string>
+    <string name="med_InspectionResult">Inspection Results</string>
+    <string name="med_varField1">UK</string>
+    <string name="med_varField2">Varices</string>
+    <string name="med_varField3">Oedema</string>
+    <string name="med_varField4">W/TB</string>
+    <string name="med_varField5">TD</string>
+    <string name="med_varField6">LILA</string>
+    <string name="med_varField7">Total Visits</string>
+    <string name="med_varField8">SF</string>
+    <string name="med_varField9">HPHT</string>
+    <string name="med_varField10">TP</string>
+    <!-- End strings related to "Add Medical Record" -->
 </resources>

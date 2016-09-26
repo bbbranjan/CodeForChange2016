@@ -5,9 +5,289 @@
     tools:context="com.example.bobbyranjan.ybsandroid.AddMedicalHistoryFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ffffff">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/Container">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Medical"
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/MedicalHeader"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:padding="5dp"
+                    android:textColor="#000000"
+                    tools:text="@string/med_ScreenHeader" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/PatientName"
+                android:background="@drawable/border"
+                android:layout_margin="5dp">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text="@string/med_PatientName"
+                    android:ems="10"
+                    android:id="@+id/PatientName"
+                    android:layout_margin="5dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Header1"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp">
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/PregHeader"
+                    tools:text="@string/med_SubHeader1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/pregFields"
+                android:layout_margin="5dp"
+                android:background="@drawable/border">
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:layout_weight="1"
+                    android:id="@+id/pregField1"
+                    android:inputType="textCapCharacters|textCapWords"
+                    android:hint="@string/med_PregField1"
+                    android:gravity="center_horizontal" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapCharacters|textCapWords"
+                    android:ems="10"
+                    android:layout_weight="1"
+                    android:hint="@string/med_PregField2"
+                    android:id="@+id/pregField2"
+                    android:gravity="center_vertical|center_horizontal" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapCharacters|textCapWords"
+                    android:ems="10"
+                    android:layout_weight="1"
+                    android:id="@+id/pregField3"
+                    android:hint="@string/med_PregField3"
+                    android:gravity="center_horizontal" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapCharacters|textCapWords"
+                    android:ems="10"
+                    android:id="@+id/pregField4"
+                    android:layout_weight="1"
+                    android:hint="@string/med_PregField4"
+                    android:gravity="center_horizontal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/inspection"
+                android:weightSum="1"
+                android:layout_margin="5dp"
+                android:background="@drawable/border">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:inputType="textMultiLine"
+                    android:ems="10"
+                    android:id="@+id/inspectionResults"
+                    android:hint="@string/med_InspectionResult"
+                    android:layout_margin="5dp"
+                    android:layout_weight="11.85" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/varFields1"
+                android:layout_margin="5dp"
+                android:background="@drawable/border">
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="text|textCapCharacters"
+                    android:ems="10"
+                    android:layout_weight="1"
+                    android:hint="@string/med_varField1"
+                    android:id="@+id/UK"
+                    android:gravity="center_vertical|center_horizontal" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="text|textCapCharacters|textCapWords"
+                    android:ems="10"
+                    android:layout_weight="1"
+                    android:hint="@string/med_varField2"
+                    android:id="@+id/Varices"
+                    android:gravity="center_vertical|center_horizontal" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="text|textCapCharacters|textCapWords"
+                    android:ems="10"
+                    android:layout_weight="1"
+                    android:hint="@string/med_varField3"
+                    android:id="@+id/Oedema"
+                    android:gravity="center_vertical|center_horizontal" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="text|textCapCharacters|textCapWords"
+                    android:ems="10"
+                    android:layout_weight="1"
+                    android:hint="@string/med_varField4"
+                    android:id="@+id/WTB"
+                    android:gravity="center_vertical|center_horizontal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/varFields2"
+                android:layout_margin="5dp"
+                android:background="@drawable/border">
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="text|textCapCharacters|textCapWords"
+                    android:ems="10"
+                    android:layout_weight="1"
+                    android:id="@+id/TD"
+                    android:hint="@string/med_varField5"
+                    android:gravity="center_vertical|center_horizontal" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:layout_weight="1"
+                    android:hint="@string/med_varField6"
+                    android:inputType="text|textCapCharacters|textCapWords"
+                    android:id="@+id/LILA"
+                    android:gravity="center_vertical|center_horizontal" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapCharacters|textCapWords"
+                    android:ems="10"
+                    android:layout_weight="1"
+                    android:id="@+id/NumVisit"
+                    android:hint="@string/med_varField7"
+                    android:gravity="center_vertical|center_horizontal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/varFields3"
+                android:layout_margin="5dp"
+                android:background="@drawable/border">
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapCharacters|textCapWords"
+                    android:ems="10"
+                    android:layout_weight="1"
+                    android:id="@+id/SF"
+                    android:hint="@string/med_varField8"
+                    android:gravity="center_vertical|center_horizontal" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:layout_weight="1"
+                    android:id="@+id/HPHT"
+                    android:inputType="date"
+                    android:hint="@string/med_varField9"
+                    android:gravity="center_vertical|center_horizontal" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:layout_weight="1"
+                    android:id="@+id/TP"
+                    android:inputType="date"
+                    android:hint="@string/med_varField10"
+                    android:gravity="center_vertical|center_horizontal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageButton2"
+                    android:layout_weight="1"
+                    android:src="@mipmap/save"
+                    android:background="#00FFFFFF" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageButton"
+                    android:layout_weight="1"
+                    android:src="@mipmap/cancel"
+                    android:background="#00FFFFFF" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>
