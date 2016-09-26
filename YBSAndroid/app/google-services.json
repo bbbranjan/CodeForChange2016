@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "382846044279",
+    "firebase_url": "https://ybsapp-c903c.firebaseio.com",
+    "project_id": "ybsapp-c903c",
+    "storage_bucket": "ybsapp-c903c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:382846044279:android:fc2e51b02f357a28",
+        "android_client_info": {
+          "package_name": "com.example.bobbyranjan.ybsandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "382846044279-kmh3mmccahcniqddad1fj4c8huqamqbl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_CgC4lz2S_XySh-PvD9W6pq_N77deEyI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

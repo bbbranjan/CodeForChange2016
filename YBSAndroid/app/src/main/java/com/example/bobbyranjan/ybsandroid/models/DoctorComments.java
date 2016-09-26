@@ -17,6 +17,15 @@ public class DoctorComments extends Model {
         pathKeys = keys;
     }
 
+    public DoctorComments(String patientId, String patientHistoryId, String comments) {
+        pathPrefix="/doctorcomments/";
+        String[] keys = {"patientId","patientHistoryId","id"};
+        pathKeys = keys;
+        this.patientId = patientId;
+        this.patientHistoryId = patientHistoryId;
+        this.comments = comments;
+    }
+
     @Override
     public HashMap<String, String> toMap() {
         HashMap<String,String> map = super.toMap();

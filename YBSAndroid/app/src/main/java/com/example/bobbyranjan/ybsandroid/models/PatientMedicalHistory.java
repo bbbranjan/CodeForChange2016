@@ -31,8 +31,34 @@ public class PatientMedicalHistory extends Model {
     public PatientMedicalHistory(){
         pathPrefix="/patienthistory/";
         String[] keys = {"patientId","id"};
+        pathKeys = keys;
     }
 
+    public PatientMedicalHistory(String patientId, String date, String rt_rw, String g, String p, String a, String ah, String observations, String uk, String varices, String odema, String bb_tb, String td, String lila, String visit, String sf, String hpht, String tp, String complaints, String information) {
+        pathPrefix="/patienthistory/";
+        String[] keys = {"patientId","id"};
+        pathKeys = keys;
+        this.patientId = patientId;
+        this.date = date;
+        this.rt_rw = rt_rw;
+        this.g = g;
+        this.p = p;
+        this.a = a;
+        this.ah = ah;
+        this.observations = observations;
+        this.uk = uk;
+        this.varices = varices;
+        this.odema = odema;
+        this.bb_tb = bb_tb;
+        this.td = td;
+        this.lila = lila;
+        this.visit = visit;
+        this.sf = sf;
+        this.hpht = hpht;
+        this.tp = tp;
+        this.complaints = complaints;
+        this.information = information;
+    }
 
     @Override
     public HashMap<String, String> toMap() {
