@@ -17,6 +17,14 @@ public class User extends Model{
         pathPrefix="/users/";
     }
 
+    public User(String name, String email, String phoneNumber, String role) {
+        pathPrefix="/users/";
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
+    }
+
     public HashMap<String,String> toMap(){
         HashMap<String,String> map = super.toMap();
         map.put("name",name);

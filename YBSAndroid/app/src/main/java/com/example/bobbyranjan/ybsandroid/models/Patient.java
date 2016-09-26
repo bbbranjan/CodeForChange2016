@@ -22,6 +22,18 @@ public class Patient extends Model {
         pathPrefix="/patients/";
     }
 
+    public Patient(String name, String husbandsName, String location, String age, String dateOfBirth, String numPregnancy, boolean critical, boolean needsMoreGuidance) {
+        pathPrefix="/patients/";
+        this.name = name;
+        this.husbandsName = husbandsName;
+        this.location = location;
+        this.age = age;
+        this.dateOfBirth = dateOfBirth;
+        this.numPregnancy = numPregnancy;
+        this.critical = critical;
+        this.needsMoreGuidance = needsMoreGuidance;
+    }
+
     @Override
     public HashMap<String, String> toMap() {
         HashMap<String,String> map =  super.toMap();

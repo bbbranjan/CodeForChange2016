@@ -9,14 +9,23 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.bobbyranjan.ybsandroid.SignUpActivity">
 
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/role" />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="@string/prompt_name"
+        android:hint="@string/prompt_name"
         android:ems="10"
-        android:id="@+id/editText"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/role"
+        android:layout_marginTop="21dp"
+        android:id="@+id/name"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
@@ -25,60 +34,69 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
+        android:inputType="textPersonName"
+        android:hint="@string/prompt_email"
         android:ems="10"
-        android:id="@+id/editText2"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/name"
+        android:layout_marginTop="18dp"
+        android:id="@+id/email"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/editText"
-        android:layout_alignEnd="@+id/editText"
-        android:text="@string/prompt_email" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="phone"
+        android:inputType="textPersonName"
+        android:hint="@string/prompt_phone"
         android:ems="10"
-        android:id="@+id/editText3"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/email"
+        android:layout_marginTop="22dp"
+        android:id="@+id/phone"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/editText2"
-        android:layout_alignEnd="@+id/editText2"
-        android:text="@string/prompt_phone" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText4"
-        android:layout_below="@+id/editText3"
+        android:inputType="textPassword"
+        android:hint="@string/prompt_password"
+        android:ems="10"
+        android:layout_below="@+id/phone"
+        android:layout_marginTop="18dp"
+        android:id="@+id/password"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/editText3"
-        android:layout_alignEnd="@+id/editText3"
-        android:text="@string/prompt_password" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText5"
-        android:layout_below="@+id/editText4"
+        android:inputType="textPassword"
+        android:hint="@string/prompt_cfm_password"
+        android:ems="10"
+        android:layout_below="@+id/password"
+        android:layout_marginTop="18dp"
+        android:id="@+id/cfm_password"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/editText4"
-        android:layout_alignEnd="@+id/editText4"
-        android:text="@string/prompt_cfm_password" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
+        android:text="@string/action_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/action_register"
-        android:id="@+id/button"
-        android:layout_centerVertical="true"
+        android:id="@+id/register"
+        android:layout_below="@+id/cfm_password"
+        android:layout_marginTop="16dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/editText5"
-        android:layout_alignEnd="@+id/editText5" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
