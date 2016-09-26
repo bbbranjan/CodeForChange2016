@@ -12,7 +12,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/Container">
 
             <LinearLayout
@@ -47,8 +47,8 @@
                     android:inputType="textPersonName"
                     android:text="@string/med_PatientName"
                     android:ems="10"
-                    android:id="@+id/PatientName"
-                    android:layout_margin="5dp" />
+                    android:layout_margin="5dp"
+                    android:id="@+id/med_PatientName" />
 
             </LinearLayout>
 
@@ -129,13 +129,13 @@
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
                     android:inputType="textMultiLine"
                     android:ems="10"
                     android:id="@+id/inspectionResults"
                     android:hint="@string/med_InspectionResult"
                     android:layout_margin="5dp"
-                    android:layout_weight="11.85" />
+                    android:layout_weight="11.85"
+                    android:layout_height="150dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -277,7 +277,8 @@
                     android:id="@+id/imageButton2"
                     android:layout_weight="1"
                     android:src="@mipmap/save"
-                    android:background="#00FFFFFF" />
+                    android:background="#00FFFFFF"
+                    android:contentDescription="@string/med_saveButton" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -285,7 +286,8 @@
                     android:id="@+id/imageButton"
                     android:layout_weight="1"
                     android:src="@mipmap/cancel"
-                    android:background="#00FFFFFF" />
+                    android:background="#00FFFFFF"
+                    android:contentDescription="@string/med_cancelButton" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

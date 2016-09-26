@@ -143,5 +143,7 @@
     <string name="med_varField8">SF</string>
     <string name="med_varField9">HPHT</string>
     <string name="med_varField10">TP</string>
+    <string name="med_saveButton">Save Button</string>
+    <string name="med_cancelButton">Cancel Button</string>
     <!-- End strings related to "Add Medical Record" -->
 </resources>
