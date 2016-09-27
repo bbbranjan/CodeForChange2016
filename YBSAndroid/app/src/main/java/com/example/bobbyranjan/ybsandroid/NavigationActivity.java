@@ -1,5 +1,6 @@
 package com.example.bobbyranjan.ybsandroid;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -98,4 +99,9 @@ public class NavigationActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public void addPatient(View view) {
+        Intent navIntent = new Intent(this, SignUpActivity.class);
+    }
+
 }
