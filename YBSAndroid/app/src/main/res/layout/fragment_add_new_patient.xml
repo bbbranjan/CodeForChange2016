@@ -1,37 +1,87 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
     tools:context="com.example.bobbyranjan.ybsandroid.AddNewPatientFragment">
 
-
-    <TextView
-        android:id="@+id/ANPTitle"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/AddNewPatientTitle"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+        android:background="#ffffff">
 
-    <TextView
-        android:id="@+id/tvANPName1"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/ANPHeader"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ANPTitle"
-        android:layout_marginTop="10dp"
-        android:text="@string/NewPatientName" />
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp">
+        <TextView
+            android:id="@+id/ANPTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/AddNewPatientTitle"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+    </LinearLayout>
 
-    <EditText
-        android:id="@+id/etANPName1"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvANPName1"
-        android:ems="10"
-        android:inputType="text"/>
+        android:layout_below="@id/ANPHeader">
+        <EditText
+            android:id="@+id/ANPPatientName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="@string/ANPName"
+            android:ems="10"
+            android:inputType="text"/>
+        <EditText
+            android:id="@+id/ANPVillage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="@string/ANPVillage"
+            android:ems="10"
+            android:inputType="text"/>
+        <EditText
+            android:id="@+id/ANPHusbandName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="@string/ANPHusbandName"
+            android:ems="10"
+            android:inputType="text"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ANPDOB"
+            android:onClick="showDatePickerDialog"/>
+        <!--
+        <EditText
+            android:id="@+id/DOB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:ems="10"
+            android:inputType="text"/>
+        -->
+        <EditText
+            android:id="@+id/ANPAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="@string/ANPAge"
+            android:ems="10"
+            android:inputType="text"/>
+
+    </LinearLayout>
 
 
+    </RelativeLayout>
+</ScrollView>
 
-
-
-
-</RelativeLayout>
