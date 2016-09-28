@@ -120,9 +120,17 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- Start strings related to "Add New Patient" -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="AddNewPatientTitle">Adding New Patient</string>
-    <string name="NewPatientName">Patient Name</string>
+    <string name="ANPName">Patient Name</string>
+    <string name="ANPVillage">Village</string>
+    <string name="ANPHusbandName">Husband Name</string>
+    <string name="ANPDOB">Date of Birth</string>
+    <string name="ANPAge">Age</string>
+
+    <!-- End strings related to "Add New Patient" -->
 
     <!-- Start strings related to "Add Medical Record" -->
     <string name="med_ScreenHeader">Add a Medical Record</string>
