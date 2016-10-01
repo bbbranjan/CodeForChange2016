@@ -6,7 +6,7 @@ import java.util.HashMap;
  * Created by hari on 24/9/16.
  */
 public class Model {
-    String id;
+    String id = null;
 
     //fix this in each sub class
     public String pathPrefix="/unknown/";
