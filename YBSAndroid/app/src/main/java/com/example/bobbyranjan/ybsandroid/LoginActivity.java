@@ -15,16 +15,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bobbyranjan.ybsandroid.models.User;
+import com.example.bobbyranjan.ybsandroid.service.AsyncResultListener;
+import com.example.bobbyranjan.ybsandroid.service.AsyncResultTask;
+import com.example.bobbyranjan.ybsandroid.service.Service;
 import com.example.bobbyranjan.ybsandroid.service.UserService;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements AsyncResultListener{
 
 
     // UI references.
@@ -103,6 +112,8 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setMessage("logging in...");
         progressDialog.show();
 
+        final AsyncResultTask retrieve_task = new AsyncResultTask(this);
+
         //logging in the user
         UserService.login(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -111,6 +122,8 @@ public class LoginActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                         //if the task is successfull
                         if(task.isSuccessful()){
+                            String uid = Service.auth.getCurrentUser().getUid();
+                            UserService.getUser(uid,retrieve_task);
                             //start the profile activity
                             finish();
                             startActivity(new Intent(getApplicationContext(), NavigationActivity.class));
@@ -119,5 +132,16 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+    @Override
+    public void processResult(Object result) {
+        User user = (User) result;
+        Toast.makeText(this,user.getEmail(),Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void processResults(Object... results) {
+
+    }
 }
 
