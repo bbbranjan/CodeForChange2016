@@ -142,7 +142,6 @@ public class LoginActivity extends AppCompatActivity implements AsyncResultListe
                         //if the task is successfull
                         if(task.isSuccessful()){
                             String uid = Service.auth.getCurrentUser().getUid();
-                            UserService.getUser(uid,retrieve_task);
                             //start the profile activity
                             finish();
                             startActivity(new Intent(getApplicationContext(), NavigationActivity.class));
@@ -160,7 +159,6 @@ public class LoginActivity extends AppCompatActivity implements AsyncResultListe
 
     @Override
     public void processResults(Object... results) {
-
     }
 }
 
