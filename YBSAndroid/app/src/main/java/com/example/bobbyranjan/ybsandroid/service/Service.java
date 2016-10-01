@@ -11,6 +11,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -59,5 +60,25 @@ public class Service {
 
     }
 
+    protected static void retrieveModels(String path, final Class model, final AsyncResultTask task){
+        db.child(path).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList results = new ArrayList();
+                Iterator<DataSnapshot> snapshots = dataSnapshot.getChildren().iterator();
+                while(snapshots.hasNext()){
+                    DataSnapshot ds = snapshots.next();
+                    results.add(ds.getValue(model));
+                }
+                task.execute(results.toArray());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
 
 }

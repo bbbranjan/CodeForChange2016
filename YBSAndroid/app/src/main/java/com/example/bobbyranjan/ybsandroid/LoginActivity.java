@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity implements AsyncResultListe
     private EditText mEmailView;
     private EditText mPasswordView;
     private TextView mNewUser;
+    private TextView mForgotPassword;
 
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
@@ -83,7 +84,25 @@ public class LoginActivity extends AppCompatActivity implements AsyncResultListe
             }
         });
 
+        mForgotPassword = (TextView) findViewById(R.id.forgotPassword);
+        mForgotPassword.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendResetEmail();
+            }
+        });
+
         progressDialog = new ProgressDialog(this);
+    }
+
+    private void sendResetEmail(){
+        String email = mEmailView.getText().toString();
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(this, "Please enter your email", Toast.LENGTH_LONG).show();
+        }else{
+            UserService.passwordReset(email);
+            Toast.makeText(this, "Password reset email sent", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void showSignUp() {
@@ -123,7 +142,6 @@ public class LoginActivity extends AppCompatActivity implements AsyncResultListe
                         //if the task is successfull
                         if(task.isSuccessful()){
                             String uid = Service.auth.getCurrentUser().getUid();
-                            UserService.getUser(uid,retrieve_task);
                             //start the profile activity
                             finish();
                             startActivity(new Intent(getApplicationContext(), NavigationActivity.class));
@@ -141,7 +159,6 @@ public class LoginActivity extends AppCompatActivity implements AsyncResultListe
 
     @Override
     public void processResults(Object... results) {
-
     }
 }
 

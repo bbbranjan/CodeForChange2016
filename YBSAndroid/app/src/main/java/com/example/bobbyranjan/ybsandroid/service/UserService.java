@@ -40,5 +40,13 @@ public class UserService extends Service {
         retrieveModel(u.path(),User.class,task);
     }
 
+    public static void getAllUsers(final AsyncResultTask task){
+        User u = new User();
+        retrieveModels(u.getPathPrefix(),User.class,task);
+    }
 
+
+    public static void passwordReset(String email) {
+        auth.sendPasswordResetEmail(email);
+    }
 }

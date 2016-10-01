@@ -34,4 +34,8 @@ public class Model {
     public void setId(String id) {
         this.id = id;
     }
+
+    public String getPathPrefix() {
+        return pathPrefix;
+    }
 }
