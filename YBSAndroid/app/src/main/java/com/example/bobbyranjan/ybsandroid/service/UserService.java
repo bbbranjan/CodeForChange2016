@@ -3,7 +3,11 @@ package com.example.bobbyranjan.ybsandroid.service;
 import com.example.bobbyranjan.ybsandroid.models.User;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,5 +33,12 @@ public class UserService extends Service {
     public static String getCurrentUserUUID() {
         return auth.getCurrentUser().getUid();
     }
+
+    public static void getUser(String uid,final AsyncResultTask task){
+        User u = new User();
+        u.setId(uid);
+        retrieveModel(u.path(),User.class,task);
+    }
+
 
 }

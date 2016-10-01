@@ -3,8 +3,11 @@ package com.example.bobbyranjan.ybsandroid.service;
 import com.example.bobbyranjan.ybsandroid.models.Model;
 import com.example.bobbyranjan.ybsandroid.models.User;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,8 +20,8 @@ import java.util.Map;
 
 public class Service {
 
-    static FirebaseAuth auth = FirebaseAuth.getInstance();
-    static DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+    public static FirebaseAuth auth = FirebaseAuth.getInstance();
+    public static DatabaseReference db = FirebaseDatabase.getInstance().getReference();
 
     protected static void persistModel(Model... models){
         Map updates = new HashMap<String,Map<String,String>>();
@@ -38,5 +41,23 @@ public class Service {
         String db_path = model.pathPrefix;
         return db.child(db_path).push().getKey();
     }
+
+    protected static void retrieveModel(String path, final Class model, final AsyncResultTask task){
+        db.child(path).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList results = new ArrayList();
+                results.add(dataSnapshot.getValue(model));
+                task.execute(results.toArray());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
 
 }
