@@ -41,4 +41,7 @@ public class UserService extends Service {
     }
 
 
+    public static void passwordReset(String email) {
+        auth.sendPasswordResetEmail(email);
+    }
 }

@@ -70,4 +70,19 @@
         android:layout_below="@id/space"
         android:textSize="18sp"
         android:textAlignment="center" />
+
+    <android.support.v4.widget.Space
+        android:id="@+id/space2"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/newUser"/>
+
+    <TextView
+        android:text="@string/prompt_forgot_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/forgotPassword"
+        android:layout_below="@id/space2"
+        android:textSize="18sp"
+        android:textAlignment="center" />
 </RelativeLayout>

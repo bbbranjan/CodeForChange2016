@@ -1,6 +1,7 @@
 package com.example.bobbyranjan.ybsandroid;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -116,6 +117,7 @@ public class SignUpActivity extends AppCompatActivity {
                             String phone = mPhone.getText().toString();
                             String role = mSpinner.getSelectedItem().toString();
                             UserService.persistUser(id,name,email,phone,role);
+                            startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                         } else {
                             //display some message here
                             Toast.makeText(SignUpActivity.this, "Registration Error", Toast.LENGTH_LONG).show();
