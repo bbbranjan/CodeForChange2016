@@ -2,6 +2,7 @@
     <string name="app_name">Yayasan Balita Sehat</string>
 
     <!-- Strings related to login -->
+<<<<<<< HEAD
     <string name="prompt_email" translatable="false">Email</string>
     <string name="prompt_password" translatable="false">Password</string>
     <string name="prompt_cfm_password" translatable="false">Confirm Password</string>
@@ -16,6 +17,22 @@
     <string name="error_incorrect_password" translatable="false">This password is incorrect</string>
     <string name="error_field_required" translatable="false">This field is required</string>
     <string name="prompt_new_user" translatable="false">New user? Click here to register</string>
+=======
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_cfm_password">Confirm Password</string>
+    <string name="prompt_name">Name</string>
+    <string name="prompt_phone">Phone</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_register">Register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="prompt_new_user">New user? Click here to register</string>
+    <string name="prompt_forgot_password">Forgot password?</string>
+>>>>>>> origin/master
     <string-array name="roles_array">
         <item>Midwife</item>
         <item>Doctor</item>
