@@ -2,10 +2,9 @@ package com.example.bobbyranjan.ybsandroid;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,23 +16,16 @@ import android.widget.Toast;
 import com.example.bobbyranjan.ybsandroid.models.User;
 import com.example.bobbyranjan.ybsandroid.service.AsyncResultListener;
 import com.example.bobbyranjan.ybsandroid.service.AsyncResultTask;
-import com.example.bobbyranjan.ybsandroid.service.Service;
 import com.example.bobbyranjan.ybsandroid.service.UserService;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements AsyncResultListener{
+public class LoginActivity extends AppCompatActivity implements AsyncResultListener {
 
 
     // UI references.
@@ -54,7 +46,7 @@ public class LoginActivity extends AppCompatActivity implements AsyncResultListe
         firebaseAuth = FirebaseAuth.getInstance();
 
         //if getCurrentUser does not returns null
-        if(firebaseAuth.getCurrentUser() != null){
+        if (firebaseAuth.getCurrentUser() != null) {
             //that means user is already logged in
             //so close this activity
             finish();
@@ -95,11 +87,11 @@ public class LoginActivity extends AppCompatActivity implements AsyncResultListe
         progressDialog = new ProgressDialog(this);
     }
 
-    private void sendResetEmail(){
+    private void sendResetEmail() {
         String email = mEmailView.getText().toString();
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(this, "Please enter your email", Toast.LENGTH_LONG).show();
-        }else{
+        } else {
             UserService.passwordReset(email);
             Toast.makeText(this, "Password reset email sent", Toast.LENGTH_LONG).show();
         }
@@ -111,17 +103,17 @@ public class LoginActivity extends AppCompatActivity implements AsyncResultListe
 
     private void attemptLogin() {
         String email = mEmailView.getText().toString().trim();
-        String password  = mPasswordView.getText().toString().trim();
+        String password = mPasswordView.getText().toString().trim();
 
 
         //checking if email and passwords are empty
-        if(TextUtils.isEmpty(email)){
-            Toast.makeText(this,"Please enter email",Toast.LENGTH_LONG).show();
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(this, "Please enter email", Toast.LENGTH_LONG).show();
             return;
         }
 
-        if(TextUtils.isEmpty(password)){
-            Toast.makeText(this,"Please enter password", Toast.LENGTH_LONG).show();
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(this, "Please enter password", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -140,8 +132,8 @@ public class LoginActivity extends AppCompatActivity implements AsyncResultListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         //if the task is successfull
-                        if(task.isSuccessful()){
-                            String uid = Service.auth.getCurrentUser().getUid();
+                        if (task.isSuccessful()) {
+                            UserService.getUser(UserService.getCurrentUserUUID(),retrieve_task);
                             //start the profile activity
                             finish();
                             startActivity(new Intent(getApplicationContext(), NavigationActivity.class));
@@ -152,13 +144,13 @@ public class LoginActivity extends AppCompatActivity implements AsyncResultListe
 
     @Override
     public void processResult(Object result) {
-        User user = (User) result;
-        Toast.makeText(this,user.getEmail(),Toast.LENGTH_LONG).show();
-
+        User me = (User)result;
+        Toast.makeText(LoginActivity.this, "Hello "+me.getName()+"!", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void processResults(Object... results) {
+        //add later when needed
     }
 }
 

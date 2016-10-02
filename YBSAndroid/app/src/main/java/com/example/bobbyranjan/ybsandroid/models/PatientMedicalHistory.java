@@ -28,16 +28,16 @@ public class PatientMedicalHistory extends Model {
     String complaints;
     String information;
 
-    public PatientMedicalHistory(){
-        pathPrefix="/patienthistory/";
-        String[] keys = {"patientId","id"};
+    {
+        pathPrefix = PATIENT_HISTORY;
+        String[] keys = {"patientId", "id"};
         pathKeys = keys;
     }
 
+    public PatientMedicalHistory() {
+    }
+
     public PatientMedicalHistory(String patientId, String date, String rt_rw, String g, String p, String a, String ah, String observations, String uk, String varices, String odema, String bb_tb, String td, String lila, String visit, String sf, String hpht, String tp, String complaints, String information) {
-        pathPrefix="/patienthistory/";
-        String[] keys = {"patientId","id"};
-        pathKeys = keys;
         this.patientId = patientId;
         this.date = date;
         this.rt_rw = rt_rw;
@@ -61,10 +61,10 @@ public class PatientMedicalHistory extends Model {
     }
 
     @Override
-    public HashMap<String, String> toMap() {
-        HashMap<String, String> map = super.toMap();
-        map.put("patientId",patientId);
-        map.put("date",date);
+    public HashMap<String, Object> toMap() {
+        HashMap<String, Object> map = super.toMap();
+        map.put("patientId", patientId);
+        map.put("date", date);
         map.put("rt_rw", rt_rw);
         map.put("g", g);
         map.put("p", p);
@@ -244,5 +244,15 @@ public class PatientMedicalHistory extends Model {
 
     public void setInformation(String information) {
         this.information = information;
+    }
+
+    @Override
+    public String getId() {
+        return super.getId();
+    }
+
+    @Override
+    public void setId(String id) {
+        super.setId(id);
     }
 }
