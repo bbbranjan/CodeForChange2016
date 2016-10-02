@@ -150,7 +150,6 @@ public class LoginActivity extends AppCompatActivity implements AsyncResultListe
 
     @Override
     public void processResults(Object... results) {
-        //add later when needed
     }
 }
 

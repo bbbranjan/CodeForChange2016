@@ -21,10 +21,10 @@ import java.util.Map;
 public class Service {
 
     public static FirebaseAuth auth = FirebaseAuth.getInstance();
-    public static DatabaseReference db = FirebaseDatabase.getInstance().getReference();
-
+    public static DatabaseReference db;
     static{
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        db = FirebaseDatabase.getInstance().getReference();
     }
 
     {
@@ -49,10 +49,17 @@ public class Service {
 
     protected static String getKey(Model model) {
         if (model instanceof User) {
-            throw new IllegalArgumentException("Inavlid method for User. User user UID instead");
+            throw new IllegalArgumentException("Invalid method for User. User user UID instead");
         }
         String db_path = model.pathPrefix;
         return db.child(db_path).push().getKey();
+    }
+
+    public static String getKey(String path){
+        if (path.startsWith(Model.USERS)) {
+            throw new IllegalArgumentException("Invalid method for '/users/'. User user UID instead");
+        }
+        return db.child(path).push().getKey();
     }
 
     protected static void retrieveModel(String path, final Class model, final AsyncResultTask task) {

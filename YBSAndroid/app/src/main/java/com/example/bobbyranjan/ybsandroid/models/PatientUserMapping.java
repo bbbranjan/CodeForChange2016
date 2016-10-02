@@ -14,7 +14,7 @@ public class PatientUserMapping extends Model {
 
     {
         pathPrefix = PATIENT_USER;
-        String[] keys = {"userId", "patientId", "id"};
+        String[] keys = {"userId", "patientId"};
         pathKeys = keys;
     }
 
