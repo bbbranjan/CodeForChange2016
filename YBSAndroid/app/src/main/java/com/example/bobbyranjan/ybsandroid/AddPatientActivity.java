@@ -21,7 +21,6 @@ public class AddPatientActivity extends AppCompatActivity implements AddNewPatie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_patient);
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setUpAnimation();
 
