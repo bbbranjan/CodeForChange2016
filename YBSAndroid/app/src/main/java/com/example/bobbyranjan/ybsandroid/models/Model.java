@@ -6,23 +6,28 @@ import java.util.HashMap;
  * Created by hari on 24/9/16.
  */
 public class Model {
+
+    public static String USERS = "/users/";
+    public static String PATIENT = "/patients/";
+    public static String PATIENT_HISTORY = "/patienthistory/";
+    public static String PATIENT_USER = "/patientusermap/";
+    public static String DOCTOR_COMMENTS = "/doctorcomments/";
+    //fix this in each sub class
+    public String pathPrefix = "/unknown/";
+    public String[] pathKeys = {"id"};
     String id = null;
 
-    //fix this in each sub class
-    public String pathPrefix="/unknown/";
-    public String[] pathKeys = {"id"};
-
-    public HashMap<String,String> toMap(){
-        HashMap<String,String> map = new HashMap<String,String>();
-        map.put("id",id);
+    public HashMap<String, Object> toMap() {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("id", id);
         return map;
     }
 
-    public String path(){
+    public String path() {
         String path = pathPrefix;
-        HashMap<String,String> map = this.toMap();
-        for(String key:pathKeys){
-            path = path+map.get(key)+"/";
+        HashMap<String, Object> map = this.toMap();
+        for (String key : pathKeys) {
+            path = path + map.get(key) + "/";
         }
         return path;
     }
