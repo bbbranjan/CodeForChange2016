@@ -10,11 +10,26 @@
     tools:context="com.example.bobbyranjan.ybsandroid.SignUpActivity">
 
 
-    <Spinner
-        android:layout_width="match_parent"
+    <TextView
+        android:text="Select a role"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:id="@+id/roleLabel"
+        android:textAllCaps="false" />
+
+    <Spinner
+        android:layout_below="@+id/roleLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="21dp"
+        android:ems="10"
         android:id="@+id/role" />
 
     <EditText
@@ -98,5 +113,6 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
 
 </RelativeLayout>
