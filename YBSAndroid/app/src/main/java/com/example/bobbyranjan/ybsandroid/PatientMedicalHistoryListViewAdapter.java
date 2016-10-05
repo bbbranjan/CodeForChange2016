@@ -7,21 +7,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.bobbyranjan.ybsandroid.PatientMedicalHistoryListFragment.OnListFragmentInteractionListener;
-import com.example.bobbyranjan.ybsandroid.dummy.DummyContent.DummyItem;
+import com.example.bobbyranjan.ybsandroid.models.PatientMedicalHistory;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link PatientMedicalHistory} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class PatientMedicalHistoryListViewAdapter extends RecyclerView.Adapter<PatientMedicalHistoryListViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<PatientMedicalHistory> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public PatientMedicalHistoryListViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public PatientMedicalHistoryListViewAdapter(List<PatientMedicalHistory> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -36,8 +36,8 @@ public class PatientMedicalHistoryListViewAdapter extends RecyclerView.Adapter<P
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mIdView.setText(mValues.get(position).getDate());
+        holder.mContentView.setText(mValues.get(position).getObservations());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +60,7 @@ public class PatientMedicalHistoryListViewAdapter extends RecyclerView.Adapter<P
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public PatientMedicalHistory mItem;
 
         public ViewHolder(View view) {
             super(view);

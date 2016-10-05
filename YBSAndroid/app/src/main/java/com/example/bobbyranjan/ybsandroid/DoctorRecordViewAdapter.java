@@ -7,21 +7,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.bobbyranjan.ybsandroid.DoctorRecordFragment.OnListFragmentInteractionListener;
-import com.example.bobbyranjan.ybsandroid.dummy.DummyContent.DummyItem;
+import com.example.bobbyranjan.ybsandroid.models.DoctorComments;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link DoctorComments} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class DoctorRecordViewAdapter extends RecyclerView.Adapter<DoctorRecordViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<DoctorComments> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public DoctorRecordViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public DoctorRecordViewAdapter(List<DoctorComments> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -36,8 +36,8 @@ public class DoctorRecordViewAdapter extends RecyclerView.Adapter<DoctorRecordVi
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mIdView.setText(mValues.get(position).getPatientHistoryId());
+        holder.mContentView.setText(mValues.get(position).getComments());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +60,7 @@ public class DoctorRecordViewAdapter extends RecyclerView.Adapter<DoctorRecordVi
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public DoctorComments mItem;
 
         public ViewHolder(View view) {
             super(view);
