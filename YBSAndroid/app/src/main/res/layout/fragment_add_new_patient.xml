@@ -56,20 +56,14 @@
             android:hint="@string/ANPHusbandName"
             android:ems="10"
             android:inputType="text"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ANPDOB"
-            android:onClick="showDatePickerDialog"/>
-        <!--
         <EditText
-            android:id="@+id/DOB"
+            android:id="@+id/ANPDOB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:hint="@string/ANPDOB"
             android:ems="10"
             android:inputType="text"/>
-        -->
         <EditText
             android:id="@+id/ANPAge"
             android:layout_width="match_parent"
@@ -78,6 +72,15 @@
             android:hint="@string/ANPAge"
             android:ems="10"
             android:inputType="text"/>
+
+        <Button
+            android:id="@+id/ANPSave"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/action_save"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
