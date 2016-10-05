@@ -10,8 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.bobbyranjan.ybsandroid.dummy.DummyContent;
-import com.example.bobbyranjan.ybsandroid.dummy.DummyContent.DummyItem;
+import com.example.bobbyranjan.ybsandroid.models.PatientMedicalHistory;
 
 /**
  * A fragment representing a list of Items.
@@ -67,7 +66,7 @@ public class PatientMedicalHistoryListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new PatientMedicalHistoryListViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new PatientMedicalHistoryListViewAdapter(null, mListener));
         }
         return view;
     }
@@ -102,6 +101,6 @@ public class PatientMedicalHistoryListFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(PatientMedicalHistory item);
     }
 }
