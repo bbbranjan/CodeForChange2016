@@ -7,21 +7,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.bobbyranjan.ybsandroid.PatientListFragment.OnListFragmentInteractionListener;
-import com.example.bobbyranjan.ybsandroid.dummy.DummyContent.DummyItem;
+import com.example.bobbyranjan.ybsandroid.models.Patient;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link Patient} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class PatientListViewAdapter extends RecyclerView.Adapter<PatientListViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<Patient> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public PatientListViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public PatientListViewAdapter(List<Patient> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -36,8 +36,8 @@ public class PatientListViewAdapter extends RecyclerView.Adapter<PatientListView
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mIdView.setText(mValues.get(position).getName());
+        holder.mContentView.setText(mValues.get(position).getHusbandsName());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +60,7 @@ public class PatientListViewAdapter extends RecyclerView.Adapter<PatientListView
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public Patient mItem;
 
         public ViewHolder(View view) {
             super(view);

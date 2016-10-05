@@ -19,7 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.bobbyranjan.ybsandroid.dummy.DummyContent;
+import com.example.bobbyranjan.ybsandroid.models.Patient;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,PatientListFragment.OnListFragmentInteractionListener {
@@ -161,7 +161,7 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onListFragmentInteraction(Patient item) {
 
     }
 }
