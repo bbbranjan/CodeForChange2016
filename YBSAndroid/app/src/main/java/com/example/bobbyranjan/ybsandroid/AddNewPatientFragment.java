@@ -7,6 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.example.bobbyranjan.ybsandroid.models.Model;
+import com.example.bobbyranjan.ybsandroid.service.PatientService;
 
 
 /**
@@ -26,6 +31,14 @@ public class AddNewPatientFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    EditText mName;
+    EditText mHusbandsName;
+    EditText mAge;
+    EditText mVillage;
+    EditText mDOB;
+
+    Button mSave;
 
     private OnFragmentInteractionListener mListener;
 
@@ -63,8 +76,36 @@ public class AddNewPatientFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_new_patient, container, false);
+        View view =  inflater.inflate(R.layout.fragment_add_new_patient, container, false);
+        mName = (EditText) view.findViewById(R.id.ANPPatientName);
+        mHusbandsName = (EditText) view.findViewById(R.id.ANPHusbandName);
+        mVillage = (EditText) view.findViewById(R.id.ANPVillage);
+        mAge = (EditText) view.findViewById(R.id.ANPAge);
+        mDOB = (EditText) view.findViewById(R.id.ANPDOB);
+
+        mSave = (Button)view.findViewById(R.id.ANPSave);
+        mSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                savePatient();
+            }
+        });
+
+        return view;
+    }
+
+    private void savePatient() {
+        String name = mName.getText().toString();
+        String husband = mHusbandsName.getText().toString();
+        String village = mVillage.getText().toString();
+        String age = mAge.getText().toString();
+        String dob = mDOB.getText().toString();
+
+        String id = PatientService.getKey(Model.PATIENT);
+        PatientService.persistPatient(id,name,husband,village,age,dob,"1",false,false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -11,6 +11,7 @@
     <string name="action_register" translatable="false">Register</string>
     <string name="action_new_user" translatable="false">New user? Click to register</string>
     <string name="action_sign_in_short" translatable="false">Sign in</string>
+    <string name="action_save" translatable="false">Save</string>
     <string name="error_invalid_email" translatable="false">This email address is invalid</string>
     <string name="error_invalid_password" translatable="false">This password is too short</string>
     <string name="error_incorrect_password" translatable="false">This password is incorrect</string>
