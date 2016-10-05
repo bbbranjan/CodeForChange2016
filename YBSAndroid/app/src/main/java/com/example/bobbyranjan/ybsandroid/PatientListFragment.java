@@ -76,6 +76,13 @@ public class PatientListFragment extends Fragment implements AsyncResultListener
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        AsyncResultTask task = new AsyncResultTask(this);
+        PatientService.getAllPatients(task);
+    }
+
     void setViewItems(List<Patient> patients){
         if (mColumnCount <= 1) {
             recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
@@ -106,6 +113,8 @@ public class PatientListFragment extends Fragment implements AsyncResultListener
 
     @Override
     public void processResult(Object result) {
+        Patient[] patients = {(Patient) result};
+        setViewItems(new ArrayList<Patient>(Arrays.<Patient>asList(patients)));
 
     }
 
