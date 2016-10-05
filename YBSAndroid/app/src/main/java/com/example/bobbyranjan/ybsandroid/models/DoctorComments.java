@@ -11,27 +11,27 @@ public class DoctorComments extends Model {
     String patientHistoryId;
     String comments;
 
-    public DoctorComments(){
-        pathPrefix="/doctorcomments/";
-        String[] keys = {"patientId","patientHistoryId","id"};
+    {
+        pathPrefix = DOCTOR_COMMENTS;
+        String[] keys = {"patientId", "patientHistoryId", "id"};
         pathKeys = keys;
+
+    }
+    public DoctorComments() {
     }
 
     public DoctorComments(String patientId, String patientHistoryId, String comments) {
-        pathPrefix="/doctorcomments/";
-        String[] keys = {"patientId","patientHistoryId","id"};
-        pathKeys = keys;
         this.patientId = patientId;
         this.patientHistoryId = patientHistoryId;
         this.comments = comments;
     }
 
     @Override
-    public HashMap<String, String> toMap() {
-        HashMap<String,String> map = super.toMap();
-        map.put("patientId",patientId);
-        map.put("patientHistoryId",patientHistoryId);
-        map.put("comments",comments);
+    public HashMap<String, Object> toMap() {
+        HashMap<String, Object> map = super.toMap();
+        map.put("patientId", patientId);
+        map.put("patientHistoryId", patientHistoryId);
+        map.put("comments", comments);
         return map;
     }
 
@@ -57,5 +57,15 @@ public class DoctorComments extends Model {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    @Override
+    public String getId() {
+        return super.getId();
+    }
+
+    @Override
+    public void setId(String id) {
+        super.setId(id);
     }
 }

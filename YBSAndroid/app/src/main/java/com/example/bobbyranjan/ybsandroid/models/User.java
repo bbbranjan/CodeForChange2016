@@ -6,31 +6,33 @@ import java.util.HashMap;
  * Created by hari on 24/9/16.
  */
 
-public class User extends Model{
+public class User extends Model {
 
     String name;
     String email;
     String phoneNumber;
     String role;
 
-    public User(){
-        pathPrefix="/users/";
+    {
+        pathPrefix = USERS;
+    }
+
+    public User() {
     }
 
     public User(String name, String email, String phoneNumber, String role) {
-        pathPrefix="/users/";
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.role = role;
     }
 
-    public HashMap<String,String> toMap(){
-        HashMap<String,String> map = super.toMap();
-        map.put("name",name);
-        map.put("email",email);
+    public HashMap<String, Object> toMap() {
+        HashMap<String, Object> map = super.toMap();
+        map.put("name", name);
+        map.put("email", email);
         map.put("phoneNumber", phoneNumber);
-        map.put("role",role);
+        map.put("role", role);
         return map;
     }
 
@@ -64,6 +66,16 @@ public class User extends Model{
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String getId() {
+        return super.getId();
+    }
+
+    @Override
+    public void setId(String id) {
+        super.setId(id);
     }
 
 }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Yayasan Balita Sehat</string>
+    <string name="ANPName">Nama Ibu Hamil</string>
+    <string name="ANPHusbandName">Nama Suami</string>
+    <string name="ANPAge">Umur</string>
+    <string name="med_SubHeader1">Kehamilan</string>
+    <string name="med_InspectionResult">Hasil Pemeriksaan</string>
+</resources>

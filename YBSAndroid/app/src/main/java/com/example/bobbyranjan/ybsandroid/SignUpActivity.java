@@ -1,9 +1,10 @@
 package com.example.bobbyranjan.ybsandroid;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.bobbyranjan.ybsandroid.service.UserService;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -88,18 +90,25 @@ public class SignUpActivity extends AppCompatActivity {
         //if the email and password are not empty
         //displaying a progress dialog
 
-        progressDialog.setMessage("Registering Please Wait...");
+        progressDialog.setMessage("Registering please wait...");
         progressDialog.show();
 
         //creating a new user
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
+        UserService.registerUser(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //checking if success
                         if (task.isSuccessful()) {
+                            String id = task.getResult().getUser().getUid();
                             //display some message here
                             Toast.makeText(SignUpActivity.this, "Successfully registered", Toast.LENGTH_LONG).show();
+                            String name = mName.getText().toString();
+                            String email = mEmail.getText().toString();
+                            String phone = mPhone.getText().toString();
+                            String role = mSpinner.getSelectedItem().toString();
+                            UserService.persistUser(id, name, email, phone, role);
+                            startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                         } else {
                             //display some message here
                             Toast.makeText(SignUpActivity.this, "Registration Error", Toast.LENGTH_LONG).show();
