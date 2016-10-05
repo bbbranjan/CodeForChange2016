@@ -1,6 +1,7 @@
 package com.example.bobbyranjan.ybsandroid;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -41,6 +42,7 @@ public class AddNewPatientFragment extends Fragment {
     Button mSave;
 
     private OnFragmentInteractionListener mListener;
+    private View view;
 
     public AddNewPatientFragment() {
         // Required empty public constructor
@@ -79,14 +81,14 @@ public class AddNewPatientFragment extends Fragment {
 
 
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_add_new_patient, container, false);
+        view = inflater.inflate(R.layout.fragment_add_new_patient, container, false);
         mName = (EditText) view.findViewById(R.id.ANPPatientName);
         mHusbandsName = (EditText) view.findViewById(R.id.ANPHusbandName);
         mVillage = (EditText) view.findViewById(R.id.ANPVillage);
         mAge = (EditText) view.findViewById(R.id.ANPAge);
         mDOB = (EditText) view.findViewById(R.id.ANPDOB);
 
-        mSave = (Button)view.findViewById(R.id.ANPSave);
+        mSave = (Button) view.findViewById(R.id.ANPSave);
         mSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,6 +108,7 @@ public class AddNewPatientFragment extends Fragment {
 
         String id = PatientService.getKey(Model.PATIENT);
         PatientService.persistPatient(id,name,husband,village,age,dob,"1",false,false);
+        startActivity(new Intent(view.getContext(), NavigationActivity.class));
     }
 
     // TODO: Rename method, update argument and hook method into UI event
