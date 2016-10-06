@@ -12,7 +12,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,28 +21,48 @@ import java.util.Map;
 public class Service {
 
     public static FirebaseAuth auth = FirebaseAuth.getInstance();
-    public static DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+    public static DatabaseReference db;
+    static{
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        db = FirebaseDatabase.getInstance().getReference();
+    }
 
-    protected static void persistModel(Model... models){
-        Map updates = new HashMap<String,Map<String,String>>();
-        for(Model model:models){
-            if(model.getId()==null){
+    {
+        //we dont want to sync users - that might be needed later
+        //this keeps only the last 10MB in sync and handles purge for us
+        db.child(Model.PATIENT).keepSynced(true);
+        db.child(Model.PATIENT_HISTORY).keepSynced(true);
+        db.child(Model.PATIENT_USER).keepSynced(true);
+        db.child(Model.DOCTOR_COMMENTS).keepSynced(true);
+    }
+
+    protected static void persistModel(Model... models) {
+        Map updates = new HashMap<String, Map<String, String>>();
+        for (Model model : models) {
+            if (model.getId() == null) {
                 throw new IllegalArgumentException("No ID set on the model!");
             }
-            updates.put(model.path(),model.toMap());
+            updates.put(model.path(), model.toMap());
         }
         db.updateChildren(updates);
     }
 
-    protected static String getKey(Model model){
-        if(model instanceof User){
-            throw new IllegalArgumentException("Inavlid method for User. User user UID instead");
+    protected static String getKey(Model model) {
+        if (model instanceof User) {
+            throw new IllegalArgumentException("Invalid method for User. User user UID instead");
         }
         String db_path = model.pathPrefix;
         return db.child(db_path).push().getKey();
     }
 
-    protected static void retrieveModel(String path, final Class model, final AsyncResultTask task){
+    public static String getKey(String path){
+        if (path.startsWith(Model.USERS)) {
+            throw new IllegalArgumentException("Invalid method for '/users/'. User user UID instead");
+        }
+        return db.child(path).push().getKey();
+    }
+
+    protected static void retrieveModel(String path, final Class model, final AsyncResultTask task) {
         db.child(path).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -60,13 +79,13 @@ public class Service {
 
     }
 
-    protected static void retrieveModels(String path, final Class model, final AsyncResultTask task){
+    protected static void retrieveModels(String path, final Class model, final AsyncResultTask task) {
         db.child(path).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ArrayList results = new ArrayList();
                 Iterator<DataSnapshot> snapshots = dataSnapshot.getChildren().iterator();
-                while(snapshots.hasNext()){
+                while (snapshots.hasNext()) {
                     DataSnapshot ds = snapshots.next();
                     results.add(ds.getValue(model));
                 }

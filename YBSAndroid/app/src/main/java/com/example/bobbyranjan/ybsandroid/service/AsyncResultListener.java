@@ -6,5 +6,6 @@ package com.example.bobbyranjan.ybsandroid.service;
 
 public interface AsyncResultListener {
     public void processResult(Object result);
-    public void processResults(Object ...results);
+
+    public void processResults(Object... results);
 }

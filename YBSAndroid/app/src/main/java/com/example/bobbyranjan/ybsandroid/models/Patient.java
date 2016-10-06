@@ -18,12 +18,14 @@ public class Patient extends Model {
     boolean critical;
     boolean needsMoreGuidance;
 
-    public Patient(){
-        pathPrefix="/patients/";
+    {
+        pathPrefix = PATIENT;
+    }
+
+    public Patient() {
     }
 
     public Patient(String name, String husbandsName, String location, String age, String dateOfBirth, String numPregnancy, boolean critical, boolean needsMoreGuidance) {
-        pathPrefix="/patients/";
         this.name = name;
         this.husbandsName = husbandsName;
         this.location = location;
@@ -35,14 +37,16 @@ public class Patient extends Model {
     }
 
     @Override
-    public HashMap<String, String> toMap() {
-        HashMap<String,String> map =  super.toMap();
-        map.put("name",name);
-        map.put("husbandsName",husbandsName);
-        map.put("location",location);
-        map.put("age",age);
-        map.put("dateOfBirth",dateOfBirth);
-        map.put("numPregnancy",numPregnancy);
+    public HashMap<String, Object> toMap() {
+        HashMap<String, Object> map = super.toMap();
+        map.put("name", name);
+        map.put("husbandsName", husbandsName);
+        map.put("location", location);
+        map.put("age", age);
+        map.put("dateOfBirth", dateOfBirth);
+        map.put("numPregnancy", numPregnancy);
+        map.put("critical", critical);
+        map.put("needsMoreGuidance", needsMoreGuidance);
         return map;
     }
 
@@ -108,6 +112,16 @@ public class Patient extends Model {
 
     public void setNeedsMoreGuidance(boolean needsMoreGuidance) {
         this.needsMoreGuidance = needsMoreGuidance;
+    }
+
+    @Override
+    public String getId() {
+        return super.getId();
+    }
+
+    @Override
+    public void setId(String id) {
+        super.setId(id);
     }
 
 

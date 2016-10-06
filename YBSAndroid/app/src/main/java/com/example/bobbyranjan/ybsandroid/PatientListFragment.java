@@ -9,24 +9,38 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.example.bobbyranjan.ybsandroid.dummy.DummyContent;
-import com.example.bobbyranjan.ybsandroid.dummy.DummyContent.DummyItem;
+
+import com.example.bobbyranjan.ybsandroid.models.Patient;
+import com.example.bobbyranjan.ybsandroid.service.AsyncResultListener;
+import com.example.bobbyranjan.ybsandroid.service.AsyncResultTask;
+import com.example.bobbyranjan.ybsandroid.service.PatientService;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * A fragment representing a list of Items.
- * <p />
+ * <p/>
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class PatientListFragment extends Fragment {
-
-    // TODO: Customize parameters
-    private int mColumnCount = 1;
+public class PatientListFragment extends Fragment implements AsyncResultListener{
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-
+    // TODO: Customize parameters
+    private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+
+    RecyclerView recyclerView;
+
+    /**
+     * Mandatory empty constructor for the fragment manager to instantiate the
+     * fragment (e.g. upon screen orientation changes).
+     */
+    public PatientListFragment() {
+    }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
@@ -36,13 +50,6 @@ public class PatientListFragment extends Fragment {
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
-    public PatientListFragment() {
     }
 
     @Override
@@ -62,16 +69,29 @@ public class PatientListFragment extends Fragment {
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-            recyclerView.setAdapter(new PatientListViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView = (RecyclerView) view;
+            AsyncResultTask task = new AsyncResultTask(this);
+            PatientService.getAllPatients(task);
         }
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        AsyncResultTask task = new AsyncResultTask(this);
+        PatientService.getAllPatients(task);
+    }
+
+    void setViewItems(List<Patient> patients){
+        if (mColumnCount <= 1) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
+        } else {
+            recyclerView.setLayoutManager(new GridLayoutManager(recyclerView.getContext(), mColumnCount));
+        }
+        recyclerView.setAdapter(new PatientListViewAdapter(patients, mListener));
+    }
+
 
 
     @Override
@@ -91,6 +111,19 @@ public class PatientListFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void processResult(Object result) {
+        Patient[] patients = {(Patient) result};
+        setViewItems(new ArrayList<Patient>(Arrays.<Patient>asList(patients)));
+
+    }
+
+    @Override
+    public void processResults(Object... results) {
+        Patient[] patients = Arrays.copyOf(results,results.length,Patient[].class);
+        setViewItems(new ArrayList<Patient>(Arrays.<Patient>asList(patients)));
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -103,6 +136,6 @@ public class PatientListFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(Patient item);
     }
 }

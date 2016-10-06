@@ -11,7 +11,7 @@ public class AsyncResultTask extends AsyncTask {
     AsyncResultListener listener;
     Object[] results = {};
 
-    public AsyncResultTask(AsyncResultListener listener){
+    public AsyncResultTask(AsyncResultListener listener) {
         this.listener = listener;
     }
 
@@ -24,9 +24,9 @@ public class AsyncResultTask extends AsyncTask {
 
     @Override
     protected void onPostExecute(Object o) {
-        if(results.length==1){
+        if (results.length == 1) {
             listener.processResult(results[0]);
-        }else if(results.length>1){
+        } else if (results.length > 1) {
             listener.processResults(results);
         }
     }
