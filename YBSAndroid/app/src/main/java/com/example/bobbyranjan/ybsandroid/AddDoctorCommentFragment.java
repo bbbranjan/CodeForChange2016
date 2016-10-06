@@ -7,6 +7,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.example.bobbyranjan.ybsandroid.models.Model;
+import com.example.bobbyranjan.ybsandroid.models.Patient;
+import com.example.bobbyranjan.ybsandroid.service.AsyncResultListener;
+import com.example.bobbyranjan.ybsandroid.service.AsyncResultTask;
+import com.example.bobbyranjan.ybsandroid.service.DoctorCommentsService;
+import com.example.bobbyranjan.ybsandroid.service.PatientService;
 
 
 /**
@@ -28,6 +38,11 @@ public class AddDoctorCommentFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private EditText mComments;
+    private TextView mPatientName;
+    private TextView mPatientID;
+    private Button mSubmit;
 
     public AddDoctorCommentFragment() {
         // Required empty public constructor
@@ -64,7 +79,35 @@ public class AddDoctorCommentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_doctor_comment, container, false);
+        View view =  inflater.inflate(R.layout.fragment_add_doctor_comment, container, false);
+        mComments = (EditText) view.findViewById(R.id.doctor_comments);
+        mSubmit = (Button) view.findViewById(R.id.submitComments);
+        mPatientName = (TextView) view.findViewById(R.id.andc_PatientName);
+        mPatientID = (TextView) view.findViewById(R.id.andc_PatientID);
+        final String patientId = mParam1;
+        final String historyId = mParam2;
+        mPatientID.setText(patientId);
+        PatientService.getPatient(patientId, new AsyncResultTask(new AsyncResultListener() {
+            @Override
+            public void processResult(Object result) {
+                Patient patient = (Patient) result;
+                mPatientName.setText(patient.getName());
+            }
+
+            @Override
+            public void processResults(Object... results) {
+
+            }
+        }));
+        mSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String path = Model.DOCTOR_COMMENTS+patientId+"/"+historyId;
+                String id = DoctorCommentsService.getKey(path);
+                DoctorCommentsService.persistDoctorComments(id, patientId, historyId, mComments.getText().toString());
+            }
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
