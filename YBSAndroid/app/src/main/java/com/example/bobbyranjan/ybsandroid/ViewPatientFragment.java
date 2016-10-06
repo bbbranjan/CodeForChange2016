@@ -1,31 +1,23 @@
 package com.example.bobbyranjan.ybsandroid;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-
-import com.example.bobbyranjan.ybsandroid.models.Model;
-import com.example.bobbyranjan.ybsandroid.service.PatientService;
-import com.example.bobbyranjan.ybsandroid.service.PatientUserMappingService;
-import com.example.bobbyranjan.ybsandroid.service.UserService;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link AddNewPatientFragment.OnFragmentInteractionListener} interface
+ * {@link ViewPatientFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link AddNewPatientFragment#newInstance} factory method to
+ * Use the {@link ViewPatientFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddNewPatientFragment extends Fragment {
+public class ViewPatientFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -35,18 +27,9 @@ public class AddNewPatientFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    EditText mName;
-    EditText mHusbandsName;
-    EditText mAge;
-    EditText mVillage;
-    EditText mDOB;
-
-    Button mSave;
-
     private OnFragmentInteractionListener mListener;
-    private View view;
 
-    public AddNewPatientFragment() {
+    public ViewPatientFragment() {
         // Required empty public constructor
     }
 
@@ -56,11 +39,11 @@ public class AddNewPatientFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AddNewPatientFragment.
+     * @return A new instance of fragment ViewPatientFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AddNewPatientFragment newInstance(String param1, String param2) {
-        AddNewPatientFragment fragment = new AddNewPatientFragment();
+    public static ViewPatientFragment newInstance(String param1, String param2) {
+        ViewPatientFragment fragment = new ViewPatientFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -80,39 +63,8 @@ public class AddNewPatientFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_add_new_patient, container, false);
-        mName = (EditText) view.findViewById(R.id.ANPPatientName);
-        mHusbandsName = (EditText) view.findViewById(R.id.ANPHusbandName);
-        mVillage = (EditText) view.findViewById(R.id.ANPVillage);
-        mAge = (EditText) view.findViewById(R.id.ANPAge);
-        mDOB = (EditText) view.findViewById(R.id.ANPDOB);
-
-        mSave = (Button) view.findViewById(R.id.ANPSave);
-        mSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                savePatient();
-            }
-        });
-
-        return view;
-    }
-
-    private void savePatient() {
-        String name = mName.getText().toString();
-        String husband = mHusbandsName.getText().toString();
-        String village = mVillage.getText().toString();
-        String age = mAge.getText().toString();
-        String dob = mDOB.getText().toString();
-
-        String id = PatientService.getKey(Model.PATIENT);
-        PatientService.persistPatient(id,name,husband,village,age,dob,"1",false,false);
-        String user = UserService.getCurrentUserUUID();
-        PatientUserMappingService.persistPatientUserMapping(user,id);
-        startActivity(new Intent(view.getContext(), NavigationActivity.class));
+        return inflater.inflate(R.layout.fragment_view_patient, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -144,7 +96,7 @@ public class AddNewPatientFragment extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p/>
+     * <p>
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.

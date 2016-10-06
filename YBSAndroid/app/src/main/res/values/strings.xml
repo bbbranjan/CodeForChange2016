@@ -36,6 +36,7 @@
     <!-- Start strings related to "Add New Patient" -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="AddNewPatientTitle" translatable="false">Adding New Patient</string>
+    <string name="ViewPatientTitle" translatable="false">Patient profile</string>
     <string name="ANPName">Patient Name</string>
     <string name="ANPVillage" translatable="false">Village</string>
     <string name="ANPHusbandName">Husband Name</string>
@@ -72,5 +73,6 @@
     <!-- Start strings related to "Add Doctor Comments" -->
     <string name="add_new_doctor_comment">Add New Doctor Comment</string>
     <string name="andc_patient_id" translatable="false">Patient ID</string>
+    <string name="title_activity_view_patient">ViewPatientActivity</string>
     <!-- End strings related to "Add Doctor Comments" -->
 </resources>
