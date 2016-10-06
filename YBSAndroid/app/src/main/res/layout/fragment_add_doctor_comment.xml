@@ -88,8 +88,14 @@
                     android:ems="10"
                     android:id="@+id/doctor_comments"
                     android:hint="@string/add_new_doctor_comment"
-                    android:textAlignment="viewStart"
-                    android:gravity="top" />
+                    android:gravity="top"
+                    android:outlineProvider="bounds" />
+
+                <Button
+                    android:text="Submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/submitComments" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
