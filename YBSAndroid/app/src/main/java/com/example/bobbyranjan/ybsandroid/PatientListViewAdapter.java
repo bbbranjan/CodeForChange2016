@@ -1,9 +1,11 @@
 package com.example.bobbyranjan.ybsandroid;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.bobbyranjan.ybsandroid.PatientListFragment.OnListFragmentInteractionListener;
@@ -35,20 +37,13 @@ public class PatientListViewAdapter extends RecyclerView.Adapter<PatientListView
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).getName());
-        holder.mContentView.setText(mValues.get(position).getHusbandsName());
+        Patient patient = mValues.get(position);
+        holder.patient = patient;
+        holder.tvPatientName.setText(patient.getName());
+        holder.tvHusbandName.setText(patient.getHusbandsName());
+        holder.tvAge.setText(patient.getAge());
+        holder.setListeners();
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
-                }
-            }
-        });
     }
 
     @Override
@@ -56,22 +51,48 @@ public class PatientListViewAdapter extends RecyclerView.Adapter<PatientListView
         return mValues.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public Patient mItem;
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        final View mView;
+        final TextView tvPatientName;
+        final TextView tvHusbandName;
+        final TextView tvAge;
+        ImageView ivViewProfile, ivAddMedicalRecord;
+
+        Patient patient;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.id);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            tvPatientName = (TextView) view.findViewById(R.id.tvPatientName);
+            tvHusbandName = (TextView) view.findViewById(R.id.tvHusbandName);
+            tvAge = (TextView) view.findViewById(R.id.tvAge);
+            ivViewProfile = (ImageView) itemView.findViewById(R.id.iv_view_profile);
+            ivAddMedicalRecord = (ImageView) itemView.findViewById(R.id.iv_add_medical_record);
+
+        }
+
+        public void setListeners() {
+            ivViewProfile.setOnClickListener(ViewHolder.this);
+            ivAddMedicalRecord.setOnClickListener(ViewHolder.this);
+        }
+        @Override
+        public String toString() {
+            return super.toString() + " '" + tvHusbandName.getText() + "'";
         }
 
         @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+        public void onClick(View v) {
+            Intent i = null;
+            switch (v.getId()) {
+                case R.id.iv_view_profile:
+                    mListener.onListFragmentInteraction(this.patient, Constants.ActionType.PatientDetails);
+                    break;
+
+                case R.id.iv_add_medical_record:
+                    mListener.onListFragmentInteraction(this.patient, Constants.ActionType.AddNewMedicalRecord);
+
+                    break;
+            }
         }
     }
 }

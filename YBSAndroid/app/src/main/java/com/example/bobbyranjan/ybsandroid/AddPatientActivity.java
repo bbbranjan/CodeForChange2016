@@ -11,28 +11,47 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Explode;
 
-public class AddPatientActivity extends AppCompatActivity implements AddNewPatientFragment.OnFragmentInteractionListener {
+public class AddPatientActivity extends AppCompatActivity implements AddNewPatientFragment.OnAddNewPatient
+
+{
 
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
+    private Constants.ActionType actionType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_add_patient);
+        actionType = (Constants.ActionType) getIntent().getSerializableExtra(Constants.ACTION_TYPE);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setUpAnimation();
 
         setupToolbar();
-        addFragments();
+        addFragments(actionType);
 
     }
 
-    private void addFragments() {
+    private void addFragments(Constants.ActionType actionType) {
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.rlAddNewPatient, new AddNewPatientFragment(), "Add New Pregnant Woman Fragment");
+        String patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
+        switch (actionType) {
+
+            case AddNewPatient:
+                fragmentTransaction.add(R.id.rlAddNewPatient, new AddNewPatientFragment(), "Add New Pregnant Woman Fragment");
+                break;
+            case PatientDetails:
+                fragmentTransaction.add(R.id.rlAddNewPatient, new PatientDetailsFragment(), "View Patient Details Fragment");
+                break;
+            case AddNewMedicalRecord:
+                fragmentTransaction.add(R.id.rlAddNewPatient, new PatientMedicalHistoryListFragment(), "View Patient Medical History");
+                break;
+        }
+
         fragmentTransaction.commit();
     }
 
@@ -55,7 +74,7 @@ public class AddPatientActivity extends AppCompatActivity implements AddNewPatie
 
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onPatientAdded(Uri uri) {
 
     }
 }
