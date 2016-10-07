@@ -15,13 +15,15 @@
         android:background="@android:color/white"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/ivPatient"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_margin="7dp"
-            />
-
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="@dimen/profile_image_size"
+            android:layout_height="@dimen/profile_image_size"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_profile"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp"/>
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
