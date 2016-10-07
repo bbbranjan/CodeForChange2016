@@ -1,20 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal">
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:elevation="3dp"
+    card_view:cardCornerRadius="5dp">
 
-    <TextView
-            android:id="@+id/id"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="@dimen/profile_image_size"
+            android:layout_height="@dimen/profile_image_size"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_profile"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvPatientName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="7dp"
+                android:textColor="#616161"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="@string/ANPName"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvHusbandName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="15sp"
+                    android:textStyle="italic"
+                    tools:text="@string/ANPHusbandName"/>
+
+                <android.support.v4.widget.Space
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:id="@+id/tvAge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="15sp"
+                    android:textStyle="italic"
+                    tools:text="@string/ANPAge"/>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:textAppearance="?attr/textAppearanceListItem" />
+            android:orientation="vertical">
 
-    <TextView
-            android:id="@+id/content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:textAppearance="?attr/textAppearanceListItem" />
-</LinearLayout>
+            <ImageView
+                android:id="@+id/iv_view_profile"
+                android:layout_width="@dimen/pl_icon_size"
+                android:layout_height="@dimen/pl_icon_size"
+                android:layout_margin="@dimen/pl_icon_margin"
+                android:contentDescription="@string/view_profile"
+                android:src="@drawable/ic_profile"
+                android:tint="@color/grey_500"/>
+
+            <ImageView
+                android:id="@+id/iv_add_medical_record"
+                android:layout_width="@dimen/pl_icon_size"
+                android:layout_height="@dimen/pl_icon_size"
+                android:layout_margin="@dimen/pl_icon_margin"
+                android:contentDescription="@string/view_medical_history"
+                android:src="@drawable/ic_add_medical_record"
+                android:tint="@color/grey_500"
+                />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
+

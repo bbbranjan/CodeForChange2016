@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.AppBarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:theme="@style/AppTheme.AppBarOverlay">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:contentInsetLeft="@dimen/toolbar_content_start"
+        android:contentInsetStart="0dp"
+        android:paddingStart="@dimen/toolbar_content_start"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:contentInsetLeft="@dimen/toolbar_content_start"
+        app:contentInsetStart="@dimen/toolbar_content_start"
+        app:contentInsetStartWithNavigation="@dimen/toolbar_content_start"
+        app:elevation="@dimen/appbar_elevation"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:logo="@mipmap/ic_launcher"
+        app:paddingStart="0dp"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:title="@string/app_name"
+        />
+
+</android.support.design.widget.AppBarLayout>
