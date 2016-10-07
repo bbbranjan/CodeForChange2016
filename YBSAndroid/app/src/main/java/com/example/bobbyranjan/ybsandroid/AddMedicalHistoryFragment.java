@@ -8,10 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.bobbyranjan.ybsandroid.models.Model;
-import com.example.bobbyranjan.ybsandroid.models.PatientMedicalHistory;
-import com.example.bobbyranjan.ybsandroid.service.PatientMedicalHistoryService;
-
 
 /**
  * A simple {@link Fragment} subclass.

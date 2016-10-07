@@ -25,15 +25,14 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class PatientListFragment extends Fragment implements AsyncResultListener{
+public class PatientListFragment extends Fragment implements AsyncResultListener {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
+    RecyclerView recyclerView;
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
-
-    RecyclerView recyclerView;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -71,7 +70,8 @@ public class PatientListFragment extends Fragment implements AsyncResultListener
             Context context = view.getContext();
             recyclerView = (RecyclerView) view;
             AsyncResultTask task = new AsyncResultTask(this);
-            PatientService.getAllPatients(task);
+            setViewItems(new ArrayList<Patient>());
+            //PatientService.getAllPatients(task);
         }
         return view;
     }
@@ -83,15 +83,31 @@ public class PatientListFragment extends Fragment implements AsyncResultListener
         PatientService.getAllPatients(task);
     }
 
-    void setViewItems(List<Patient> patients){
+    void setViewItems(List<Patient> patients) {
         if (mColumnCount <= 1) {
             recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
         } else {
             recyclerView.setLayoutManager(new GridLayoutManager(recyclerView.getContext(), mColumnCount));
         }
+        AddMockPatients(patients);
         recyclerView.setAdapter(new PatientListViewAdapter(patients, mListener));
     }
 
+    private void AddMockPatients(List<Patient> patients) {
+        for (int i = 0; i < 20; i++) {
+            patients.add(getPatient(i));
+        }
+    }
+
+    private Patient getPatient(int i) {
+        Patient patient = new Patient();
+        patient.setId("Patient" + i);
+        patient.setName("Patient " + i);
+        patient.setHusbandsName("Husband " + i);
+        patient.setAge(20 + i);
+        patient.setLocation("Location " + i);
+        return patient;
+    }
 
 
     @Override
@@ -114,14 +130,14 @@ public class PatientListFragment extends Fragment implements AsyncResultListener
     @Override
     public void processResult(Object result) {
         Patient[] patients = {(Patient) result};
-        setViewItems(new ArrayList<Patient>(Arrays.<Patient>asList(patients)));
+        setViewItems(new ArrayList<Patient>(Arrays.asList(patients)));
 
     }
 
     @Override
     public void processResults(Object... results) {
-        Patient[] patients = Arrays.copyOf(results,results.length,Patient[].class);
-        setViewItems(new ArrayList<Patient>(Arrays.<Patient>asList(patients)));
+        Patient[] patients = Arrays.copyOf(results, results.length, Patient[].class);
+        setViewItems(new ArrayList<Patient>(Arrays.asList(patients)));
     }
 
     /**
@@ -136,6 +152,6 @@ public class PatientListFragment extends Fragment implements AsyncResultListener
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(Patient item);
+        void onListFragmentInteraction(Patient item, Constants.ActionType patientDetails);
     }
 }

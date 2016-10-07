@@ -14,10 +14,10 @@
         android:id="@+id/ANPHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:paddingBottom="10dp">
+        android:paddingTop="10dp">
         <TextView
             android:id="@+id/ANPTitle"
             android:layout_width="wrap_content"
@@ -28,49 +28,49 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ANPHeader">
+        android:layout_below="@id/ANPHeader"
+        android:orientation="vertical">
         <EditText
             android:id="@+id/ANPPatientName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:hint="@string/ANPName"
             android:ems="10"
+            android:hint="@string/ANPName"
             android:inputType="text"/>
         <EditText
             android:id="@+id/ANPVillage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:hint="@string/ANPVillage"
             android:ems="10"
+            android:hint="@string/ANPVillage"
             android:inputType="text"/>
         <EditText
             android:id="@+id/ANPHusbandName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:hint="@string/ANPHusbandName"
             android:ems="10"
+            android:hint="@string/ANPHusbandName"
             android:inputType="text"/>
         <EditText
             android:id="@+id/ANPDOB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:hint="@string/ANPDOB"
             android:ems="10"
+            android:hint="@string/ANPDOB"
             android:inputType="text"/>
         <EditText
             android:id="@+id/ANPAge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:hint="@string/ANPAge"
             android:ems="10"
+            android:hint="@string/ANPAge"
             android:inputType="text"/>
 
         <Button
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/action_save"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
     </LinearLayout>
 

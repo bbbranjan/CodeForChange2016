@@ -35,11 +35,19 @@ public class NavigationActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         bindControls();
         setupWindowAnimations();
-        setupToolBar();
+        setupToolbar();
         setupDrawer();
         hookEvents();
         addFragments();
     }
+
+    private void setupToolbar() {
+        setSupportActionBar(toolbar);
+
+        ActionBar supportActionBar = getSupportActionBar();
+        supportActionBar.setSubtitle(R.string.list_of_pregnant_women);
+    }
+
 
     private void bindControls() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -88,15 +96,6 @@ public class NavigationActivity extends AppCompatActivity
         });
     }
 
-    private void setupToolBar() {
-        setSupportActionBar(toolbar);
-        toolbar.setContentInsetStartWithNavigation(0);
-        ActionBar supportActionBar = getSupportActionBar();
-        supportActionBar.setLogo(R.mipmap.ic_launcher);
-        supportActionBar.setTitle(R.string.app_name);
-        supportActionBar.setSubtitle(R.string.list_of_pregnant_women);
-        supportActionBar.setElevation(9);
-    }
 
     @Override
     public void onBackPressed() {

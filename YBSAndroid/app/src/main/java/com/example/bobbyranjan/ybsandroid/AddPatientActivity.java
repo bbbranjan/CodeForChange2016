@@ -10,8 +10,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Explode;
+import android.view.WindowManager;
 
-public class AddPatientActivity extends AppCompatActivity implements AddNewPatientFragment.OnAddNewPatient
+public class AddPatientActivity extends AppCompatActivity implements AddNewPatientFragment.OnFragmentInteractionListener
 
 {
 
@@ -19,6 +20,7 @@ public class AddPatientActivity extends AppCompatActivity implements AddNewPatie
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private Constants.ActionType actionType;
+    private ActionBar supportActionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,29 +41,32 @@ public class AddPatientActivity extends AppCompatActivity implements AddNewPatie
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         String patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
+        int titleId = 0;
         switch (actionType) {
 
             case AddNewPatient:
+                titleId = R.string.add_new_pregnant_woman;
                 fragmentTransaction.add(R.id.rlAddNewPatient, new AddNewPatientFragment(), "Add New Pregnant Woman Fragment");
                 break;
             case PatientDetails:
+                titleId = R.string.view_profile;
                 fragmentTransaction.add(R.id.rlAddNewPatient, new PatientDetailsFragment(), "View Patient Details Fragment");
+                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
                 break;
             case AddNewMedicalRecord:
+                titleId = R.string.view_medical_history;
                 fragmentTransaction.add(R.id.rlAddNewPatient, new PatientMedicalHistoryListFragment(), "View Patient Medical History");
+                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
                 break;
         }
+        supportActionBar.setSubtitle(getString(titleId));
 
         fragmentTransaction.commit();
     }
 
     private void setupToolbar() {
         setSupportActionBar(toolbar);
-        ActionBar supportActionBar = getSupportActionBar();
-        supportActionBar.setLogo(R.drawable.ic_pregnant_woman);
-        supportActionBar.setTitle(R.string.app_name);
-        supportActionBar.setSubtitle(getString(R.string.add_new_pregant_woman));
-        supportActionBar.setElevation(9);
+        supportActionBar = getSupportActionBar();
         supportActionBar.setDisplayHomeAsUpEnabled(true);
     }
 
@@ -74,7 +79,7 @@ public class AddPatientActivity extends AppCompatActivity implements AddNewPatie
 
 
     @Override
-    public void onPatientAdded(Uri uri) {
+    public void onFragmentInteraction(Uri uri) {
 
     }
 }

@@ -41,7 +41,7 @@ public class PatientListViewAdapter extends RecyclerView.Adapter<PatientListView
         holder.patient = patient;
         holder.tvPatientName.setText(patient.getName());
         holder.tvHusbandName.setText(patient.getHusbandsName());
-        holder.tvAge.setText(patient.getAge());
+        holder.tvAge.setText(String.valueOf(patient.getAge()));
         holder.setListeners();
 
     }

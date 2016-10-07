@@ -10,4 +10,6 @@
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="pl_icon_size">25dp</dimen>
     <dimen name="pl_icon_margin">5dp</dimen>
+    <dimen name="toolbar_content_start">0dp</dimen>
+    <dimen name="appbar_elevation">9dp</dimen>
 </resources>

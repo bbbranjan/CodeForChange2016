@@ -79,7 +79,7 @@ public class AddDoctorCommentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_add_doctor_comment, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_doctor_comment, container, false);
         mComments = (EditText) view.findViewById(R.id.doctor_comments);
         mSubmit = (Button) view.findViewById(R.id.submitComments);
         mPatientName = (TextView) view.findViewById(R.id.andc_PatientName);
@@ -102,7 +102,7 @@ public class AddDoctorCommentFragment extends Fragment {
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String path = Model.DOCTOR_COMMENTS+patientId+"/"+historyId;
+                String path = Model.DOCTOR_COMMENTS + patientId + "/" + historyId;
                 String id = DoctorCommentsService.getKey(path);
                 DoctorCommentsService.persistDoctorComments(id, patientId, historyId, mComments.getText().toString());
             }
