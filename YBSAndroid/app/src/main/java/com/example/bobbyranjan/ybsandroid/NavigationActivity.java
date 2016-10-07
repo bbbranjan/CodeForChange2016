@@ -22,7 +22,7 @@ import android.view.View;
 import com.example.bobbyranjan.ybsandroid.models.Patient;
 
 public class NavigationActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,PatientListFragment.OnListFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, PatientListFragment.OnListFragmentInteractionListener {
 
     private FloatingActionButton fab;
     private Toolbar toolbar;
@@ -35,11 +35,19 @@ public class NavigationActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         bindControls();
         setupWindowAnimations();
-        setupToolBar();
+        setupToolbar();
         setupDrawer();
         hookEvents();
         addFragments();
     }
+
+    private void setupToolbar() {
+        setSupportActionBar(toolbar);
+
+        ActionBar supportActionBar = getSupportActionBar();
+        supportActionBar.setSubtitle(R.string.list_of_pregnant_women);
+    }
+
 
     private void bindControls() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -64,7 +72,7 @@ public class NavigationActivity extends AppCompatActivity
     private void addFragments() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.rlContent,new PatientListFragment(),"Patient List Fragment");
+        fragmentTransaction.add(R.id.rlContent, new PatientListFragment(), "Patient List Fragment");
         fragmentTransaction.commit();
     }
 
@@ -82,22 +90,12 @@ public class NavigationActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(NavigationActivity.this);
-                Intent i = new Intent(NavigationActivity.this, AddPatientActivity.class);
-                startActivity(i, options.toBundle());
+                onListFragmentInteraction(null, Constants.ActionType.AddNewPatient);
 
             }
         });
     }
 
-    private void setupToolBar() {
-        setSupportActionBar(toolbar);
-        ActionBar supportActionBar = getSupportActionBar();
-        supportActionBar.setLogo(R.drawable.ic_pregnant_woman);
-        supportActionBar.setTitle(R.string.app_name);
-        supportActionBar.setSubtitle(R.string.list_of_pregnant_women);
-        supportActionBar.setElevation(9);
-    }
 
     @Override
     public void onBackPressed() {
@@ -156,12 +154,30 @@ public class NavigationActivity extends AppCompatActivity
         return true;
     }
 
-    public void addPatient(View view) {
-        Intent navIntent = new Intent(this, SignUpActivity.class);
-    }
 
     @Override
-    public void onListFragmentInteraction(Patient item) {
+    public void onListFragmentInteraction(Patient patient, Constants.ActionType fragmentType) {
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(NavigationActivity.this);
+        Intent i = null;
+
+        switch (fragmentType) {
+
+            case AddNewPatient:
+                i = new Intent(NavigationActivity.this, AddPatientActivity.class);
+                i.putExtra(Constants.ACTION_TYPE, Constants.ActionType.AddNewPatient);
+                break;
+            case PatientDetails:
+                i = new Intent(NavigationActivity.this, AddPatientActivity.class);
+                i.putExtra(Constants.ACTION_TYPE, Constants.ActionType.PatientDetails);
+                i.putExtra(Constants.PATIENT_ID, patient.getId());
+                break;
+            case AddNewMedicalRecord:
+                i = new Intent(NavigationActivity.this, AddPatientActivity.class);
+                i.putExtra(Constants.ACTION_TYPE, Constants.ActionType.AddNewMedicalRecord);
+                i.putExtra(Constants.PATIENT_ID, patient.getId());
+                break;
+        }
+        startActivity(i, options.toBundle());
 
     }
 }
