@@ -46,7 +46,7 @@ public class Patient extends Model {
         map.put("dateOfBirth", dateOfBirth);
         map.put("numPregnancy", numPregnancy);
         map.put("critical", critical);
-        map.put("needsMoreGuidance", numPregnancy);
+        map.put("needsMoreGuidance", needsMoreGuidance);
         return map;
     }
 
