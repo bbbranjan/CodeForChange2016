@@ -11,6 +11,7 @@
     <string name="action_register" translatable="false">Register</string>
     <string name="action_new_user" translatable="false">New user? Click to register</string>
     <string name="action_sign_in_short" translatable="false">Sign in</string>
+    <string name="action_save" translatable="false">Save</string>
     <string name="error_invalid_email" translatable="false">This email address is invalid</string>
     <string name="error_invalid_password" translatable="false">This password is too short</string>
     <string name="error_incorrect_password" translatable="false">This password is incorrect</string>
@@ -35,6 +36,7 @@
     <!-- Start strings related to "Add New Patient" -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="AddNewPatientTitle" translatable="false">Adding New Patient</string>
+    <string name="ViewPatientTitle" translatable="false">Patient profile</string>
     <string name="ANPName">Patient Name</string>
     <string name="ANPVillage" translatable="false">Village</string>
     <string name="ANPHusbandName">Husband Name</string>
@@ -69,4 +71,10 @@
     <string name="view_profile">View Profile</string>
     <string name="view_medical_history">View Medical History</string>
     <!-- End strings related to "Add Medical Record" -->
+
+    <!-- Start strings related to "Add Doctor Comments" -->
+    <string name="add_new_doctor_comment">Add New Doctor Comment</string>
+    <string name="andc_patient_id" translatable="false">Patient ID</string>
+    <string name="title_activity_view_patient">ViewPatientActivity</string>
+    <!-- End strings related to "Add Doctor Comments" -->
 </resources>

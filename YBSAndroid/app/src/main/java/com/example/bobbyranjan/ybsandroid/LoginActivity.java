@@ -20,7 +20,6 @@ import com.example.bobbyranjan.ybsandroid.service.UserService;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 
 /**
  * A login screen that offers login via email/password.
@@ -34,7 +33,6 @@ public class LoginActivity extends AppCompatActivity implements AsyncResultListe
     private TextView mNewUser;
     private TextView mForgotPassword;
 
-    private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
 
     @Override
@@ -42,11 +40,9 @@ public class LoginActivity extends AppCompatActivity implements AsyncResultListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //initializing firebase auth object
-        firebaseAuth = FirebaseAuth.getInstance();
 
         //if getCurrentUser does not returns null
-        if (firebaseAuth.getCurrentUser() != null) {
+        if (UserService.auth.getCurrentUser() != null) {
             //that means user is already logged in
             //so close this activity
             finish();
