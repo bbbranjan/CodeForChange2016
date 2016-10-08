@@ -13,6 +13,8 @@ import android.widget.EditText;
 
 import com.example.bobbyranjan.ybsandroid.models.Model;
 import com.example.bobbyranjan.ybsandroid.service.PatientService;
+import com.example.bobbyranjan.ybsandroid.service.PatientUserMappingService;
+import com.example.bobbyranjan.ybsandroid.service.UserService;
 
 
 /**
@@ -28,19 +30,15 @@ public class AddNewPatientFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     EditText mName;
     EditText mHusbandsName;
     EditText mAge;
     EditText mVillage;
     EditText mDOB;
-
     Button mSave;
-
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
     private OnFragmentInteractionListener mListener;
     private View view;
 
@@ -103,11 +101,13 @@ public class AddNewPatientFragment extends Fragment {
         String name = mName.getText().toString();
         String husband = mHusbandsName.getText().toString();
         String village = mVillage.getText().toString();
-        String age = mAge.getText().toString();
+        int age = Integer.valueOf(mAge.getText().toString());
         String dob = mDOB.getText().toString();
 
         String id = PatientService.getKey(Model.PATIENT);
-        PatientService.persistPatient(id,name,husband,village,age,dob,"1",false,false);
+        PatientService.persistPatient(id, name, husband, village, age, dob, 1, false, false);
+        String user = UserService.getCurrentUserUUID();
+        PatientUserMappingService.persistPatientUserMapping(user, id);
         startActivity(new Intent(view.getContext(), NavigationActivity.class));
     }
 

@@ -11,9 +11,9 @@ public class Patient extends Model {
     String name;
     String husbandsName;
     String location;
-    String age;
+    int age;
     String dateOfBirth;
-    String numPregnancy;
+    int numPregnancy;
 
     boolean critical;
     boolean needsMoreGuidance;
@@ -25,7 +25,7 @@ public class Patient extends Model {
     public Patient() {
     }
 
-    public Patient(String name, String husbandsName, String location, String age, String dateOfBirth, String numPregnancy, boolean critical, boolean needsMoreGuidance) {
+    public Patient(String name, String husbandsName, String location, int age, String dateOfBirth, int numPregnancy, boolean critical, boolean needsMoreGuidance) {
         this.name = name;
         this.husbandsName = husbandsName;
         this.location = location;
@@ -74,11 +74,11 @@ public class Patient extends Model {
         this.location = location;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
@@ -90,11 +90,11 @@ public class Patient extends Model {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getNumPregnancy() {
+    public int getNumPregnancy() {
         return numPregnancy;
     }
 
-    public void setNumPregnancy(String numPregnancy) {
+    public void setNumPregnancy(int numPregnancy) {
         this.numPregnancy = numPregnancy;
     }
 

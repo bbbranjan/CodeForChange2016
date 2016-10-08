@@ -9,7 +9,7 @@ import com.example.bobbyranjan.ybsandroid.models.Patient;
 
 public class PatientService extends Service{
 
-    public static void persistPatient(String id,String name, String husbandsName,String location, String age,String dateOfBirth, String numPregnancy,boolean critical,boolean needsMoreGuidance){
+    public static void persistPatient(String id, String name, String husbandsName, String location, int age, String dateOfBirth, int numPregnancy, boolean critical, boolean needsMoreGuidance) {
         Patient patient = new Patient(name,husbandsName,location,age,dateOfBirth,numPregnancy,critical,needsMoreGuidance);
         patient.setId(id);
         persistModel(patient);
