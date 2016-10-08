@@ -31,6 +31,7 @@
                     android:padding="5dp"
                     android:textColor="#000000"
                     tools:text="@string/med_ScreenHeader" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -50,6 +51,24 @@
                     android:layout_margin="5dp"
                     android:id="@+id/med_PatientName" />
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/border"
+                android:id="@+id/rtwt">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:layout_margin="5dp"
+                    android:id="@+id/mr_rtwt"
+                    android:hint="@string/med_varField13"
+                    android:inputType="text" />
             </LinearLayout>
 
             <LinearLayout
@@ -82,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:layout_weight="1"
-                    android:id="@+id/pregField1"
+                    android:id="@+id/mr_pregField1"
                     android:inputType="textCapCharacters|textCapWords"
                     android:hint="@string/med_PregField1"
                     android:gravity="center_horizontal" />
@@ -94,7 +113,7 @@
                     android:ems="10"
                     android:layout_weight="1"
                     android:hint="@string/med_PregField2"
-                    android:id="@+id/pregField2"
+                    android:id="@+id/mr_pregField2"
                     android:gravity="center_vertical|center_horizontal" />
 
                 <EditText
@@ -103,7 +122,7 @@
                     android:inputType="textCapCharacters|textCapWords"
                     android:ems="10"
                     android:layout_weight="1"
-                    android:id="@+id/pregField3"
+                    android:id="@+id/mr_pregField3"
                     android:hint="@string/med_PregField3"
                     android:gravity="center_horizontal" />
 
@@ -112,7 +131,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textCapCharacters|textCapWords"
                     android:ems="10"
-                    android:id="@+id/pregField4"
+                    android:id="@+id/mr_pregField4"
                     android:layout_weight="1"
                     android:hint="@string/med_PregField4"
                     android:gravity="center_horizontal" />
@@ -131,11 +150,41 @@
                     android:layout_width="match_parent"
                     android:inputType="textMultiLine"
                     android:ems="10"
-                    android:id="@+id/inspectionResults"
+                    android:id="@+id/mr_inspectionResults"
                     android:hint="@string/med_InspectionResult"
                     android:layout_margin="5dp"
                     android:layout_weight="11.85"
                     android:layout_height="150dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/varFields"
+                android:background="@drawable/border"
+                android:layout_margin="5dp">
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="text|textCapCharacters"
+                    android:ems="10"
+                    android:layout_weight="1"
+                    android:hint="@string/med_varField1"
+                    android:id="@+id/mr_UK"
+                    android:gravity="center_vertical|center_horizontal" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="text|textCapCharacters|textCapWords"
+                    android:ems="10"
+                    android:layout_weight="1"
+                    android:hint="@string/med_varField2"
+                    android:id="@+id/mr_Varices"
+                    android:gravity="center_vertical|center_horizontal" />
             </LinearLayout>
 
             <LinearLayout
@@ -149,31 +198,11 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="text|textCapCharacters"
-                    android:ems="10"
-                    android:layout_weight="1"
-                    android:hint="@string/med_varField1"
-                    android:id="@+id/UK"
-                    android:gravity="center_vertical|center_horizontal" />
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="text|textCapCharacters|textCapWords"
-                    android:ems="10"
-                    android:layout_weight="1"
-                    android:hint="@string/med_varField2"
-                    android:id="@+id/Varices"
-                    android:gravity="center_vertical|center_horizontal" />
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:inputType="text|textCapCharacters|textCapWords"
                     android:ems="10"
                     android:layout_weight="1"
                     android:hint="@string/med_varField3"
-                    android:id="@+id/Oedema"
+                    android:id="@+id/mr_Oedema"
                     android:gravity="center_vertical|center_horizontal" />
 
                 <EditText
@@ -183,8 +212,9 @@
                     android:ems="10"
                     android:layout_weight="1"
                     android:hint="@string/med_varField4"
-                    android:id="@+id/WTB"
+                    android:id="@+id/mr_WTB"
                     android:gravity="center_vertical|center_horizontal" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -201,7 +231,7 @@
                     android:inputType="text|textCapCharacters|textCapWords"
                     android:ems="10"
                     android:layout_weight="1"
-                    android:id="@+id/TD"
+                    android:id="@+id/mr_TD"
                     android:hint="@string/med_varField5"
                     android:gravity="center_vertical|center_horizontal" />
 
@@ -212,18 +242,9 @@
                     android:layout_weight="1"
                     android:hint="@string/med_varField6"
                     android:inputType="text|textCapCharacters|textCapWords"
-                    android:id="@+id/LILA"
+                    android:id="@+id/mr_LILA"
                     android:gravity="center_vertical|center_horizontal" />
 
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="textCapCharacters|textCapWords"
-                    android:ems="10"
-                    android:layout_weight="1"
-                    android:id="@+id/NumVisit"
-                    android:hint="@string/med_varField7"
-                    android:gravity="center_vertical|center_horizontal" />
             </LinearLayout>
 
             <LinearLayout
@@ -240,16 +261,36 @@
                     android:inputType="textCapCharacters|textCapWords"
                     android:ems="10"
                     android:layout_weight="1"
-                    android:id="@+id/SF"
+                    android:id="@+id/mr_NumVisit"
+                    android:hint="@string/med_varField7"
+                    android:gravity="center_vertical|center_horizontal" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapCharacters|textCapWords"
+                    android:ems="10"
+                    android:layout_weight="1"
+                    android:id="@+id/mr_SF"
                     android:hint="@string/med_varField8"
                     android:gravity="center_vertical|center_horizontal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/varFields4"
+                android:background="@drawable/border"
+                android:layout_margin="5dp">
 
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:layout_weight="1"
-                    android:id="@+id/HPHT"
+                    android:id="@+id/mr_HPHT"
                     android:inputType="date"
                     android:hint="@string/med_varField9"
                     android:gravity="center_vertical|center_horizontal" />
@@ -259,10 +300,46 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:layout_weight="1"
-                    android:id="@+id/TP"
+                    android:id="@+id/mr_TP"
                     android:inputType="date"
                     android:hint="@string/med_varField10"
                     android:gravity="center_vertical|center_horizontal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Complaints"
+                android:background="@drawable/border"
+                android:layout_margin="5dp">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:ems="10"
+                    android:id="@+id/mr_Complaints"
+                    android:layout_margin="5dp"
+                    android:hint="@string/med_varField11" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Information"
+                android:background="@drawable/border"
+                android:layout_margin="5dp">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:ems="10"
+                    android:layout_margin="5dp"
+                    android:id="@+id/mr_Information"
+                    android:hint="@string/med_varField12" />
             </LinearLayout>
 
             <LinearLayout
@@ -274,7 +351,7 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton2"
+                    android:id="@+id/mr_savebutton"
                     android:layout_weight="1"
                     android:src="@mipmap/save"
                     android:background="#00FFFFFF"
@@ -283,7 +360,7 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton"
+                    android:id="@+id/mr_cancelbutton"
                     android:layout_weight="1"
                     android:src="@mipmap/cancel"
                     android:background="#00FFFFFF"
