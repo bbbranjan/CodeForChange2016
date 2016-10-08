@@ -142,7 +142,7 @@ public class AddMedicalHistoryFragment extends Fragment {
         String TD = mTD.getText().toString();
         String LILA = mLILA.getText().toString();
         String numvisit = mNumVisit.getText().toString();
-        String SF = mSF..getText().toString();
+        String SF = mSF.getText().toString();
         String HPHT = mHPHT.getText().toString();
         String TP = mTP.getText().toString();
         String complaints = mComplaints.getText().toString();
