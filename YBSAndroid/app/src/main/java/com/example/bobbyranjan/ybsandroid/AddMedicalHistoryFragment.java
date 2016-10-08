@@ -7,6 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
+
+import com.example.bobbyranjan.ybsandroid.models.Model;
+import com.example.bobbyranjan.ybsandroid.service.PatientMedicalHistoryService;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 
 /**
@@ -23,12 +31,34 @@ public class AddMedicalHistoryFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    EditText mRTWT;
+    EditText mG;
+    EditText mP;
+    EditText mA;
+    EditText mAH;
+    EditText mInspectionResults;
+    EditText mUK;
+    EditText mVarices;
+    EditText mOedema;
+    EditText mWTB;
+    EditText mTD;
+    EditText mLILA;
+    EditText mNumVisit;
+    EditText mSF;
+    EditText mHPHT;
+    EditText mTP;
+    EditText mComplaints;
+    EditText mInfo;
+
+    ImageButton mSave;
+    ImageButton mCancel;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-
+    private View view;
     public AddMedicalHistoryFragment() {
         // Required empty public constructor
     }
@@ -64,7 +94,68 @@ public class AddMedicalHistoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_medical_history, container, false);
+        view = inflater.inflate(R.layout.fragment_add_medical_history, container, false);
+
+        mRTWT = (EditText) view.findViewById(R.id.mr_rtwt);
+        mG = (EditText) view.findViewById(R.id.mr_pregField1);
+        mP = (EditText) view.findViewById(R.id.mr_pregField2);
+        mA = (EditText) view.findViewById(R.id.mr_pregField3);
+        mAH = (EditText) view.findViewById(R.id.mr_pregField4);
+        mInspectionResults = (EditText) view.findViewById(R.id.mr_inspectionResults);
+        mUK = (EditText) view.findViewById(R.id.mr_UK);
+        mVarices = (EditText) view.findViewById(R.id.mr_Varices);
+        mOedema = (EditText) view.findViewById(R.id.mr_Oedema);
+        mWTB = (EditText) view.findViewById(R.id.mr_WTB);
+        mTD = (EditText) view.findViewById(R.id.mr_TD);
+        mLILA = (EditText) view.findViewById(R.id.mr_LILA);
+        mNumVisit = (EditText) view.findViewById(R.id.mr_NumVisit);
+        mSF = (EditText) view.findViewById(R.id.mr_SF);
+        mHPHT = (EditText) view.findViewById(R.id.mr_HPHT);
+        mTP = (EditText) view.findViewById(R.id.mr_TP);
+        mComplaints = (EditText) view.findViewById(R.id.mr_Complaints);
+        mInfo = (EditText) view.findViewById(R.id.mr_Information);
+
+        mSave = (ImageButton) view.findViewById(R.id.mr_savebutton);
+        mCancel = (ImageButton) view.findViewById(R.id.mr_cancelbutton);
+
+        mSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveMedHist();
+            }
+        });
+
+        return view;
+    }
+
+    private void saveMedHist() {
+        String rtwt = mRTWT.getText().toString();
+        String pG = mG.getText().toString();
+        String pP = mP.getText().toString();
+        String pA = mP.getText().toString();
+        String pAH = mAH.getText().toString();
+        String IR = mInspectionResults.getText().toString();
+        String UK = mUK.getText().toString();
+        String Varices = mVarices.getText().toString();
+        String Oedema = mOedema.getText().toString();
+        String WTB = mWTB.getText().toString();
+        String TD = mTD.getText().toString();
+        String LILA = mLILA.getText().toString();
+        String numvisit = mNumVisit.getText().toString();
+        String SF = mSF..getText().toString();
+        String HPHT = mHPHT.getText().toString();
+        String TP = mTP.getText().toString();
+        String complaints = mComplaints.getText().toString();
+        String info = mInfo.getText().toString();
+
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String currDate;
+        currDate = df.format(c.getTime());
+
+        String id = PatientMedicalHistoryService.getKey(Model.PATIENT);
+        String patientID = "123456";
+        PatientMedicalHistoryService.persistPatientMedicalHistory(id,patientID,currDate,rtwt,pG,pP,pA,pAH,IR,UK,Varices,Oedema,WTB,TD,LILA,numvisit,SF,HPHT,TP,complaints,info);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

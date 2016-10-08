@@ -64,6 +64,9 @@
     <string name="med_varField8" translatable="false">SF</string>
     <string name="med_varField9" translatable="false">HPHT</string>
     <string name="med_varField10" translatable="false">TP</string>
+    <string name="med_varField11" translatable="false">Complaints</string>
+    <string name="med_varField12" translatable="false">Information</string>
+    <string name="med_varField13" translatable="false">RT WT</string>
     <string name="med_saveButton" translatable="false">Save Button</string>
     <string name="med_cancelButton" translatable="false">Cancel Button</string>
     <string name="list_of_pregnant_women" translatable="false">Pregnant Women\'s List</string>
