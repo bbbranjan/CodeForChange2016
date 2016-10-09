@@ -70,8 +70,7 @@ public class PatientListFragment extends Fragment implements AsyncResultListener
             Context context = view.getContext();
             recyclerView = (RecyclerView) view;
             AsyncResultTask task = new AsyncResultTask(this);
-            setViewItems(new ArrayList<Patient>());
-            //PatientService.getAllPatients(task);
+            PatientService.getAllPatients(task);
         }
         return view;
     }
@@ -84,31 +83,8 @@ public class PatientListFragment extends Fragment implements AsyncResultListener
     }
 
     void setViewItems(List<Patient> patients) {
-        if (mColumnCount <= 1) {
-            recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
-        } else {
-            recyclerView.setLayoutManager(new GridLayoutManager(recyclerView.getContext(), mColumnCount));
-        }
-        AddMockPatients(patients);
         recyclerView.setAdapter(new PatientListViewAdapter(patients, mListener));
     }
-
-    private void AddMockPatients(List<Patient> patients) {
-        for (int i = 0; i < 20; i++) {
-            patients.add(getPatient(i));
-        }
-    }
-
-    private Patient getPatient(int i) {
-        Patient patient = new Patient();
-        patient.setId("Patient" + i);
-        patient.setName("Patient " + i);
-        patient.setHusbandsName("Husband " + i);
-        patient.setAge(20 + i);
-        patient.setLocation("Location " + i);
-        return patient;
-    }
-
 
     @Override
     public void onAttach(Context context) {

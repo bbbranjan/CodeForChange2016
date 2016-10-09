@@ -42,23 +42,8 @@ public class AddPatientActivity extends AppCompatActivity implements AddNewPatie
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         String patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
         int titleId = 0;
-        switch (actionType) {
-
-            case AddNewPatient:
-                titleId = R.string.add_new_pregnant_woman;
-                fragmentTransaction.add(R.id.rlAddNewPatient, new AddNewPatientFragment(), "Add New Pregnant Woman Fragment");
-                break;
-            case PatientDetails:
-                titleId = R.string.view_profile;
-                fragmentTransaction.add(R.id.rlAddNewPatient, new PatientDetailsFragment(), "View Patient Details Fragment");
-                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-                break;
-            case AddNewMedicalRecord:
-                titleId = R.string.view_medical_history;
-                fragmentTransaction.add(R.id.rlAddNewPatient, new PatientMedicalHistoryListFragment(), "View Patient Medical History");
-                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-                break;
-        }
+        titleId = R.string.add_new_pregnant_woman;
+        fragmentTransaction.add(R.id.rlAddNewPatient, new AddNewPatientFragment(), "Add New Pregnant Woman Fragment");
         supportActionBar.setSubtitle(getString(titleId));
 
         fragmentTransaction.commit();

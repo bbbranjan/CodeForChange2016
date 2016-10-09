@@ -17,7 +17,7 @@ public class PatientService extends Service{
 
     public static void getPatient(String id,final AsyncResultTask task){
         String path = Model.PATIENT+id;
-        retrieveModels(path,Patient.class,task);
+        retrieveModel(path,Patient.class,task);
     }
 
     public static void getAllPatients(final AsyncResultTask task){

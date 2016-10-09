@@ -167,7 +167,7 @@ public class NavigationActivity extends AppCompatActivity
                 i.putExtra(Constants.ACTION_TYPE, Constants.ActionType.AddNewPatient);
                 break;
             case PatientDetails:
-                i = new Intent(NavigationActivity.this, AddPatientActivity.class);
+                i = new Intent(NavigationActivity.this, ViewPatientActivity.class);
                 i.putExtra(Constants.ACTION_TYPE, Constants.ActionType.PatientDetails);
                 i.putExtra(Constants.PATIENT_ID, patient.getId());
                 break;
