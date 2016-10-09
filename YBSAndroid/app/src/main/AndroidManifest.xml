@@ -34,6 +34,10 @@
         <activity
             android:name=".PatientMedicalHistoryActivity"
             android:label="@string/title_activity_patient_medical_history"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".AddMedicalHistoryActivity"
+            android:label="@string/title_activity_add_medical_history"
             android:theme="@style/AppTheme"></activity>
     </application>
 

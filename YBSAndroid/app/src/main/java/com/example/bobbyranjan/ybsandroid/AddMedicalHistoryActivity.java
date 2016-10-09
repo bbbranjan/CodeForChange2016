@@ -1,6 +1,5 @@
 package com.example.bobbyranjan.ybsandroid;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -15,32 +14,21 @@ import android.support.v7.widget.Toolbar;
 import android.transition.Explode;
 import android.view.View;
 
-import com.example.bobbyranjan.ybsandroid.models.PatientMedicalHistory;
-
-public class PatientMedicalHistoryActivity extends AppCompatActivity implements PatientMedicalHistoryListFragment.OnListFragmentInteractionListener{
+public class AddMedicalHistoryActivity extends AppCompatActivity implements AddMedicalHistoryFragment.OnFragmentInteractionListener{
 
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private Constants.ActionType actionType;
     private ActionBar supportActionBar;
-    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_patient_medical_history);
+        setContentView(R.layout.activity_add_medical_history);
         actionType = (Constants.ActionType) getIntent().getSerializableExtra(Constants.ACTION_TYPE);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(PatientMedicalHistoryActivity.this,AddMedicalHistoryActivity.class));
-
-            }
-        });
         setUpAnimation();
 
         setupToolbar();
@@ -53,7 +41,10 @@ public class PatientMedicalHistoryActivity extends AppCompatActivity implements 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         String patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
-        fragmentTransaction.add(R.id.rlPatientMedicalHistory, new PatientMedicalHistoryListFragment(), "Patient Medical History List");
+        int titleId = 0;
+        titleId = R.string.add_new_medical_history;
+        fragmentTransaction.add(R.id.rlAddNewPatient, new AddMedicalHistoryFragment(), "Add New Medical History");
+        supportActionBar.setSubtitle(getString(titleId));
 
         fragmentTransaction.commit();
     }
@@ -71,9 +62,8 @@ public class PatientMedicalHistoryActivity extends AppCompatActivity implements 
         getWindow().setEnterTransition(enterTransition);
     }
 
-
     @Override
-    public void onListFragmentInteraction(PatientMedicalHistory item) {
+    public void onFragmentInteraction(Uri uri) {
 
     }
 }

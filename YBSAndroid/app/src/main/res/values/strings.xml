@@ -71,6 +71,7 @@
     <string name="med_cancelButton" translatable="false">Cancel Button</string>
     <string name="list_of_pregnant_women" translatable="false">Pregnant Women\'s List</string>
     <string name="add_new_pregnant_woman">Add a New Pregnant Woman</string>
+    <string name="add_new_medical_history">Add a New Medical History</string>
     <string name="view_profile">View Profile</string>
     <string name="view_medical_history">View Medical History</string>
     <!-- End strings related to "Add Medical Record" -->
@@ -80,5 +81,6 @@
     <string name="andc_patient_id" translatable="false">Patient ID</string>
     <string name="title_activity_view_patient">ViewPatientActivity</string>
     <string name="title_activity_patient_medical_history">PatientMedicalHistoryActivity</string>
+    <string name="title_activity_add_medical_history">AddMedicalHistoryActivity</string>
     <!-- End strings related to "Add Doctor Comments" -->
 </resources>

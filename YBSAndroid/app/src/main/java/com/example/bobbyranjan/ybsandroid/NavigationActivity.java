@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Explode;
 import android.transition.Slide;
 import android.view.Gravity;
 import android.view.Menu;
@@ -34,7 +35,7 @@ public class NavigationActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bindControls();
-        //setupWindowAnimations();
+        setupWindowAnimations();
         setupToolbar();
         setupDrawer();
         hookEvents();
@@ -57,15 +58,19 @@ public class NavigationActivity extends AppCompatActivity
 
     private void setupWindowAnimations() {
         // Re-enter transition is executed when returning back to this activity
-        Slide slideTransition = new Slide();
-        slideTransition.setSlideEdge(Gravity.LEFT); // Use START if using right - to - left locale
-        slideTransition.setDuration(1000);
+        //Slide slideTransition = new Slide();
+        //slideTransition.setSlideEdge(Gravity.LEFT); // Use START if using right - to - left locale
+        //slideTransition.setDuration(1000);
 
-        getWindow().setReenterTransition(slideTransition);  // When MainActivity Re-enter the Screen
-        getWindow().setExitTransition(slideTransition);     // When MainActivity Exits the Screen
+        //getWindow().setReenterTransition(slideTransition);  // When MainActivity Re-enter the Screen
+        //getWindow().setExitTransition(slideTransition);     // When MainActivity Exits the Screen
 
         // For overlap of Re Entering Activity
-        getWindow().setAllowReturnTransitionOverlap(false);
+        //getWindow().setAllowReturnTransitionOverlap(false);
+        Explode enterTransition = new Explode();
+        enterTransition.setDuration(getResources().getInteger(R.integer.anim_duration));
+        getWindow().setEnterTransition(enterTransition);
+
     }
 
 
