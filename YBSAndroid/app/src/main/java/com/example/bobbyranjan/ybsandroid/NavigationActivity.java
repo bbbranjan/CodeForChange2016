@@ -34,7 +34,7 @@ public class NavigationActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bindControls();
-        setupWindowAnimations();
+        //setupWindowAnimations();
         setupToolbar();
         setupDrawer();
         hookEvents();
@@ -172,7 +172,7 @@ public class NavigationActivity extends AppCompatActivity
                 i.putExtra(Constants.PATIENT_ID, patient.getId());
                 break;
             case AddNewMedicalRecord:
-                i = new Intent(NavigationActivity.this, AddPatientActivity.class);
+                i = new Intent(NavigationActivity.this, PatientMedicalHistoryActivity.class);
                 i.putExtra(Constants.ACTION_TYPE, Constants.ActionType.AddNewMedicalRecord);
                 i.putExtra(Constants.PATIENT_ID, patient.getId());
                 break;

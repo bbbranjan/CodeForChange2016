@@ -79,5 +79,6 @@
     <string name="add_new_doctor_comment">Add New Doctor Comment</string>
     <string name="andc_patient_id" translatable="false">Patient ID</string>
     <string name="title_activity_view_patient">ViewPatientActivity</string>
+    <string name="title_activity_patient_medical_history">PatientMedicalHistoryActivity</string>
     <!-- End strings related to "Add Doctor Comments" -->
 </resources>
