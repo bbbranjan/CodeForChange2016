@@ -7,6 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.example.bobbyranjan.ybsandroid.models.Patient;
+import com.example.bobbyranjan.ybsandroid.service.AsyncResultListener;
+import com.example.bobbyranjan.ybsandroid.service.AsyncResultTask;
+import com.example.bobbyranjan.ybsandroid.service.PatientService;
 
 
 /**
@@ -17,17 +23,25 @@ import android.view.ViewGroup;
  * Use the {@link ViewPatientFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ViewPatientFragment extends Fragment {
+public class ViewPatientFragment extends Fragment implements AsyncResultListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String patientId;
+    private String unusedForNow;
 
     private OnFragmentInteractionListener mListener;
+
+    TextView mName;
+    TextView mHusbandName;
+    TextView mVillage;
+    TextView mDOB;
+    TextView mAge;
+
+    View view;
 
     public ViewPatientFragment() {
         // Required empty public constructor
@@ -55,16 +69,24 @@ public class ViewPatientFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            patientId = getArguments().getString(ARG_PARAM1);
+            unusedForNow = getArguments().getString(ARG_PARAM2);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        AsyncResultTask task = new AsyncResultTask(this);
+        PatientService.getPatient(patientId,task);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_view_patient, container, false);
+        view =  inflater.inflate(R.layout.fragment_view_patient, container, false);
+        mName = (TextView)view.findViewById(R.id.VNPPatientName);
+        mHusbandName = (TextView)view.findViewById(R.id.VNPHusbandName);
+        mVillage = (TextView)view.findViewById(R.id.VNPVillage);
+        mDOB = (TextView)view.findViewById(R.id.VNPDOB);
+        mAge = (TextView)view.findViewById(R.id.VNPAge);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -89,6 +111,21 @@ public class ViewPatientFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void processResult(Object result) {
+        Patient patient = (Patient) result;
+        mName.setText(patient.getName());
+        mHusbandName.setText(patient.getHusbandsName());
+        mVillage.setText(patient.getLocation());
+        mDOB.setText(patient.getDateOfBirth());
+        mAge.setText(String.valueOf(patient.getAge()));
+    }
+
+    @Override
+    public void processResults(Object... results) {
+
     }
 
     /**

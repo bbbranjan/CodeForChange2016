@@ -32,7 +32,8 @@ public class ViewPatientActivity extends AppCompatActivity implements ViewPatien
     private void addFragments() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.rlViewPatient, new ViewPatientFragment(), "View Patient");
+        String patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
+        fragmentTransaction.add(R.id.rlViewPatient, ViewPatientFragment.newInstance(patientId,null), "View Patient");
         fragmentTransaction.commit();
     }
 
@@ -41,7 +42,7 @@ public class ViewPatientActivity extends AppCompatActivity implements ViewPatien
         ActionBar supportActionBar = getSupportActionBar();
         supportActionBar.setLogo(R.drawable.ic_pregnant_woman);
         supportActionBar.setTitle(R.string.app_name);
-        supportActionBar.setSubtitle(getString(R.string.add_new_pregnant_woman));
+        supportActionBar.setSubtitle(getString(R.string.view_profile));
         supportActionBar.setElevation(9);
         supportActionBar.setDisplayHomeAsUpEnabled(true);
     }
