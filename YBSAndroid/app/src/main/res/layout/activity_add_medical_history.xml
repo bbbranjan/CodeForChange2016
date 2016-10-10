@@ -6,7 +6,8 @@
     android:fitsSystemWindows="true"
     tools:context=".AddMedicalHistoryActivity">
 
-    <include layout="@layout/app_bar_view"/>
+    <include layout="@layout/app_bar_view"
+        />
 
     <FrameLayout
         android:id="@+id/rlAddMedicalHistory"
