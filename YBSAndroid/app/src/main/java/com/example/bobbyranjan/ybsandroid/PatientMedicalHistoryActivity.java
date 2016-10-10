@@ -1,10 +1,8 @@
 package com.example.bobbyranjan.ybsandroid;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -53,8 +51,9 @@ public class PatientMedicalHistoryActivity extends AppCompatActivity implements 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         String patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
-        fragmentTransaction.add(R.id.rlPatientMedicalHistory, new PatientMedicalHistoryListFragment(), "Patient Medical History List");
-
+        String subtitle = getString(R.string.patient_medical_history);
+        fragmentTransaction.add(R.id.rlPatientMedicalHistory, new PatientMedicalHistoryListFragment(), subtitle);
+        supportActionBar.setSubtitle(subtitle);
         fragmentTransaction.commit();
     }
 

@@ -10,7 +10,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Explode;
-import android.view.WindowManager;
 
 public class AddPatientActivity extends AppCompatActivity implements AddNewPatientFragment.OnFragmentInteractionListener
 
@@ -41,10 +40,10 @@ public class AddPatientActivity extends AppCompatActivity implements AddNewPatie
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         String patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
-        int titleId = 0;
-        titleId = R.string.add_new_pregnant_woman;
-        fragmentTransaction.add(R.id.rlAddNewPatient, new AddNewPatientFragment(), "Add New Pregnant Woman Fragment");
-        supportActionBar.setSubtitle(getString(titleId));
+        int titleId = R.string.add_new_pregnant_woman;
+        String subtitle = getString(titleId);
+        fragmentTransaction.add(R.id.rlAddNewPatient, new AddNewPatientFragment(), subtitle);
+        supportActionBar.setSubtitle(subtitle);
 
         fragmentTransaction.commit();
     }

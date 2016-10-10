@@ -34,7 +34,10 @@ public class ViewPatientActivity extends AppCompatActivity implements ViewPatien
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         String patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
-        fragmentTransaction.add(R.id.rlViewPatient, ViewPatientFragment.newInstance(patientId,null), "View Patient");
+        String subtitle = getString(R.string.view_profile);
+        fragmentTransaction.add(R.id.rlViewPatient, ViewPatientFragment.newInstance(patientId,null), subtitle);
+        supportActionBar.setSubtitle(subtitle);
+
         fragmentTransaction.commit();
     }
 

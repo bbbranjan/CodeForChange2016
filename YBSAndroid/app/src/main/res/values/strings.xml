@@ -82,5 +82,6 @@
     <string name="title_activity_view_patient">ViewPatientActivity</string>
     <string name="title_activity_patient_medical_history">PatientMedicalHistoryActivity</string>
     <string name="title_activity_add_medical_history">AddMedicalHistoryActivity</string>
+    <string name="patient_medical_history">Patient Medical History List</string>
     <!-- End strings related to "Add Doctor Comments" -->
 </resources>
