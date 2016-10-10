@@ -31,11 +31,14 @@ public class PatientMedicalHistoryActivity extends AppCompatActivity implements 
         setContentView(R.layout.activity_patient_medical_history);
         actionType = (Constants.ActionType) getIntent().getSerializableExtra(Constants.ACTION_TYPE);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final String patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(PatientMedicalHistoryActivity.this,AddMedicalHistoryActivity.class));
+                Intent intent = new Intent(PatientMedicalHistoryActivity.this, AddMedicalHistoryActivity.class);
+                intent.putExtra("patientId",patientId);
+                startActivity(intent);
 
             }
         });
@@ -50,9 +53,13 @@ public class PatientMedicalHistoryActivity extends AppCompatActivity implements 
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        String patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
         String subtitle = getString(R.string.patient_medical_history);
-        fragmentTransaction.add(R.id.rlPatientMedicalHistory, new PatientMedicalHistoryListFragment(), subtitle);
+        String patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
+        PatientMedicalHistoryListFragment fragment = new PatientMedicalHistoryListFragment();
+        Bundle args = new Bundle();
+        args.putString("patientId",patientId);
+        fragment.setArguments(args);
+        fragmentTransaction.add(R.id.rlPatientMedicalHistory, fragment, subtitle);
         supportActionBar.setSubtitle(subtitle);
         fragmentTransaction.commit();
     }
