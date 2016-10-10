@@ -1,7 +1,8 @@
 package com.example.bobbyranjan.ybsandroid;
 
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -10,24 +11,34 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Explode;
+import android.view.View;
 
-public class AddPatientActivity extends AppCompatActivity implements AddNewPatientFragment.OnFragmentInteractionListener
+import com.example.bobbyranjan.ybsandroid.models.PatientMedicalHistory;
 
-{
+public class PatientMedicalHistoryActivity extends AppCompatActivity implements PatientMedicalHistoryListFragment.OnListFragmentInteractionListener{
 
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private Constants.ActionType actionType;
     private ActionBar supportActionBar;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_add_patient);
+        setContentView(R.layout.activity_patient_medical_history);
         actionType = (Constants.ActionType) getIntent().getSerializableExtra(Constants.ACTION_TYPE);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(PatientMedicalHistoryActivity.this,AddMedicalHistoryActivity.class));
+
+            }
+        });
         setUpAnimation();
 
         setupToolbar();
@@ -40,11 +51,9 @@ public class AddPatientActivity extends AppCompatActivity implements AddNewPatie
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         String patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
-        int titleId = R.string.add_new_pregnant_woman;
-        String subtitle = getString(titleId);
-        fragmentTransaction.add(R.id.rlAddNewPatient, new AddNewPatientFragment(), subtitle);
+        String subtitle = getString(R.string.patient_medical_history);
+        fragmentTransaction.add(R.id.rlPatientMedicalHistory, new PatientMedicalHistoryListFragment(), subtitle);
         supportActionBar.setSubtitle(subtitle);
-
         fragmentTransaction.commit();
     }
 
@@ -63,7 +72,7 @@ public class AddPatientActivity extends AppCompatActivity implements AddNewPatie
 
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onListFragmentInteraction(PatientMedicalHistory item) {
 
     }
 }

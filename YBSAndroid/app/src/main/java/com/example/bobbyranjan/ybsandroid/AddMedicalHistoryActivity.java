@@ -11,9 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Explode;
 
-public class AddPatientActivity extends AppCompatActivity implements AddNewPatientFragment.OnFragmentInteractionListener
-
-{
+public class AddMedicalHistoryActivity extends AppCompatActivity implements AddMedicalHistoryFragment.OnFragmentInteractionListener{
 
     private Toolbar toolbar;
     private DrawerLayout drawer;
@@ -25,7 +23,7 @@ public class AddPatientActivity extends AppCompatActivity implements AddNewPatie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_add_patient);
+        setContentView(R.layout.activity_add_medical_history);
         actionType = (Constants.ActionType) getIntent().getSerializableExtra(Constants.ACTION_TYPE);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setUpAnimation();
@@ -40,10 +38,10 @@ public class AddPatientActivity extends AppCompatActivity implements AddNewPatie
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         String patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
-        int titleId = R.string.add_new_pregnant_woman;
-        String subtitle = getString(titleId);
-        fragmentTransaction.add(R.id.rlAddNewPatient, new AddNewPatientFragment(), subtitle);
-        supportActionBar.setSubtitle(subtitle);
+        int titleId = 0;
+        titleId = R.string.add_new_medical_history;
+        fragmentTransaction.add(R.id.rlAddMedicalHistory, new AddMedicalHistoryFragment(), "Add New Medical History");
+        supportActionBar.setSubtitle(getString(titleId));
 
         fragmentTransaction.commit();
     }
@@ -60,7 +58,6 @@ public class AddPatientActivity extends AppCompatActivity implements AddNewPatie
         enterTransition.setDuration(getResources().getInteger(R.integer.anim_duration));
         getWindow().setEnterTransition(enterTransition);
     }
-
 
     @Override
     public void onFragmentInteraction(Uri uri) {

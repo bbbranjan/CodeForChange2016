@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.bobbyranjan.ybsandroid.AddNewPatientFragment">
+    tools:context=".AddNewPatientFragment">
 
     <RelativeLayout
         android:layout_width="fill_parent"

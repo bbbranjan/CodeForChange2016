@@ -16,6 +16,7 @@ public class ViewPatientActivity extends AppCompatActivity implements ViewPatien
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
+    private ActionBar supportActionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +33,17 @@ public class ViewPatientActivity extends AppCompatActivity implements ViewPatien
     private void addFragments() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.rlViewPatient, new ViewPatientFragment(), "View Patient");
+        String patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
+        String subtitle = getString(R.string.view_profile);
+        fragmentTransaction.add(R.id.rlViewPatient, ViewPatientFragment.newInstance(patientId,null), subtitle);
+        supportActionBar.setSubtitle(subtitle);
+
         fragmentTransaction.commit();
     }
 
     private void setupToolbar() {
         setSupportActionBar(toolbar);
-        ActionBar supportActionBar = getSupportActionBar();
-        supportActionBar.setLogo(R.drawable.ic_pregnant_woman);
-        supportActionBar.setTitle(R.string.app_name);
-        supportActionBar.setSubtitle(getString(R.string.add_new_pregnant_woman));
-        supportActionBar.setElevation(9);
+        supportActionBar = getSupportActionBar();
         supportActionBar.setDisplayHomeAsUpEnabled(true);
     }
 
