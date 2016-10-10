@@ -37,10 +37,14 @@ public class AddMedicalHistoryActivity extends AppCompatActivity implements AddM
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        String patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
+        String patientId = (String) getIntent().getSerializableExtra("patientId");
         int titleId = 0;
         titleId = R.string.add_new_medical_history;
-        fragmentTransaction.add(R.id.rlAddMedicalHistory, new AddMedicalHistoryFragment(), "Add New Medical History");
+        AddMedicalHistoryFragment fragment = new AddMedicalHistoryFragment();
+        Bundle args = new Bundle();
+        args.putString("patientId", patientId);
+        fragment.setArguments(args);
+        fragmentTransaction.add(R.id.rlAddMedicalHistory, fragment, "Add New Medical History");
         supportActionBar.setSubtitle(getString(titleId));
 
         fragmentTransaction.commit();
