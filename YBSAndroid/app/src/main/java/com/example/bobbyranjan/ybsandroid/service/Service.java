@@ -22,9 +22,12 @@ public class Service {
 
     public static FirebaseAuth auth = FirebaseAuth.getInstance();
     public static DatabaseReference db;
+    public static DatabaseReference presence;
     static{
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         db = FirebaseDatabase.getInstance().getReference();
+        presence = FirebaseDatabase.getInstance().getReference(".info/connected");
+
     }
 
     {
