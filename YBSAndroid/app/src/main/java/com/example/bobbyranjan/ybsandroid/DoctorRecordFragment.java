@@ -20,7 +20,7 @@ import com.example.bobbyranjan.ybsandroid.models.DoctorComments;
  */
 public class DoctorRecordFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
+    // TODO: Customize parameter argument namesı
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;

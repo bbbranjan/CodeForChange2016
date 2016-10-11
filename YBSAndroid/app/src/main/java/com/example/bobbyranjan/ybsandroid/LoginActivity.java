@@ -131,8 +131,6 @@ public class LoginActivity extends AppCompatActivity implements AsyncResultListe
                         if (task.isSuccessful()) {
                             UserService.getUser(UserService.getCurrentUserUUID(),retrieve_task);
                             //start the profile activity
-                            finish();
-                            startActivity(new Intent(getApplicationContext(), NavigationActivity.class));
                         }
                     }
                 });
@@ -142,6 +140,10 @@ public class LoginActivity extends AppCompatActivity implements AsyncResultListe
     public void processResult(Object result) {
         User me = (User)result;
         Toast.makeText(LoginActivity.this, "Hello "+me.getName()+"!", Toast.LENGTH_LONG).show();
+        finish();
+        Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
+        intent.putExtra("name",me.getName());
+        startActivity(intent);
     }
 
     @Override
