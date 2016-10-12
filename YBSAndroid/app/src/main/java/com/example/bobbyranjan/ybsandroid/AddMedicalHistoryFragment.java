@@ -54,8 +54,10 @@ public class AddMedicalHistoryFragment extends Fragment {
     ImageButton mCancel;
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String patientId;
+    private String unusedForNow;
+
+
 
     private OnFragmentInteractionListener mListener;
     private View view;
@@ -85,8 +87,8 @@ public class AddMedicalHistoryFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            patientId = getArguments().getString("patientId");
+            unusedForNow = getArguments().getString("NA");
         }
     }
 
@@ -153,9 +155,8 @@ public class AddMedicalHistoryFragment extends Fragment {
         String currDate;
         currDate = df.format(c.getTime());
 
-        String id = PatientMedicalHistoryService.getKey(Model.PATIENT);
-        String patientID = "123456";
-        PatientMedicalHistoryService.persistPatientMedicalHistory(id,patientID,currDate,rtwt,pG,pP,pA,pAH,IR,UK,Varices,Oedema,WTB,TD,LILA,numvisit,SF,HPHT,TP,complaints,info);
+        String id = PatientMedicalHistoryService.getKey(Model.PATIENT_HISTORY+patientId);
+        PatientMedicalHistoryService.persistPatientMedicalHistory(id,patientId,currDate,rtwt,pG,pP,pA,pAH,IR,UK,Varices,Oedema,WTB,TD,LILA,numvisit,SF,HPHT,TP,complaints,info);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -10,7 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.bobbyranjan.ybsandroid.models.Patient;
 import com.example.bobbyranjan.ybsandroid.models.PatientMedicalHistory;
+import com.example.bobbyranjan.ybsandroid.service.AsyncResultListener;
+import com.example.bobbyranjan.ybsandroid.service.AsyncResultTask;
+import com.example.bobbyranjan.ybsandroid.service.PatientMedicalHistoryService;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * A fragment representing a list of Items.
@@ -18,13 +26,16 @@ import com.example.bobbyranjan.ybsandroid.models.PatientMedicalHistory;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class PatientMedicalHistoryListFragment extends Fragment {
+public class PatientMedicalHistoryListFragment extends Fragment implements AsyncResultListener{
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+
+    String patientId;
+    private RecyclerView recyclerView;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -49,6 +60,7 @@ public class PatientMedicalHistoryListFragment extends Fragment {
 
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+            patientId = getArguments().getString("patientId");
         }
     }
 
@@ -60,13 +72,14 @@ public class PatientMedicalHistoryListFragment extends Fragment {
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new PatientMedicalHistoryListViewAdapter(null, mListener));
+            AsyncResultTask task = new AsyncResultTask(this);
+            PatientMedicalHistoryService.getAllMedicalHistoriesForPatient(patientId,task);
         }
         return view;
     }
@@ -84,6 +97,23 @@ public class PatientMedicalHistoryListFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    void setViewItems(List<PatientMedicalHistory> patients) {
+        recyclerView.setAdapter(new PatientMedicalHistoryListViewAdapter(patients, mListener));
+    }
+
+    @Override
+    public void processResult(Object result) {
+        PatientMedicalHistory[] patients = {(PatientMedicalHistory) result};
+        setViewItems(new ArrayList<PatientMedicalHistory>(Arrays.asList(patients)));
+
+    }
+
+    @Override
+    public void processResults(Object... results) {
+        PatientMedicalHistory[] patients = Arrays.copyOf(results, results.length, PatientMedicalHistory[].class);
+        setViewItems(new ArrayList<PatientMedicalHistory>(Arrays.asList(patients)));
     }
 
     /**

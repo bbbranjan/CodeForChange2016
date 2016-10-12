@@ -19,16 +19,25 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bobbyranjan.ybsandroid.models.Patient;
+import com.example.bobbyranjan.ybsandroid.service.PresenceListener;
+import com.example.bobbyranjan.ybsandroid.service.Service;
+import com.example.bobbyranjan.ybsandroid.service.UserService;
 
 public class NavigationActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, PatientListFragment.OnListFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, PatientListFragment.OnListFragmentInteractionListener,PresenceListener {
 
     private FloatingActionButton fab;
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private NavigationView navigationView;
+    TextView navEmail;
+    TextView navUser;
+
+    boolean connected=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +49,7 @@ public class NavigationActivity extends AppCompatActivity
         setupDrawer();
         hookEvents();
         addFragments();
+        UserService.listenPresence(this);
     }
 
     private void setupToolbar() {
@@ -57,16 +67,6 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     private void setupWindowAnimations() {
-        // Re-enter transition is executed when returning back to this activity
-        //Slide slideTransition = new Slide();
-        //slideTransition.setSlideEdge(Gravity.LEFT); // Use START if using right - to - left locale
-        //slideTransition.setDuration(1000);
-
-        //getWindow().setReenterTransition(slideTransition);  // When MainActivity Re-enter the Screen
-        //getWindow().setExitTransition(slideTransition);     // When MainActivity Exits the Screen
-
-        // For overlap of Re Entering Activity
-        //getWindow().setAllowReturnTransitionOverlap(false);
         Explode enterTransition = new Explode();
         enterTransition.setDuration(getResources().getInteger(R.integer.anim_duration));
         getWindow().setEnterTransition(enterTransition);
@@ -88,7 +88,11 @@ public class NavigationActivity extends AppCompatActivity
         toggle.syncState();
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+        navEmail = (TextView) navigationView.getHeaderView(0).findViewById(R.id.navEmailId);
+        navUser = (TextView) navigationView.getHeaderView(0).findViewById(R.id.navUserName);
+        navEmail.setText(UserService.getCurrentUserEmail());
+        String name = (String) getIntent().getSerializableExtra("name");
+        navUser.setText(name);
     }
 
     private void hookEvents() {
@@ -140,19 +144,6 @@ public class NavigationActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -184,5 +175,16 @@ public class NavigationActivity extends AppCompatActivity
         }
         startActivity(i, options.toBundle());
 
+    }
+
+    @Override
+    public void connected() {
+        connected = true;
+    }
+
+    @Override
+    public void disconnected() {
+        connected = false;
+        Toast.makeText(getApplicationContext(),"Disconnected from internet!",Toast.LENGTH_LONG);
     }
 }
