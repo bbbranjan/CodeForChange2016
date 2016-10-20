@@ -86,5 +86,6 @@
     <!-- End strings related to "Add Doctor Comments" -->
     <!-- Start strings related to "Add Doctor Comments" -->
     <string name="view_med_ScreenHeader" translatable="false">View Medical Record</string>
+    <string name="med_backButton" translatable="false">Back Button</string>
     <!-- End strings related to "Add Doctor Comments" -->
 </resources>

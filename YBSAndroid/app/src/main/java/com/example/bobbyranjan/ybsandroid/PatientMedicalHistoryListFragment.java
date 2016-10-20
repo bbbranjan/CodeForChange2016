@@ -107,7 +107,6 @@ public class PatientMedicalHistoryListFragment extends Fragment implements Async
     public void processResult(Object result) {
         PatientMedicalHistory[] patients = {(PatientMedicalHistory) result};
         setViewItems(new ArrayList<PatientMedicalHistory>(Arrays.asList(patients)));
-
     }
 
     @Override
