@@ -23,12 +23,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bobbyranjan.ybsandroid.models.Patient;
+import com.example.bobbyranjan.ybsandroid.models.User;
+import com.example.bobbyranjan.ybsandroid.service.AsyncResultListener;
+import com.example.bobbyranjan.ybsandroid.service.AsyncResultTask;
 import com.example.bobbyranjan.ybsandroid.service.PresenceListener;
 import com.example.bobbyranjan.ybsandroid.service.Service;
 import com.example.bobbyranjan.ybsandroid.service.UserService;
 
 public class NavigationActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, PatientListFragment.OnListFragmentInteractionListener,PresenceListener {
+        implements NavigationView.OnNavigationItemSelectedListener, PatientListFragment.OnListFragmentInteractionListener,PresenceListener,AsyncResultListener {
 
     private FloatingActionButton fab;
     private Toolbar toolbar;
@@ -91,8 +94,7 @@ public class NavigationActivity extends AppCompatActivity
         navEmail = (TextView) navigationView.getHeaderView(0).findViewById(R.id.navEmailId);
         navUser = (TextView) navigationView.getHeaderView(0).findViewById(R.id.navUserName);
         navEmail.setText(UserService.getCurrentUserEmail());
-        String name = (String) getIntent().getSerializableExtra("name");
-        navUser.setText(name);
+        UserService.getUser(UserService.getCurrentUserUUID(), new AsyncResultTask(this));
     }
 
     private void hookEvents() {
@@ -186,5 +188,19 @@ public class NavigationActivity extends AppCompatActivity
     public void disconnected() {
         connected = false;
         Toast.makeText(getApplicationContext(),"Disconnected from internet!",Toast.LENGTH_LONG);
+    }
+
+    @Override
+    public void processResult(Object result) {
+        if(result instanceof User){
+            User u = (User) result;
+            navUser.setText(u.getName());
+        }
+
+    }
+
+    @Override
+    public void processResults(Object... results) {
+
     }
 }
