@@ -7,12 +7,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.bobbyranjan.ybsandroid.models.Model;
+import com.example.bobbyranjan.ybsandroid.models.Patient;
+import com.example.bobbyranjan.ybsandroid.models.PatientMedicalHistory;
+import com.example.bobbyranjan.ybsandroid.service.AsyncResultListener;
+import com.example.bobbyranjan.ybsandroid.service.AsyncResultTask;
+import com.example.bobbyranjan.ybsandroid.service.DoctorCommentsService;
 import com.example.bobbyranjan.ybsandroid.service.PatientMedicalHistoryService;
+import com.example.bobbyranjan.ybsandroid.service.PatientService;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -51,12 +56,8 @@ public class ViewMedicalHistoryFragment extends Fragment {
     TextView mComplaints;
     TextView mInfo;
 
-    ImageButton mSave;
-    ImageButton mCancel;
-
-    // TODO: Rename and change types of parameters
     private String patientId;
-    private String unusedForNow;
+    private String historyId;
 
 
 
@@ -66,15 +67,6 @@ public class ViewMedicalHistoryFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AddMedicalHistoryFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static ViewMedicalHistoryFragment newInstance(String param1, String param2) {
         ViewMedicalHistoryFragment fragment = new ViewMedicalHistoryFragment();
         Bundle args = new Bundle();
@@ -88,8 +80,8 @@ public class ViewMedicalHistoryFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            patientId = getArguments().getString("patientId");
-            unusedForNow = getArguments().getString("NA");
+            patientId = getArguments().getString(ARG_PARAM1);
+            historyId = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -118,46 +110,46 @@ public class ViewMedicalHistoryFragment extends Fragment {
         mComplaints = (TextView) view.findViewById(R.id.mr_Complaints);
         mInfo = (TextView) view.findViewById(R.id.mr_Information);
 
-        mSave = (ImageButton) view.findViewById(R.id.mr_savebutton);
-        mCancel = (ImageButton) view.findViewById(R.id.mr_cancelbutton);
 
-        mSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveMedHist();
-            }
-        });
+
+        displayMedHist();
 
         return view;
     }
 
-    private void saveMedHist() {
-        String rtwt = mRTWT.getText().toString();
-        String pG = mG.getText().toString();
-        String pP = mP.getText().toString();
-        String pA = mP.getText().toString();
-        String pAH = mAH.getText().toString();
-        String IR = mInspectionResults.getText().toString();
-        String UK = mUK.getText().toString();
-        String Varices = mVarices.getText().toString();
-        String Oedema = mOedema.getText().toString();
-        String WTB = mWTB.getText().toString();
-        String TD = mTD.getText().toString();
-        String LILA = mLILA.getText().toString();
-        String numvisit = mNumVisit.getText().toString();
-        String SF = mSF.getText().toString();
-        String HPHT = mHPHT.getText().toString();
-        String TP = mTP.getText().toString();
-        String complaints = mComplaints.getText().toString();
-        String info = mInfo.getText().toString();
+    private void displayMedHist() {
 
-        Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-        String currDate;
-        currDate = df.format(c.getTime());
+        final String path = Model.PATIENT_HISTORY + patientId + "/" + historyId;
+        String id = DoctorCommentsService.getKey(path);
+        PatientMedicalHistoryService.getPatientMedicalHistory(patientId, id, new AsyncResultTask(new AsyncResultListener() {
+            @Override
+            public void processResult(Object result) {
+                PatientMedicalHistory patientMedicalHistory = (PatientMedicalHistory) result;
+                mRTWT.setText(patientMedicalHistory.getRt_rw());
+                mG.setText(patientMedicalHistory.getG());
+                mP.setText(patientMedicalHistory.getP());
+                mAH.setText(patientMedicalHistory.getAh());
+                mInspectionResults.setText(patientMedicalHistory.getObservations());
+                mUK.setText(patientMedicalHistory.getUk());
+                mVarices.setText(patientMedicalHistory.getVarices());
+                mOedema.setText(patientMedicalHistory.getOdema());
+                mWTB.setText(patientMedicalHistory.getBb_tb());
+                mTD.setText(patientMedicalHistory.getTd());
+                mLILA.setText(patientMedicalHistory.getLila());
+                mNumVisit.setText(patientMedicalHistory.getVisit());
+                mSF.setText(patientMedicalHistory.getSf());
+                mHPHT.setText(patientMedicalHistory.getHpht());
+                mTP.setText(patientMedicalHistory.getTp());
+                mComplaints.setText(patientMedicalHistory.getComplaints());
+                mInfo.setText(patientMedicalHistory.getInformation());
+            }
 
-        String id = PatientMedicalHistoryService.getKey(Model.PATIENT_HISTORY+patientId);
-        PatientMedicalHistoryService.persistPatientMedicalHistory(id,patientId,currDate,rtwt,pG,pP,pA,pAH,IR,UK,Varices,Oedema,WTB,TD,LILA,numvisit,SF,HPHT,TP,complaints,info);
+            @Override
+            public void processResults(Object... results) {
+
+            }
+        }));
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -184,16 +176,6 @@ public class ViewMedicalHistoryFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

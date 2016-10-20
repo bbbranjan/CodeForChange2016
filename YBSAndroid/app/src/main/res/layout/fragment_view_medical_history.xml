@@ -328,20 +328,11 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/mr_savebutton"
-                    android:layout_weight="1"
-                    android:src="@mipmap/save"
-                    android:background="#00FFFFFF"
-                    android:contentDescription="@string/med_saveButton" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/mr_cancelbutton"
+                    android:id="@+id/mr_backbutton"
                     android:layout_weight="1"
                     android:src="@mipmap/cancel"
                     android:background="#00FFFFFF"
-                    android:contentDescription="@string/med_cancelButton" />
+                    android:contentDescription="@string/med_backButton" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

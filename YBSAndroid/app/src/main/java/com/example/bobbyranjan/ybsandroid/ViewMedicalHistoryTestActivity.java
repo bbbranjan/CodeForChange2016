@@ -11,7 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Explode;
 
-public class AddDoctorCommentsTestActivity extends AppCompatActivity implements AddDoctorCommentFragment.OnFragmentInteractionListener {
+public class ViewMedicalHistoryTestActivity extends AppCompatActivity implements AddDoctorCommentFragment.OnFragmentInteractionListener {
 
     private Toolbar toolbar;
     private DrawerLayout drawer;
@@ -32,7 +32,7 @@ public class AddDoctorCommentsTestActivity extends AppCompatActivity implements 
     private void addFragments() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.rlAddNewPatient, new AddDoctorCommentFragment(), "Add Doctor's Comments Fragment");
+        fragmentTransaction.add(R.id.rlAddNewPatient, new ViewMedicalHistoryFragment(), "View Medical History Fragment");
         fragmentTransaction.commit();
     }
 
