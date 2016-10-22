@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -50,8 +51,7 @@ public class AddMedicalHistoryFragment extends Fragment {
     EditText mComplaints;
     EditText mInfo;
 
-    ImageButton mSave;
-    ImageButton mCancel;
+    Button mSave;
 
     // TODO: Rename and change types of parameters
     private String patientId;
@@ -117,8 +117,7 @@ public class AddMedicalHistoryFragment extends Fragment {
         mComplaints = (EditText) view.findViewById(R.id.mr_Complaints);
         mInfo = (EditText) view.findViewById(R.id.mr_Information);
 
-        mSave = (ImageButton) view.findViewById(R.id.mr_savebutton);
-        mCancel = (ImageButton) view.findViewById(R.id.mr_cancelbutton);
+        mSave = (Button) view.findViewById(R.id.mr_saveButton);
 
         mSave.setOnClickListener(new View.OnClickListener() {
             @Override
