@@ -1,14 +1,10 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="25dp"
     tools:context="com.example.bobbyranjan.ybsandroid.AddMedicalHistoryFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <!-- TODO: Update blank fragment layout -->
-    <ScrollView android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="#ffffff">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -30,7 +26,7 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:padding="5dp"
                     android:textColor="#000000"
-                    tools:text="@string/med_ScreenHeader" />
+                    android:text="@string/med_ScreenHeader" />
 
             </LinearLayout>
 
@@ -42,7 +38,7 @@
                 android:background="@drawable/border"
                 android:layout_margin="5dp">
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
@@ -348,25 +344,15 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
 
-                <ImageButton
-                    android:layout_width="wrap_content"
+                <Button
+                    android:id="@+id/mr_saveButton"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/mr_savebutton"
-                    android:layout_weight="1"
-                    android:src="@mipmap/save"
-                    android:background="#00FFFFFF"
-                    android:contentDescription="@string/med_saveButton" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/mr_cancelbutton"
-                    android:layout_weight="1"
-                    android:src="@mipmap/cancel"
-                    android:background="#00FFFFFF"
-                    android:contentDescription="@string/med_cancelButton" />
+                    android:layout_marginTop="16dp"
+                    android:text="@string/action_save"
+                    android:textStyle="bold"/>
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
 
-</FrameLayout>
+</ScrollView>
