@@ -1,6 +1,7 @@
 package com.example.bobbyranjan.ybsandroid;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,9 +11,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.bobbyranjan.ybsandroid.models.Model;
+import com.example.bobbyranjan.ybsandroid.models.Patient;
+import com.example.bobbyranjan.ybsandroid.service.AsyncResultListener;
+import com.example.bobbyranjan.ybsandroid.service.AsyncResultTask;
 import com.example.bobbyranjan.ybsandroid.service.PatientMedicalHistoryService;
+import com.example.bobbyranjan.ybsandroid.service.PatientService;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -26,12 +32,13 @@ import java.util.Calendar;
  * Use the {@link AddMedicalHistoryFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddMedicalHistoryFragment extends Fragment {
+public class AddMedicalHistoryFragment extends Fragment implements AsyncResultListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    TextView patientName;
     EditText mRTWT;
     EditText mG;
     EditText mP;
@@ -116,6 +123,7 @@ public class AddMedicalHistoryFragment extends Fragment {
         mTP = (EditText) view.findViewById(R.id.mr_TP);
         mComplaints = (EditText) view.findViewById(R.id.mr_Complaints);
         mInfo = (EditText) view.findViewById(R.id.mr_Information);
+        patientName = (TextView) view.findViewById(R.id.med_PatientName);
 
         mSave = (Button) view.findViewById(R.id.mr_saveButton);
 
@@ -125,6 +133,8 @@ public class AddMedicalHistoryFragment extends Fragment {
                 saveMedHist();
             }
         });
+
+        PatientService.getPatient(patientId, new AsyncResultTask(this));
 
         return view;
     }
@@ -156,6 +166,7 @@ public class AddMedicalHistoryFragment extends Fragment {
 
         String id = PatientMedicalHistoryService.getKey(Model.PATIENT_HISTORY+patientId);
         PatientMedicalHistoryService.persistPatientMedicalHistory(id,patientId,currDate,rtwt,pG,pP,pA,pAH,IR,UK,Varices,Oedema,WTB,TD,LILA,numvisit,SF,HPHT,TP,complaints,info);
+        startActivity(new Intent(view.getContext(), PatientMedicalHistoryActivity.class));
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -180,6 +191,20 @@ public class AddMedicalHistoryFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void processResult(Object result) {
+        if(result instanceof Patient){
+            Patient p = (Patient) result;
+            patientName.setText(p.getName());
+        }
+
+    }
+
+    @Override
+    public void processResults(Object... results) {
+
     }
 
     /**

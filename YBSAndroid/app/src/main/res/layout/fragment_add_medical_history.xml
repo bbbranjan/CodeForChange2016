@@ -38,7 +38,7 @@
                 android:background="@drawable/border"
                 android:layout_margin="5dp">
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
