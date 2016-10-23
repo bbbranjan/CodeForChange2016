@@ -13,4 +13,5 @@
     <dimen name="toolbar_content_start">0dp</dimen>
     <dimen name="appbar_elevation">9dp</dimen>
     <dimen name="profile_image_size">56dp</dimen>
+    <dimen name="width_between_controls">5dp</dimen>
 </resources>

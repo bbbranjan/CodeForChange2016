@@ -13,6 +13,6 @@ public class Constants {
     public enum ActionType {
         AddNewPatient,
         PatientDetails,
-        AddNewMedicalRecord
+        ViewMedicalRecords, AddNewMedicalRecord
     }
 }

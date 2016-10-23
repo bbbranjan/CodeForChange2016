@@ -4,7 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.bobbyranjan.ybsandroid.DoctorRecordFragment.OnListFragmentInteractionListener;
 import com.example.bobbyranjan.ybsandroid.models.DoctorComments;
@@ -36,8 +35,6 @@ public class DoctorRecordViewAdapter extends RecyclerView.Adapter<DoctorRecordVi
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).getPatientHistoryId());
-        holder.mContentView.setText(mValues.get(position).getComments());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,20 +55,12 @@ public class DoctorRecordViewAdapter extends RecyclerView.Adapter<DoctorRecordVi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
         public DoctorComments mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.id);
-            mContentView = (TextView) view.findViewById(R.id.content);
         }
 
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
-        }
     }
 }

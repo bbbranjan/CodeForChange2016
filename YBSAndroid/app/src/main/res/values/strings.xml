@@ -49,22 +49,22 @@
     <string name="med_ScreenHeader" translatable="false">Add a Medical Record</string>
     <string name="med_PatientName" translatable="false">Patient Name</string>
     <string name="med_SubHeader1">Pregnancy</string>
-    <string name="med_PregField1" translatable="false">G</string>
-    <string name="med_PregField2" translatable="false">P</string>
-    <string name="med_PregField3" translatable="false">A</string>
-    <string name="med_PregField4" translatable="false">AH</string>
+    <string name="med_G" translatable="false">G</string>
+    <string name="med_P" translatable="false">P</string>
+    <string name="med_A" translatable="false">A</string>
+    <string name="med_AH" translatable="false">AH</string>
     <string name="med_InspectionResult">Inspection Results</string>
-    <string name="med_varField1" translatable="false">UK</string>
-    <string name="med_varField2" translatable="false">Varices</string>
-    <string name="med_varField3" translatable="false">Oedema</string>
-    <string name="med_varField4" translatable="false">W/TB</string>
-    <string name="med_varField5" translatable="false">TD</string>
-    <string name="med_varField6" translatable="false">LILA</string>
-    <string name="med_varField7" translatable="false">Total Visits</string>
-    <string name="med_varField8" translatable="false">SF</string>
-    <string name="med_varField9" translatable="false">HPHT</string>
-    <string name="med_varField10" translatable="false">TP</string>
-    <string name="med_varField11" translatable="false">Complaints</string>
+    <string name="med_UK" translatable="false">UK</string>
+    <string name="med_Varies" translatable="false">Varices</string>
+    <string name="med_Oedema" translatable="false">Oedema</string>
+    <string name="med_BB_TB" translatable="false">BB/TB</string>
+    <string name="med_TD" translatable="false">TD</string>
+    <string name="med_Lila" translatable="false">LILA</string>
+    <string name="med_TotalVisits" translatable="false">Total Visits</string>
+    <string name="med_SF" translatable="false">SF</string>
+    <string name="med_HPHT" translatable="false">HPHT</string>
+    <string name="med_TP" translatable="false">TP</string>
+    <string name="med_Complaints" translatable="false">Complaints</string>
     <string name="med_varField12" translatable="false">Information</string>
     <string name="med_varField13" translatable="false">RT WT</string>
     <string name="med_saveButton" translatable="false">Save Button</string>
@@ -87,5 +87,6 @@
     <!-- Start strings related to "Add Doctor Comments" -->
     <string name="view_med_ScreenHeader" translatable="false">View Medical Record</string>
     <string name="med_backButton" translatable="false">Back Button</string>
+    <string name="separator" formatted="true">" : "</string>
     <!-- End strings related to "Add Doctor Comments" -->
 </resources>

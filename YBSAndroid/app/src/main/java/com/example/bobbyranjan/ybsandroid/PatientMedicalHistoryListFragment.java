@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.bobbyranjan.ybsandroid.models.Patient;
 import com.example.bobbyranjan.ybsandroid.models.PatientMedicalHistory;
 import com.example.bobbyranjan.ybsandroid.service.AsyncResultListener;
 import com.example.bobbyranjan.ybsandroid.service.AsyncResultTask;
@@ -30,11 +29,10 @@ public class PatientMedicalHistoryListFragment extends Fragment implements Async
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
+    String patientId;
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
-
-    String patientId;
     private RecyclerView recyclerView;
 
     /**
@@ -99,8 +97,8 @@ public class PatientMedicalHistoryListFragment extends Fragment implements Async
         mListener = null;
     }
 
-    void setViewItems(List<PatientMedicalHistory> patients) {
-        recyclerView.setAdapter(new PatientMedicalHistoryListViewAdapter(patients, mListener));
+    void setViewItems(List<PatientMedicalHistory> patientMedicalHistoryList) {
+        recyclerView.setAdapter(new PatientMedicalHistoryListViewAdapter(patientMedicalHistoryList, mListener));
     }
 
     @Override
@@ -111,8 +109,8 @@ public class PatientMedicalHistoryListFragment extends Fragment implements Async
 
     @Override
     public void processResults(Object... results) {
-        PatientMedicalHistory[] patients = Arrays.copyOf(results, results.length, PatientMedicalHistory[].class);
-        setViewItems(new ArrayList<PatientMedicalHistory>(Arrays.asList(patients)));
+        PatientMedicalHistory[] patientMedicalHistories = Arrays.copyOf(results, results.length, PatientMedicalHistory[].class);
+        setViewItems(new ArrayList<PatientMedicalHistory>(Arrays.asList(patientMedicalHistories)));
     }
 
     /**
