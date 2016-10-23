@@ -57,7 +57,7 @@ public class PatientMedicalHistoryActivity extends AppCompatActivity implements 
         String patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
         PatientMedicalHistoryListFragment fragment = new PatientMedicalHistoryListFragment();
         Bundle args = new Bundle();
-        args.putString("patientId",patientId);
+        args.putString(Constants.PATIENT_ID, patientId);
         fragment.setArguments(args);
         fragmentTransaction.add(R.id.rlPatientMedicalHistory, fragment, subtitle);
         supportActionBar.setSubtitle(subtitle);

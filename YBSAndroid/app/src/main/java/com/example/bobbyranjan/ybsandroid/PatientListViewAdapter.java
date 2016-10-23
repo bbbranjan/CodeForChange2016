@@ -89,7 +89,7 @@ public class PatientListViewAdapter extends RecyclerView.Adapter<PatientListView
                     break;
 
                 case R.id.iv_add_medical_record:
-                    mListener.onListFragmentInteraction(this.patient, Constants.ActionType.AddNewMedicalRecord);
+                    mListener.onListFragmentInteraction(this.patient, Constants.ActionType.ViewMedicalRecords);
 
                     break;
             }

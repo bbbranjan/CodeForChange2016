@@ -14,8 +14,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Explode;
-import android.transition.Slide;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,20 +25,18 @@ import com.example.bobbyranjan.ybsandroid.models.User;
 import com.example.bobbyranjan.ybsandroid.service.AsyncResultListener;
 import com.example.bobbyranjan.ybsandroid.service.AsyncResultTask;
 import com.example.bobbyranjan.ybsandroid.service.PresenceListener;
-import com.example.bobbyranjan.ybsandroid.service.Service;
 import com.example.bobbyranjan.ybsandroid.service.UserService;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, PatientListFragment.OnListFragmentInteractionListener,PresenceListener,AsyncResultListener {
 
+    TextView navEmail;
+    TextView navUser;
+    boolean connected = false;
     private FloatingActionButton fab;
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private NavigationView navigationView;
-    TextView navEmail;
-    TextView navUser;
-
-    boolean connected=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,9 +165,9 @@ public class NavigationActivity extends AppCompatActivity
                 i.putExtra(Constants.ACTION_TYPE, Constants.ActionType.PatientDetails);
                 i.putExtra(Constants.PATIENT_ID, patient.getId());
                 break;
-            case AddNewMedicalRecord:
+            case ViewMedicalRecords:
                 i = new Intent(NavigationActivity.this, PatientMedicalHistoryActivity.class);
-                i.putExtra(Constants.ACTION_TYPE, Constants.ActionType.AddNewMedicalRecord);
+                i.putExtra(Constants.ACTION_TYPE, Constants.ActionType.ViewMedicalRecords);
                 i.putExtra(Constants.PATIENT_ID, patient.getId());
                 break;
         }

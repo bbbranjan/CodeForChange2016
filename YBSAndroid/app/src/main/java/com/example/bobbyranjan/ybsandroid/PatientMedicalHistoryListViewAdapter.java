@@ -11,6 +11,9 @@ import com.example.bobbyranjan.ybsandroid.models.PatientMedicalHistory;
 
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * {@link RecyclerView.Adapter} that can display a {@link PatientMedicalHistory} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
@@ -35,9 +38,16 @@ public class PatientMedicalHistoryListViewAdapter extends RecyclerView.Adapter<P
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).getDate());
-        holder.mContentView.setText(mValues.get(position).getObservations());
+        PatientMedicalHistory pmh = mValues.get(position);
+        holder.patientMedicalHistory = pmh;
+        holder.tvHPHT.setText(pmh.getHpht());
+        holder.tvTP.setText(pmh.getTp());
+        holder.tvTotalNumberOfVisits.setText(pmh.getVisit());
+        holder.tvTD.setText(pmh.getTd());
+        holder.tvLila.setText(pmh.getLila());
+        holder.tvUK.setText(pmh.getUk());
+        holder.tvBBTB.setText(pmh.getBb_tb());
+
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +55,7 @@ public class PatientMedicalHistoryListViewAdapter extends RecyclerView.Adapter<P
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    mListener.onListFragmentInteraction(holder.patientMedicalHistory);
                 }
             }
         });
@@ -58,20 +68,22 @@ public class PatientMedicalHistoryListViewAdapter extends RecyclerView.Adapter<P
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public PatientMedicalHistory mItem;
+        public PatientMedicalHistory patientMedicalHistory;
 
-        public ViewHolder(View view) {
+        @Bind(R.id.tvHPHT) TextView tvHPHT;
+        @Bind(R.id.tvTP) TextView tvTP;
+        @Bind(R.id.tvTotalNumberOfVisits) TextView tvTotalNumberOfVisits;
+        @Bind(R.id.tvTD) TextView tvTD;
+        @Bind(R.id.tvLila) TextView tvLila;
+        @Bind(R.id.tvUK) TextView tvUK;
+        @Bind(R.id.tvBBTB) TextView tvBBTB;
+
+        ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.id);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            ButterKnife.bind(this, view);
         }
 
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
-        }
+
     }
 }
