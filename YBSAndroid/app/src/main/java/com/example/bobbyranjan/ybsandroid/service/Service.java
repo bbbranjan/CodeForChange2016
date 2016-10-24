@@ -83,7 +83,7 @@ public class Service {
     }
 
     protected static void retrieveModels(String path, final Class model, final AsyncResultTask task) {
-        db.child(path).addListenerForSingleValueEvent(new ValueEventListener() {
+        db.child(path).orderByChild("id").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ArrayList results = new ArrayList();
