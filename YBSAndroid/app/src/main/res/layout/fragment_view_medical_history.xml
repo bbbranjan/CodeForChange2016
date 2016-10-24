@@ -15,23 +15,9 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/Medical"
+            <android.support.v4.widget.Space
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/MedicalHeader"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="@string/view_med_ScreenHeader"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                    android:textColor="#000000"/>
-
-            </LinearLayout>
+                android:layout_height="25dp" />
 
             <LinearLayout
                 android:id="@+id/PatientName"
