@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.bobbyranjan.ybsandroid.AddMedicalHistoryFragment">
+    tools:context="com.example.bobbyranjan.ybsandroid.ViewMedicalHistoryFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <!-- TODO: Update blank fragment layout -->
@@ -47,6 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:ems="10"
+                    android:inputType="none"
                     android:hint="@string/med_PatientName"/>
 
             </LinearLayout>
@@ -64,6 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
+                    android:inputType="none"
                     android:ems="10"/>
             </LinearLayout>
 
@@ -81,7 +83,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="TextView"
-                    tools:text="@string/med_SubHeader1" />
+                    android:inputType="none"
+                    android:text="@string/med_SubHeader1" />
             </LinearLayout>
 
             <LinearLayout
@@ -98,6 +101,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:inputType="none"
                     android:gravity="center_horizontal" />
 
                 <TextView
@@ -106,6 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:inputType="none"
                     android:gravity="center_vertical|center_horizontal" />
 
                 <TextView
@@ -116,7 +121,7 @@
                     android:ems="10"
                     android:gravity="center_horizontal"
                     android:hint="@string/med_A"
-                    android:inputType="textCapCharacters|textCapWords"/>
+                    android:inputType="none"/>
 
                 <TextView
                     android:id="@+id/mr_pregField4"
@@ -124,6 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:inputType="none"
                     android:gravity="center_horizontal" />
             </LinearLayout>
 
@@ -142,6 +148,7 @@
                     android:layout_height="150dp"
                     android:layout_margin="5dp"
                     android:layout_weight="11.85"
+                    android:inputType="none"
                     android:ems="10"/>
             </LinearLayout>
 
@@ -161,6 +168,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:gravity="center_vertical|center_horizontal"
+                    android:inputType="none"
                     android:hint="@string/med_UK"/>
 
                 <TextView
@@ -170,6 +178,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:gravity="center_vertical|center_horizontal"
+                    android:inputType="none"
                     android:hint="@string/med_Varies"/>
             </LinearLayout>
 
@@ -189,7 +198,7 @@
                     android:ems="10"
                     android:gravity="center_vertical|center_horizontal"
                     android:hint="@string/med_Oedema"
-                    android:inputType="text|textCapCharacters|textCapWords"/>
+                    android:inputType="none"/>
 
                 <TextView
                     android:id="@+id/mr_WTB"
@@ -197,6 +206,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:inputType="none"
                     android:gravity="center_vertical|center_horizontal"
                     android:hint="@string/med_BB_TB"/>
 
@@ -217,6 +227,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:gravity="center_vertical|center_horizontal"
+                    android:inputType="none"
                     android:hint="@string/med_TD"/>
 
                 <TextView
@@ -226,6 +237,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:gravity="center_vertical|center_horizontal"
+                    android:inputType="none"
                     android:hint="@string/med_Lila"/>
 
             </LinearLayout>
@@ -245,6 +257,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:gravity="center_vertical|center_horizontal"
+                    android:inputType="none"
                     android:hint="@string/med_TotalVisits"/>
 
                 <TextView
@@ -254,6 +267,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:gravity="center_vertical|center_horizontal"
+                    android:inputType="none"
                     android:hint="@string/med_SF"/>
 
             </LinearLayout>
@@ -273,6 +287,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:gravity="center_vertical|center_horizontal"
+                    android:inputType="none"
                     android:hint="@string/med_HPHT"/>
 
                 <TextView
@@ -282,6 +297,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:gravity="center_vertical|center_horizontal"
+                    android:inputType="none"
                     android:hint="@string/med_TP"/>
             </LinearLayout>
 
@@ -299,6 +315,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:ems="10"
+                    android:inputType="none"
                     android:hint="@string/med_Complaints"/>
             </LinearLayout>
 
@@ -316,24 +333,10 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:ems="10"
+                    android:inputType="none"
                     android:hint="@string/med_varField12" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
-
-                <ImageButton
-                    android:id="@+id/mr_backbutton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#00FFFFFF"
-                    android:contentDescription="@string/med_backButton"
-                    android:src="@mipmap/cancel"/>
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
