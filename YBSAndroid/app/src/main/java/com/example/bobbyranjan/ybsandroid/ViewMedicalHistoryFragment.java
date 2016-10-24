@@ -71,7 +71,7 @@ public class ViewMedicalHistoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_add_medical_history, container, false);
+        view = inflater.inflate(R.layout.fragment_view_medical_history, container, false);
 
         mRTWT = (TextView) view.findViewById(R.id.mr_rtwt);
         mG = (TextView) view.findViewById(R.id.mr_pregField1);
