@@ -7,7 +7,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.bobbyranjan.ybsandroid.models.DoctorComments;
@@ -21,7 +23,9 @@ import com.example.bobbyranjan.ybsandroid.service.PatientMedicalHistoryService;
 import com.example.bobbyranjan.ybsandroid.service.PatientService;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 
 /**
@@ -56,6 +60,8 @@ public class ViewMedicalHistoryFragment extends Fragment {
     TextView mTP;
     TextView mComplaints;
     TextView mInfo;
+
+    ListView dcListView;
 
     private String patientId;
     private String historyId;
@@ -109,7 +115,9 @@ public class ViewMedicalHistoryFragment extends Fragment {
         mHPHT = (TextView) view.findViewById(R.id.mr_HPHT);
         mTP = (TextView) view.findViewById(R.id.mr_TP);
         mComplaints = (TextView) view.findViewById(R.id.mr_Complaints);
-        mInfo = (TextView) view.findViewById(R.id.mr_Information)
+        mInfo = (TextView) view.findViewById(R.id.mr_Information);
+
+        dcListView = (ListView) view.findViewById(R.id.docCommentsLV);
 
         displayMedHist();
 
@@ -156,7 +164,7 @@ public class ViewMedicalHistoryFragment extends Fragment {
     private void displayDoctorComments() {
 
         final String path = Model.DOCTOR_COMMENTS + patientId + "/" + historyId;
-        String id = DoctorCommentsService.getKey(path);
+
         DoctorCommentsService.getComments(patientId, historyId, new AsyncResultTask(new AsyncResultListener() {
             @Override
             public void processResult(Object result) {
@@ -165,7 +173,13 @@ public class ViewMedicalHistoryFragment extends Fragment {
 
             @Override
             public void processResults(Object... results) {
+                List<String> dcList = new ArrayList<>();
+                for(Object o:results) {
+                    dcList.add(((DoctorComments) o).getComments());
 
+                }
+                ArrayAdapter<String> doctorCommentsArrayAdapter = new ArrayAdapter<>(getContext(), R.layout.fragment_view_medical_history, dcList);
+                dcListView.setAdapter(doctorCommentsArrayAdapter);
             }
         }));
 

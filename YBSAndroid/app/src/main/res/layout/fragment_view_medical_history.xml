@@ -320,7 +320,6 @@
             </LinearLayout>
 
             <LinearLayout
-<<<<<<< HEAD
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -335,9 +334,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
-=======
->>>>>>> master
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
