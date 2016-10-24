@@ -1,41 +1,33 @@
 package com.example.bobbyranjan.ybsandroid;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+<<<<<<< HEAD
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+=======
+>>>>>>> master
 import android.widget.TextView;
 
 import com.example.bobbyranjan.ybsandroid.models.DoctorComments;
 import com.example.bobbyranjan.ybsandroid.models.Model;
-import com.example.bobbyranjan.ybsandroid.models.Patient;
 import com.example.bobbyranjan.ybsandroid.models.PatientMedicalHistory;
 import com.example.bobbyranjan.ybsandroid.service.AsyncResultListener;
 import com.example.bobbyranjan.ybsandroid.service.AsyncResultTask;
-import com.example.bobbyranjan.ybsandroid.service.DoctorCommentsService;
 import com.example.bobbyranjan.ybsandroid.service.PatientMedicalHistoryService;
-import com.example.bobbyranjan.ybsandroid.service.PatientService;
 
+<<<<<<< HEAD
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+=======
+>>>>>>> master
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ViewMedicalHistoryFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ViewMedicalHistoryFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ViewMedicalHistoryFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -68,17 +60,16 @@ public class ViewMedicalHistoryFragment extends Fragment {
 
 
 
-    private OnFragmentInteractionListener mListener;
     private View view;
     public ViewMedicalHistoryFragment() {
         // Required empty public constructor
     }
 
-    public static ViewMedicalHistoryFragment newInstance(String param1, String param2) {
+    public static ViewMedicalHistoryFragment newInstance(String patientId, String pmhId) {
         ViewMedicalHistoryFragment fragment = new ViewMedicalHistoryFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(Constants.PATIENT_ID, patientId);
+        args.putString(Constants.MEDICAL_HISTORY_ID, pmhId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -87,8 +78,8 @@ public class ViewMedicalHistoryFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            patientId = getArguments().getString(ARG_PARAM1);
-            historyId = getArguments().getString(ARG_PARAM2);
+            patientId = getArguments().getString(Constants.PATIENT_ID);
+            historyId = getArguments().getString(Constants.MEDICAL_HISTORY_ID);
         }
     }
 
@@ -129,8 +120,12 @@ public class ViewMedicalHistoryFragment extends Fragment {
     private void displayMedHist() {
 
         final String path = Model.PATIENT_HISTORY + patientId + "/" + historyId;
+<<<<<<< HEAD
         String id = PatientMedicalHistoryService.getKey(path);
         PatientMedicalHistoryService.getPatientMedicalHistory(patientId, id, new AsyncResultTask(new AsyncResultListener() {
+=======
+        PatientMedicalHistoryService.getPatientMedicalHistory(patientId, historyId, new AsyncResultTask(new AsyncResultListener() {
+>>>>>>> master
             @Override
             public void processResult(Object result) {
                 PatientMedicalHistory patientMedicalHistory = (PatientMedicalHistory) result;
@@ -161,6 +156,7 @@ public class ViewMedicalHistoryFragment extends Fragment {
 
     }
 
+<<<<<<< HEAD
     private void displayDoctorComments() {
 
         final String path = Model.DOCTOR_COMMENTS + patientId + "/" + historyId;
@@ -202,15 +198,13 @@ public class ViewMedicalHistoryFragment extends Fragment {
                     + " must implement OnAddNewPatient");
         }
     }
+=======
+>>>>>>> master
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
+
 }
