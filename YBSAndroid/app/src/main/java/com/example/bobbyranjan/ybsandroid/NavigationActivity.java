@@ -165,9 +165,9 @@ public class NavigationActivity extends AppCompatActivity
                 i.putExtra(Constants.ACTION_TYPE, Constants.ActionType.PatientDetails);
                 i.putExtra(Constants.PATIENT_ID, patient.getId());
                 break;
-            case ViewMedicalRecords:
+            case ViewMedicalHistoryList:
                 i = new Intent(NavigationActivity.this, PatientMedicalHistoryActivity.class);
-                i.putExtra(Constants.ACTION_TYPE, Constants.ActionType.ViewMedicalRecords);
+                i.putExtra(Constants.ACTION_TYPE, Constants.ActionType.ViewMedicalHistoryList);
                 i.putExtra(Constants.PATIENT_ID, patient.getId());
                 break;
         }
