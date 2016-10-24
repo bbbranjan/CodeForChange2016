@@ -3,6 +3,7 @@ package com.example.bobbyranjan.ybsandroid;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -23,6 +24,7 @@ public class PatientMedicalHistoryActivity extends AppCompatActivity implements 
     private Constants.ActionType actionType;
     private ActionBar supportActionBar;
     private FloatingActionButton fab;
+    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,28 +39,58 @@ public class PatientMedicalHistoryActivity extends AppCompatActivity implements 
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PatientMedicalHistoryActivity.this, AddMedicalHistoryActivity.class);
-                intent.putExtra("patientId",patientId);
+                intent.putExtra("patientId", patientId);
                 startActivity(intent);
 
             }
         });
         setUpAnimation();
-
+        fragmentManager = getSupportFragmentManager();
         setupToolbar();
-        addFragments(actionType);
+        manageFragments(actionType, (String) getIntent().getSerializableExtra(Constants.PATIENT_ID), null);
 
     }
 
-    private void addFragments(Constants.ActionType actionType) {
+    private void manageFragments(Constants.ActionType actionType, String patientId, String pmhId) {
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        String subtitle = getString(R.string.patient_medical_history);
-        String patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
-        PatientMedicalHistoryListFragment fragment = PatientMedicalHistoryListFragment.newInstance(patientId);
-        fragmentTransaction.add(R.id.rlPatientMedicalHistory, fragment, subtitle);
-        supportActionBar.setSubtitle(subtitle);
+        final String pmhListTag = getString(R.string.patient_medical_history);
+        final String vmhTag = getString(R.string.view_medical_history);
+
+        switch (actionType) {
+
+            case AddNewPatient:
+                break;
+            case PatientDetails:
+                break;
+            case ViewMedicalHistoryList:
+                removeFragment(fragmentTransaction, vmhTag);
+                PatientMedicalHistoryListFragment medicalHistoryListFragment = PatientMedicalHistoryListFragment.newInstance(patientId);
+                fragmentTransaction.add(R.id.rlPatientMedicalHistory, medicalHistoryListFragment, pmhListTag);
+                supportActionBar.setSubtitle(pmhListTag);
+                break;
+            case ViewMedicalHistory:
+                removeFragment(fragmentTransaction, pmhListTag);
+                ViewMedicalHistoryFragment viewMedicalHistoryFragment = ViewMedicalHistoryFragment.newInstance(patientId, pmhId);
+                fragmentTransaction.add(R.id.rlPatientMedicalHistory, viewMedicalHistoryFragment, vmhTag);
+                supportActionBar.setSubtitle(vmhTag);
+                break;
+            case AddNewMedicalRecord:
+                break;
+        }
+
+
         fragmentTransaction.commit();
+    }
+
+    private void removeFragment(FragmentTransaction fragmentTransaction, String tag) {
+        Fragment fragment = fragmentManager.findFragmentByTag(tag);
+
+        if (fragment != null) {
+            fragmentTransaction.remove(fragment);
+            fragmentTransaction.addToBackStack(tag);
+
+        }
     }
 
     private void setupToolbar() {
@@ -74,9 +106,19 @@ public class PatientMedicalHistoryActivity extends AppCompatActivity implements 
         getWindow().setEnterTransition(enterTransition);
     }
 
+    @Override
+    public void onListFragmentInteraction(PatientMedicalHistory item, Constants.ActionType actionType) {
+
+        manageFragments(actionType, item.getPatientId(), item.getId());
+    }
 
     @Override
-    public void onListFragmentInteraction(PatientMedicalHistory item) {
+    public void onBackPressed() {
 
+        if (fragmentManager.getBackStackEntryCount() > 0) {
+            fragmentManager.popBackStack();
+        } else {
+            super.onBackPressed();
+        }
     }
 }

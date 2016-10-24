@@ -30,8 +30,6 @@ public class PatientMedicalHistoryListFragment extends Fragment implements Async
     private OnListFragmentInteractionListener mListener;
     private RecyclerView recyclerView;
 
-    View view;
-
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -61,7 +59,7 @@ public class PatientMedicalHistoryListFragment extends Fragment implements Async
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_patient_medical_history_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_patient_medical_history_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -72,12 +70,6 @@ public class PatientMedicalHistoryListFragment extends Fragment implements Async
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        AsyncResultTask task = new AsyncResultTask(this);
-        PatientMedicalHistoryService.getAllMedicalHistoriesForPatient(patientId, task);
-    }
 
     @Override
     public void onAttach(Context context) {
@@ -121,6 +113,6 @@ public class PatientMedicalHistoryListFragment extends Fragment implements Async
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(PatientMedicalHistory item);
+        void onListFragmentInteraction(PatientMedicalHistory item, Constants.ActionType actionType);
     }
 }
