@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.bobbyranjan.ybsandroid.models.DoctorComments;
 import com.example.bobbyranjan.ybsandroid.models.Model;
 import com.example.bobbyranjan.ybsandroid.models.Patient;
 import com.example.bobbyranjan.ybsandroid.models.PatientMedicalHistory;
@@ -108,11 +109,11 @@ public class ViewMedicalHistoryFragment extends Fragment {
         mHPHT = (TextView) view.findViewById(R.id.mr_HPHT);
         mTP = (TextView) view.findViewById(R.id.mr_TP);
         mComplaints = (TextView) view.findViewById(R.id.mr_Complaints);
-        mInfo = (TextView) view.findViewById(R.id.mr_Information);
-
-
+        mInfo = (TextView) view.findViewById(R.id.mr_Information)
 
         displayMedHist();
+
+        displayDoctorComments();
 
         return view;
     }
@@ -120,7 +121,7 @@ public class ViewMedicalHistoryFragment extends Fragment {
     private void displayMedHist() {
 
         final String path = Model.PATIENT_HISTORY + patientId + "/" + historyId;
-        String id = DoctorCommentsService.getKey(path);
+        String id = PatientMedicalHistoryService.getKey(path);
         PatientMedicalHistoryService.getPatientMedicalHistory(patientId, id, new AsyncResultTask(new AsyncResultListener() {
             @Override
             public void processResult(Object result) {
@@ -142,6 +143,24 @@ public class ViewMedicalHistoryFragment extends Fragment {
                 mTP.setText(patientMedicalHistory.getTp());
                 mComplaints.setText(patientMedicalHistory.getComplaints());
                 mInfo.setText(patientMedicalHistory.getInformation());
+            }
+
+            @Override
+            public void processResults(Object... results) {
+
+            }
+        }));
+
+    }
+
+    private void displayDoctorComments() {
+
+        final String path = Model.DOCTOR_COMMENTS + patientId + "/" + historyId;
+        String id = DoctorCommentsService.getKey(path);
+        DoctorCommentsService.getComments(patientId, historyId, new AsyncResultTask(new AsyncResultListener() {
+            @Override
+            public void processResult(Object result) {
+
             }
 
             @Override

@@ -320,6 +320,20 @@
             </LinearLayout>
 
             <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/DocCommentsLayout"
+                android:background="@drawable/border"
+                android:layout_margin="5dp">
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/docCommentsLV" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
