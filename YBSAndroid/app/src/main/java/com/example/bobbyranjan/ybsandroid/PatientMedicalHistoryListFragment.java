@@ -3,8 +3,6 @@ package com.example.bobbyranjan.ybsandroid;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,13 +23,10 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class PatientMedicalHistoryListFragment extends Fragment implements AsyncResultListener{
+public class PatientMedicalHistoryListFragment extends Fragment implements AsyncResultListener {
 
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     String patientId;
-    // TODO: Customize parameters
-    private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     private RecyclerView recyclerView;
 
@@ -44,10 +39,10 @@ public class PatientMedicalHistoryListFragment extends Fragment implements Async
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static PatientMedicalHistoryListFragment newInstance(int columnCount) {
+    public static PatientMedicalHistoryListFragment newInstance(String patientId) {
         PatientMedicalHistoryListFragment fragment = new PatientMedicalHistoryListFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
+        args.putString(Constants.PATIENT_ID, patientId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,8 +52,7 @@ public class PatientMedicalHistoryListFragment extends Fragment implements Async
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-            patientId = getArguments().getString("patientId");
+            patientId = getArguments().getString(Constants.PATIENT_ID);
         }
     }
 
@@ -69,15 +63,9 @@ public class PatientMedicalHistoryListFragment extends Fragment implements Async
 
         // Set the adapter
         if (view instanceof RecyclerView) {
-            Context context = view.getContext();
             recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
             AsyncResultTask task = new AsyncResultTask(this);
-            PatientMedicalHistoryService.getAllMedicalHistoriesForPatient(patientId,task);
+            PatientMedicalHistoryService.getAllMedicalHistoriesForPatient(patientId, task);
         }
         return view;
     }

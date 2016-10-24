@@ -55,10 +55,7 @@ public class PatientMedicalHistoryActivity extends AppCompatActivity implements 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         String subtitle = getString(R.string.patient_medical_history);
         String patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
-        PatientMedicalHistoryListFragment fragment = new PatientMedicalHistoryListFragment();
-        Bundle args = new Bundle();
-        args.putString(Constants.PATIENT_ID, patientId);
-        fragment.setArguments(args);
+        PatientMedicalHistoryListFragment fragment = PatientMedicalHistoryListFragment.newInstance(patientId);
         fragmentTransaction.add(R.id.rlPatientMedicalHistory, fragment, subtitle);
         supportActionBar.setSubtitle(subtitle);
         fragmentTransaction.commit();
