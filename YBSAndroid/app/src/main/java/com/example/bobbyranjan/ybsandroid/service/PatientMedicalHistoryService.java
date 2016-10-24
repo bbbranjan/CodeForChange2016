@@ -15,8 +15,8 @@ public class PatientMedicalHistoryService extends Service {
         persistModel(pmh);
     }
 
-    public static void getPatientMedicalHistory(String patientId,String id,final AsyncResultTask task){
-        String path = Model.PATIENT_HISTORY+patientId+"/"+id;
+    public static void getPatientMedicalHistory(String patientId,String patientMedicalHistoryId,final AsyncResultTask task){
+        String path = Model.PATIENT_HISTORY+patientId+"/"+patientMedicalHistoryId;
         retrieveModel(path,PatientMedicalHistory.class,task);
     }
 
