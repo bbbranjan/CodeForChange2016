@@ -127,7 +127,7 @@ public class LoginActivity extends AppCompatActivity implements AsyncResultListe
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
-                        //if the task is successfull
+                        //if the task is successful
                         if (task.isSuccessful()) {
                             UserService.getUser(UserService.getCurrentUserUUID(),retrieve_task);
                             //start the profile activity
