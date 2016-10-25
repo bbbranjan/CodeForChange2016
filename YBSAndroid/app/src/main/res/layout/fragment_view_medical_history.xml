@@ -323,7 +323,6 @@
                     android:hint="@string/med_varField12" />
             </LinearLayout>
 
-<<<<<<< HEAD
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -353,8 +352,6 @@
                     android:contentDescription="@string/med_backButton"
                     android:src="@mipmap/cancel"/>
             </LinearLayout>
-=======
->>>>>>> master
         </LinearLayout>
     </ScrollView>
 
