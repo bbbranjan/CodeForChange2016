@@ -47,11 +47,11 @@ public class PatientMedicalHistoryActivity extends AppCompatActivity implements 
         setUpAnimation();
         fragmentManager = getSupportFragmentManager();
         setupToolbar();
-        manageFragments(actionType, (String) getIntent().getSerializableExtra(Constants.PATIENT_ID), null);
+        manageFragments(actionType, patientId,null);
 
     }
 
-    private void manageFragments(Constants.ActionType actionType, String patientId, String pmhId) {
+    private void manageFragments(Constants.ActionType actionType, final String patientId, final String pmhId) {
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         final String pmhListTag = getString(R.string.patient_medical_history);
@@ -70,8 +70,21 @@ public class PatientMedicalHistoryActivity extends AppCompatActivity implements 
                 supportActionBar.setSubtitle(pmhListTag);
                 break;
             case ViewMedicalHistory:
+                if(pmhId==null){
+                    break;
+                }
                 removeFragment(fragmentTransaction, pmhListTag);
                 ViewMedicalHistoryFragment viewMedicalHistoryFragment = ViewMedicalHistoryFragment.newInstance(patientId, pmhId);
+                fab.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(PatientMedicalHistoryActivity.this, AddCommentActivity.class);
+                        intent.putExtra("patientId", patientId);
+                        intent.putExtra("historyId", pmhId);
+                        startActivity(intent);
+
+                    }
+                });
                 fragmentTransaction.add(R.id.rlPatientMedicalHistory, viewMedicalHistoryFragment, vmhTag);
                 supportActionBar.setSubtitle(vmhTag);
                 break;
