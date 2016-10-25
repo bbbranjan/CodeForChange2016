@@ -28,6 +28,14 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
+        jackOptions {
+            enabled true
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     packagingOptions {
@@ -53,11 +61,11 @@ android {
         javaMaxHeapSize "4g"
     }
 }
-apply plugin: 'com.neenbedankt.android-apt'
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    apt 'org.parceler:parceler:1.1.1'
+    annotationProcessor 'org.parceler:parceler:1.1.1'
 
     compile 'com.android.support:appcompat-v7:25.0.0'
     compile 'com.android.support:multidex:1.0.1'

@@ -166,7 +166,9 @@ public class AddMedicalHistoryFragment extends Fragment implements AsyncResultLi
 
         String id = PatientMedicalHistoryService.getKey(Model.PATIENT_HISTORY+patientId);
         PatientMedicalHistoryService.persistPatientMedicalHistory(id,patientId,currDate,rtwt,pG,pP,pA,pAH,IR,UK,Varices,Oedema,WTB,TD,LILA,numvisit,SF,HPHT,TP,complaints,info);
-        startActivity(new Intent(view.getContext(), PatientMedicalHistoryActivity.class));
+        Intent intent = new Intent(view.getContext(), PatientMedicalHistoryActivity.class);
+        intent.putExtra(Constants.PATIENT_ID,patientId);
+        startActivity(intent);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
