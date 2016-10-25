@@ -12,11 +12,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Explode;
-import android.view.View;
 
 import com.example.bobbyranjan.ybsandroid.models.PatientMedicalHistory;
 
-public class PatientMedicalHistoryActivity extends AppCompatActivity implements PatientMedicalHistoryListFragment.OnListFragmentInteractionListener{
+public class PatientMedicalHistoryActivity extends AppCompatActivity implements PatientMedicalHistoryListFragment.OnListFragmentInteractionListener {
 
     private Toolbar toolbar;
     private DrawerLayout drawer;
@@ -35,19 +34,16 @@ public class PatientMedicalHistoryActivity extends AppCompatActivity implements 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         final String patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
         fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PatientMedicalHistoryActivity.this, AddMedicalHistoryActivity.class);
-                intent.putExtra("patientId", patientId);
-                startActivity(intent);
+        fab.setOnClickListener(view -> {
+            Intent intent = new Intent(PatientMedicalHistoryActivity.this, AddMedicalHistoryActivity.class);
+            intent.putExtra("patientId", patientId);
+            startActivity(intent);
 
-            }
         });
         setUpAnimation();
         fragmentManager = getSupportFragmentManager();
         setupToolbar();
-        manageFragments(actionType, patientId,null);
+        manageFragments(actionType, patientId, null);
 
     }
 
@@ -70,20 +66,17 @@ public class PatientMedicalHistoryActivity extends AppCompatActivity implements 
                 supportActionBar.setSubtitle(pmhListTag);
                 break;
             case ViewMedicalHistory:
-                if(pmhId==null){
+                if (pmhId == null) {
                     break;
                 }
                 removeFragment(fragmentTransaction, pmhListTag);
                 ViewMedicalHistoryFragment viewMedicalHistoryFragment = ViewMedicalHistoryFragment.newInstance(patientId, pmhId);
-                fab.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(PatientMedicalHistoryActivity.this, AddCommentActivity.class);
-                        intent.putExtra("patientId", patientId);
-                        intent.putExtra("historyId", pmhId);
-                        startActivity(intent);
+                fab.setOnClickListener(view -> {
+                    Intent intent = new Intent(PatientMedicalHistoryActivity.this, AddCommentActivity.class);
+                    intent.putExtra(Constants.PATIENT_ID, patientId);
+                    intent.putExtra(Constants.MEDICAL_HISTORY_ID, pmhId);
+                    startActivity(intent);
 
-                    }
                 });
                 fragmentTransaction.add(R.id.rlPatientMedicalHistory, viewMedicalHistoryFragment, vmhTag);
                 supportActionBar.setSubtitle(vmhTag);
