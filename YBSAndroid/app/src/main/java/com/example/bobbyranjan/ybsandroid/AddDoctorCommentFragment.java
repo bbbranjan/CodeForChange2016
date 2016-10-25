@@ -41,7 +41,6 @@ public class AddDoctorCommentFragment extends Fragment {
 
     private EditText mComments;
     private TextView mPatientName;
-    private TextView mPatientID;
     private Button mSubmit;
 
     public AddDoctorCommentFragment() {
@@ -83,10 +82,8 @@ public class AddDoctorCommentFragment extends Fragment {
         mComments = (EditText) view.findViewById(R.id.doctor_comments);
         mSubmit = (Button) view.findViewById(R.id.submitComments);
         mPatientName = (TextView) view.findViewById(R.id.andc_PatientName);
-        mPatientID = (TextView) view.findViewById(R.id.andc_PatientID);
         final String patientId = mParam1;
         final String historyId = mParam2;
-        mPatientID.setText(patientId);
         PatientService.getPatient(patientId, new AsyncResultTask(new AsyncResultListener() {
             @Override
             public void processResult(Object result) {
