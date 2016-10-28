@@ -1,6 +1,7 @@
 package com.example.bobbyranjan.ybsandroid;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -15,7 +16,7 @@ import android.transition.Explode;
 
 import com.example.bobbyranjan.ybsandroid.models.PatientMedicalHistory;
 
-public class PatientMedicalHistoryActivity extends AppCompatActivity implements PatientMedicalHistoryListFragment.OnListFragmentInteractionListener {
+public class PatientMedicalHistoryActivity extends AppCompatActivity implements PatientMedicalHistoryListFragment.OnListFragmentInteractionListener, ViewMedicalHistoryFragment.OnFragmentInteractionListener {
 
     private Toolbar toolbar;
     private DrawerLayout drawer;
@@ -126,5 +127,10 @@ public class PatientMedicalHistoryActivity extends AppCompatActivity implements 
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
