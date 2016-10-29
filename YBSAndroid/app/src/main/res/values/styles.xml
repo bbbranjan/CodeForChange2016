@@ -7,8 +7,9 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <!-- For ripple effect -->
-        <item name="android:colorControlHighlight">#5fe441</item>
-
+        <item name="colorControlHighlight">@color/colorControlHighlight</item>
+        <item name="colorButtonNormal">@color/colorButtonNormal</item>
+        <item name="colorControlActivated">@color/colorControlActivated</item>
         <!-- Enable window content Transitions-->
         <item name="android:windowContentTransitions">true</item>
 

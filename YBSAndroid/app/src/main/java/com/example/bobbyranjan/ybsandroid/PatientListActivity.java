@@ -23,7 +23,7 @@ import com.example.bobbyranjan.ybsandroid.models.User;
 import com.example.bobbyranjan.ybsandroid.service.PresenceListener;
 import com.example.bobbyranjan.ybsandroid.service.UserService;
 
-public class NavigationActivity extends BaseActivity
+public class PatientListActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, PatientListFragment.OnListFragmentInteractionListener, PresenceListener {
 
     TextView navEmail;
@@ -136,22 +136,22 @@ public class NavigationActivity extends BaseActivity
 
     @Override
     public void onListFragmentInteraction(Patient patient, Constants.ActionType fragmentType) {
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(NavigationActivity.this);
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(PatientListActivity.this);
         Intent i = null;
 
         switch (fragmentType) {
 
             case AddNewPatient:
-                i = new Intent(NavigationActivity.this, AddPatientActivity.class);
+                i = new Intent(PatientListActivity.this, AddPatientActivity.class);
                 i.putExtra(Constants.ACTION_TYPE, Constants.ActionType.AddNewPatient);
                 break;
             case PatientDetails:
-                i = new Intent(NavigationActivity.this, ViewPatientActivity.class);
+                i = new Intent(PatientListActivity.this, ViewPatientActivity.class);
                 i.putExtra(Constants.ACTION_TYPE, Constants.ActionType.PatientDetails);
                 i.putExtra(Constants.PATIENT_ID, patient.getId());
                 break;
             case ViewMedicalHistoryList:
-                i = new Intent(NavigationActivity.this, PatientMedicalHistoryActivity.class);
+                i = new Intent(PatientListActivity.this, PatientMedicalHistoryActivity.class);
                 i.putExtra(Constants.ACTION_TYPE, Constants.ActionType.ViewMedicalHistoryList);
                 i.putExtra(Constants.PATIENT_ID, patient.getId());
                 break;

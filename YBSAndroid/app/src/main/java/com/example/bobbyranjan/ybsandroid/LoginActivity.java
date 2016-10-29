@@ -54,7 +54,7 @@ public class LoginActivity extends BaseActivity {
             finish();
 
             //and open profile activity
-            startActivity(new Intent(getApplicationContext(), NavigationActivity.class));
+            startActivity(new Intent(getApplicationContext(), PatientListActivity.class));
         }
 
         newUser.setOnClickListener(v -> showSignUp());
@@ -125,7 +125,7 @@ public class LoginActivity extends BaseActivity {
     public void processResult(User result) {
         Toast.makeText(LoginActivity.this, "Hello " + result.getName() + "!", Toast.LENGTH_LONG).show();
         finish();
-        Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
+        Intent intent = new Intent(getApplicationContext(), PatientListActivity.class);
         intent.putExtra("name", result.getName());
         startActivity(intent);
     }
