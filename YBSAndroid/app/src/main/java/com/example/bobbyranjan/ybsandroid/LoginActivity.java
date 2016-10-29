@@ -1,44 +1,50 @@
 package com.example.bobbyranjan.ybsandroid;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bobbyranjan.ybsandroid.models.User;
-import com.example.bobbyranjan.ybsandroid.service.AsyncResultListener;
-import com.example.bobbyranjan.ybsandroid.service.AsyncResultTask;
 import com.example.bobbyranjan.ybsandroid.service.UserService;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements AsyncResultListener {
+public class LoginActivity extends BaseActivity {
 
 
     // UI references.
-    private EditText mEmailView;
-    private EditText mPasswordView;
-    private TextView mNewUser;
-    private TextView mForgotPassword;
+    @Bind(R.id.tlEmail) TextInputLayout tlEmail;
+    @Bind(R.id.evEmail) EditText evEmail;
+    @Bind(R.id.tlPassword) TextInputLayout tlPassword;
+    @Bind(R.id.evPassword) EditText evPassword;
+    @Bind(R.id.newUser) TextView newUser;
+    @Bind(R.id.forgotPassword) TextView forgotPassword;
 
-    private ProgressDialog progressDialog;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ButterKnife.bind(this);
 
 
         //if getCurrentUser does not returns null
@@ -51,40 +57,22 @@ public class LoginActivity extends AppCompatActivity implements AsyncResultListe
             startActivity(new Intent(getApplicationContext(), NavigationActivity.class));
         }
 
-        // Set up the login form.
-        mEmailView = (EditText) findViewById(R.id.email);
+        newUser.setOnClickListener(v -> showSignUp());
 
-        mPasswordView = (EditText) findViewById(R.id.password);
+        forgotPassword.setOnClickListener(v -> sendResetEmail());
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                attemptLogin();
-            }
-        });
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
 
-        mNewUser = (TextView) findViewById(R.id.newUser);
-        mNewUser.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showSignUp();
-            }
-        });
-
-        mForgotPassword = (TextView) findViewById(R.id.forgotPassword);
-        mForgotPassword.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendResetEmail();
-            }
-        });
-
-        progressDialog = new ProgressDialog(this);
+    @OnClick(R.id.email_sign_in_button)
+    void onEmailSignInButtonClick() {
+        attemptLogin();
     }
 
     private void sendResetEmail() {
-        String email = mEmailView.getText().toString();
+        String email = evEmail.getText().toString();
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(this, "Please enter your email", Toast.LENGTH_LONG).show();
         } else {
@@ -98,8 +86,8 @@ public class LoginActivity extends AppCompatActivity implements AsyncResultListe
     }
 
     private void attemptLogin() {
-        String email = mEmailView.getText().toString().trim();
-        String password = mPasswordView.getText().toString().trim();
+        String email = evEmail.getText().toString().trim();
+        String password = evPassword.getText().toString().trim();
 
 
         //checking if email and passwords are empty
@@ -116,38 +104,66 @@ public class LoginActivity extends AppCompatActivity implements AsyncResultListe
         //if the email and password are not empty
         //displaying a progress dialog
 
-        progressDialog.setMessage("logging in...");
-        progressDialog.show();
-
-        final AsyncResultTask retrieve_task = new AsyncResultTask(this);
+        this.showProgressDialog(null, "logging in...", false);
 
         //logging in the user
         UserService.login(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressDialog.dismiss();
-                        //if the task is successful
-                        if (task.isSuccessful()) {
-                            UserService.getUser(UserService.getCurrentUserUUID(),retrieve_task);
-                            //start the profile activity
-                        }
+                .addOnCompleteListener(this, task -> {
+                    this.dismissProgressDialog();
+                    //if the task is successful
+                    if (task.isSuccessful()) {
+                        UserService.getUser(UserService.getCurrentUserUUID(), this::processResult);
+                        //start the profile activity
+                    } else {
+                        Toast.makeText(this, R.string.error_logon_failed, Toast.LENGTH_LONG).show();
                     }
+
+
                 });
     }
 
-    @Override
-    public void processResult(Object result) {
-        User me = (User)result;
-        Toast.makeText(LoginActivity.this, "Hello "+me.getName()+"!", Toast.LENGTH_LONG).show();
+    public void processResult(User result) {
+        Toast.makeText(LoginActivity.this, "Hello " + result.getName() + "!", Toast.LENGTH_LONG).show();
         finish();
         Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
-        intent.putExtra("name",me.getName());
+        intent.putExtra("name", result.getName());
         startActivity(intent);
     }
 
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("Login Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
     @Override
-    public void processResults(Object... results) {
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(client, getIndexApiAction());
+        client.disconnect();
     }
 }
 

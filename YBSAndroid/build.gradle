@@ -22,3 +22,9 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    //dependencies
+    supportLibraryVersion = '25.0.0'
+    firebaseVersion = '9.4.0'
+}

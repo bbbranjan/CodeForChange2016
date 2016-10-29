@@ -11,7 +11,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -21,16 +20,17 @@ import java.util.Map;
 public class Service {
 
     public static FirebaseAuth auth = FirebaseAuth.getInstance();
-    public static DatabaseReference db;
-    public static DatabaseReference presence;
-    static{
+    static DatabaseReference db;
+    static DatabaseReference presence;
+
+    static {
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         db = FirebaseDatabase.getInstance().getReference();
         presence = FirebaseDatabase.getInstance().getReference(".info/connected");
 
     }
 
-    {
+    static {
         //we dont want to sync users - that might be needed later
         //this keeps only the last 10MB in sync and handles purge for us
         db.child(Model.PATIENT).keepSynced(true);
@@ -39,7 +39,7 @@ public class Service {
         db.child(Model.DOCTOR_COMMENTS).keepSynced(true);
     }
 
-    protected static void persistModel(Model... models) {
+    static void persistModel(Model... models) {
         Map updates = new HashMap<String, Map<String, String>>();
         for (Model model : models) {
             if (model.getId() == null) {
@@ -58,20 +58,18 @@ public class Service {
         return db.child(db_path).push().getKey();
     }
 
-    public static String getKey(String path){
+    public static String getKey(String path) {
         if (path.startsWith(Model.USERS)) {
             throw new IllegalArgumentException("Invalid method for '/users/'. User user UID instead");
         }
         return db.child(path).push().getKey();
     }
 
-    protected static void retrieveModel(String path, final Class model, final AsyncResultTask task) {
+    static <T> void retrieveModel(String path, final Class<T> model, final FirebaseSingleValueListener<T> task) {
         db.child(path).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList results = new ArrayList();
-                results.add(dataSnapshot.getValue(model));
-                task.execute(results.toArray());
+                task.processResult(dataSnapshot.getValue(model));
             }
 
             @Override
@@ -82,17 +80,15 @@ public class Service {
 
     }
 
-    protected static void retrieveModels(String path, final Class model, final AsyncResultTask task) {
+    static <T> void retrieveModels(String path, final Class<T> model, final FirebaseMultiValueListener<T> task) {
         db.child(path).orderByChild("id").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList results = new ArrayList();
-                Iterator<DataSnapshot> snapshots = dataSnapshot.getChildren().iterator();
-                while (snapshots.hasNext()) {
-                    DataSnapshot ds = snapshots.next();
+                ArrayList<T> results = new ArrayList<>();
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     results.add(ds.getValue(model));
                 }
-                task.execute(results.toArray());
+                task.processResults(results);
             }
 
             @Override

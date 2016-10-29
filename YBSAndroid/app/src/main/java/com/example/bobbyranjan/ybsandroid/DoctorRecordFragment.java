@@ -3,8 +3,6 @@ package com.example.bobbyranjan.ybsandroid;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,10 +18,7 @@ import com.example.bobbyranjan.ybsandroid.models.DoctorComments;
  */
 public class DoctorRecordFragment extends Fragment {
 
-    // TODO: Customize parameter argument namesı
-    private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
-    private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
 
     /**
@@ -38,7 +33,6 @@ public class DoctorRecordFragment extends Fragment {
     public static DoctorRecordFragment newInstance(int columnCount) {
         DoctorRecordFragment fragment = new DoctorRecordFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
         return fragment;
     }
@@ -47,9 +41,6 @@ public class DoctorRecordFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-        }
     }
 
     @Override
@@ -59,13 +50,7 @@ public class DoctorRecordFragment extends Fragment {
 
         // Set the adapter
         if (view instanceof RecyclerView) {
-            Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
             recyclerView.setAdapter(new DoctorRecordViewAdapter(null, mListener));
         }
         return view;

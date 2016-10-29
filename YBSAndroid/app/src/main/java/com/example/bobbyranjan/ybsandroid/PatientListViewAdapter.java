@@ -1,6 +1,5 @@
 package com.example.bobbyranjan.ybsandroid;
 
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,17 +12,21 @@ import com.example.bobbyranjan.ybsandroid.models.Patient;
 
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Patient} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class PatientListViewAdapter extends RecyclerView.Adapter<PatientListViewAdapter.ViewHolder> {
+class PatientListViewAdapter extends RecyclerView.Adapter<PatientListViewAdapter.ViewHolder> {
 
     private final List<Patient> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public PatientListViewAdapter(List<Patient> items, OnListFragmentInteractionListener listener) {
+    PatientListViewAdapter(List<Patient> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -51,27 +54,22 @@ public class PatientListViewAdapter extends RecyclerView.Adapter<PatientListView
         return mValues.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        final View mView;
-        final TextView tvPatientName;
-        final TextView tvHusbandName;
-        final TextView tvAge;
-        ImageView ivViewProfile, ivAddMedicalRecord;
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        @Bind(R.id.profile_image) CircleImageView profileImage;
+        @Bind(R.id.tvPatientName) TextView tvPatientName;
+        @Bind(R.id.tvHusbandName) TextView tvHusbandName;
+        @Bind(R.id.tvAge) TextView tvAge;
+        @Bind(R.id.iv_view_profile) ImageView ivViewProfile;
+        @Bind(R.id.iv_add_medical_record) ImageView ivAddMedicalRecord;
 
         Patient patient;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
-            mView = view;
-            tvPatientName = (TextView) view.findViewById(R.id.tvPatientName);
-            tvHusbandName = (TextView) view.findViewById(R.id.tvHusbandName);
-            tvAge = (TextView) view.findViewById(R.id.tvAge);
-            ivViewProfile = (ImageView) itemView.findViewById(R.id.iv_view_profile);
-            ivAddMedicalRecord = (ImageView) itemView.findViewById(R.id.iv_add_medical_record);
-
+            ButterKnife.bind(this, view);
         }
 
-        public void setListeners() {
+        void setListeners() {
             ivViewProfile.setOnClickListener(ViewHolder.this);
             ivAddMedicalRecord.setOnClickListener(ViewHolder.this);
         }
@@ -82,7 +80,6 @@ public class PatientListViewAdapter extends RecyclerView.Adapter<PatientListView
 
         @Override
         public void onClick(View v) {
-            Intent i = null;
             switch (v.getId()) {
                 case R.id.iv_view_profile:
                     mListener.onListFragmentInteraction(this.patient, Constants.ActionType.PatientDetails);

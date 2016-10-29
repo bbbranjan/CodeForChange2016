@@ -11,108 +11,108 @@
 
 
     <TextView
-        android:text="Select a role"
+        android:id="@+id/tvSelectRole"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/roleLabel"
+        android:text="Select a role"
         android:textAllCaps="false" />
 
     <Spinner
-        android:layout_below="@+id/roleLabel"
+        android:id="@+id/spRole"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_below="@+id/tvSelectRole"
         android:layout_marginTop="21dp"
-        android:ems="10"
-        android:id="@+id/role" />
+        android:ems="10"/>
 
     <EditText
+        android:id="@+id/evName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/spRole"
+        android:layout_marginTop="21dp"
+        android:ems="10"
         android:hint="@string/prompt_name"
-        android:ems="10"
-        android:layout_below="@+id/role"
-        android:layout_marginTop="21dp"
-        android:id="@+id/name"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:inputType="textPersonName"/>
 
     <EditText
+        android:id="@+id/evEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/evName"
+        android:layout_marginTop="18dp"
+        android:ems="10"
         android:hint="@string/prompt_email"
-        android:ems="10"
-        android:layout_below="@+id/name"
-        android:layout_marginTop="18dp"
-        android:id="@+id/email"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:inputType="textPersonName"/>
 
     <EditText
+        android:id="@+id/evPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="@string/prompt_phone"
-        android:ems="10"
-        android:layout_below="@+id/email"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/evEmail"
         android:layout_marginTop="22dp"
-        android:id="@+id/phone"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:ems="10"
+        android:hint="@string/prompt_phone"
+        android:inputType="textPersonName"/>
 
     <EditText
+        android:id="@+id/evPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/evPhone"
+        android:layout_marginTop="18dp"
+        android:ems="10"
         android:hint="@string/prompt_password"
-        android:ems="10"
-        android:layout_below="@+id/phone"
-        android:layout_marginTop="18dp"
-        android:id="@+id/password"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:inputType="textPassword"/>
 
     <EditText
+        android:id="@+id/evConfirmPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:hint="@string/prompt_cfm_password"
-        android:ems="10"
-        android:layout_below="@+id/password"
-        android:layout_marginTop="18dp"
-        android:id="@+id/cfm_password"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/evPassword"
+        android:layout_marginTop="18dp"
+        android:ems="10"
+        android:hint="@string/prompt_cfm_password"
+        android:inputType="textPassword"/>
 
     <Button
-        android:text="@string/action_register"
+        android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/register"
-        android:layout_below="@+id/cfm_password"
-        android:layout_marginTop="16dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/evConfirmPassword"
+        android:layout_marginTop="16dp"
+        android:text="@string/action_register"/>
 
 
 </RelativeLayout>

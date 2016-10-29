@@ -3,6 +3,7 @@ package com.example.bobbyranjan.ybsandroid;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -11,24 +12,19 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.transition.Explode;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bobbyranjan.ybsandroid.models.Patient;
 import com.example.bobbyranjan.ybsandroid.models.User;
-import com.example.bobbyranjan.ybsandroid.service.AsyncResultListener;
-import com.example.bobbyranjan.ybsandroid.service.AsyncResultTask;
 import com.example.bobbyranjan.ybsandroid.service.PresenceListener;
 import com.example.bobbyranjan.ybsandroid.service.UserService;
 
-public class NavigationActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, PatientListFragment.OnListFragmentInteractionListener,PresenceListener,AsyncResultListener {
+public class NavigationActivity extends BaseActivity
+        implements NavigationView.OnNavigationItemSelectedListener, PatientListFragment.OnListFragmentInteractionListener, PresenceListener {
 
     TextView navEmail;
     TextView navUser;
@@ -36,7 +32,6 @@ public class NavigationActivity extends AppCompatActivity
     private FloatingActionButton fab;
     private Toolbar toolbar;
     private DrawerLayout drawer;
-    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +50,7 @@ public class NavigationActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         ActionBar supportActionBar = getSupportActionBar();
+        assert supportActionBar != null;
         supportActionBar.setSubtitle(R.string.list_of_pregnant_women);
     }
 
@@ -66,9 +62,7 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     private void setupWindowAnimations() {
-        Explode enterTransition = new Explode();
-        enterTransition.setDuration(getResources().getInteger(R.integer.anim_duration));
-        getWindow().setEnterTransition(enterTransition);
+        setUpAnimation();
 
     }
 
@@ -85,22 +79,16 @@ public class NavigationActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navEmail = (TextView) navigationView.getHeaderView(0).findViewById(R.id.navEmailId);
         navUser = (TextView) navigationView.getHeaderView(0).findViewById(R.id.navUserName);
         navEmail.setText(UserService.getCurrentUserEmail());
-        UserService.getUser(UserService.getCurrentUserUUID(), new AsyncResultTask(this));
+        UserService.getUser(UserService.getCurrentUserUUID(), this::processResult);
     }
 
     private void hookEvents() {
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onListFragmentInteraction(null, Constants.ActionType.AddNewPatient);
-
-            }
-        });
+        fab.setOnClickListener(view -> onListFragmentInteraction(null, Constants.ActionType.AddNewPatient));
     }
 
 
@@ -138,11 +126,8 @@ public class NavigationActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -183,20 +168,15 @@ public class NavigationActivity extends AppCompatActivity
     @Override
     public void disconnected() {
         connected = false;
-        Toast.makeText(getApplicationContext(),"Disconnected from internet!",Toast.LENGTH_LONG);
+        Toast.makeText(getApplicationContext(), "Disconnected from internet!", Toast.LENGTH_LONG).show();
     }
 
-    @Override
-    public void processResult(Object result) {
-        if(result instanceof User){
-            User u = (User) result;
-            navUser.setText(u.getName());
+    public void processResult(User result) {
+        if (result != null) {
+            navUser.setText(result.getName());
         }
 
     }
 
-    @Override
-    public void processResults(Object... results) {
 
-    }
 }

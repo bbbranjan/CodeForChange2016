@@ -17,14 +17,13 @@ import butterknife.ButterKnife;
 /**
  * {@link RecyclerView.Adapter} that can display a {@link PatientMedicalHistory} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
  */
-public class PatientMedicalHistoryListViewAdapter extends RecyclerView.Adapter<PatientMedicalHistoryListViewAdapter.ViewHolder> {
+class PatientMedicalHistoryListViewAdapter extends RecyclerView.Adapter<PatientMedicalHistoryListViewAdapter.ViewHolder> {
 
     private final List<PatientMedicalHistory> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public PatientMedicalHistoryListViewAdapter(List<PatientMedicalHistory> items, OnListFragmentInteractionListener listener) {
+    PatientMedicalHistoryListViewAdapter(List<PatientMedicalHistory> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -49,14 +48,11 @@ public class PatientMedicalHistoryListViewAdapter extends RecyclerView.Adapter<P
         holder.tvBBTB.setText(pmh.getBb_tb());
 
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.patientMedicalHistory, Constants.ActionType.ViewMedicalHistory);
-                }
+        holder.mView.setOnClickListener(v -> {
+            if (null != mListener) {
+                // Notify the active callbacks interface (the activity, if the
+                // fragment is attached to one) that an item has been selected.
+                mListener.onListFragmentInteraction(holder.patientMedicalHistory, Constants.ActionType.ViewMedicalHistory);
             }
         });
     }
@@ -66,9 +62,9 @@ public class PatientMedicalHistoryListViewAdapter extends RecyclerView.Adapter<P
         return mValues.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public PatientMedicalHistory patientMedicalHistory;
+    class ViewHolder extends RecyclerView.ViewHolder {
+        final View mView;
+        PatientMedicalHistory patientMedicalHistory;
 
         @Bind(R.id.tvHPHT) TextView tvHPHT;
         @Bind(R.id.tvTP) TextView tvTP;

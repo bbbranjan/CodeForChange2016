@@ -6,24 +6,24 @@ import android.os.AsyncTask;
  * Created by hari on 1/10/16.
  */
 
-public class AsyncResultTask extends AsyncTask {
+public class AsyncResultTask<T> extends AsyncTask<T, Void, Void> {
 
-    AsyncResultListener listener;
-    Object[] results = {};
+    AsyncResultListener<T> listener;
+    T[] results = null;
 
-    public AsyncResultTask(AsyncResultListener listener) {
+    public AsyncResultTask(AsyncResultListener<T> listener) {
         this.listener = listener;
     }
 
 
     @Override
-    protected Object doInBackground(Object[] params) {
+    protected Void doInBackground(T... params) {
         this.results = params;
         return null;
     }
 
     @Override
-    protected void onPostExecute(Object o) {
+    protected void onPostExecute(Void o) {
         if (results.length == 1) {
             listener.processResult(results[0]);
         } else if (results.length > 1) {
