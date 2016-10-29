@@ -15,12 +15,12 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class DoctorRecordViewAdapter extends RecyclerView.Adapter<DoctorRecordViewAdapter.ViewHolder> {
+class DoctorRecordViewAdapter extends RecyclerView.Adapter<DoctorRecordViewAdapter.ViewHolder> {
 
     private final List<DoctorComments> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public DoctorRecordViewAdapter(List<DoctorComments> items, OnListFragmentInteractionListener listener) {
+    DoctorRecordViewAdapter(List<DoctorComments> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -36,14 +36,11 @@ public class DoctorRecordViewAdapter extends RecyclerView.Adapter<DoctorRecordVi
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
-                }
+        holder.mView.setOnClickListener(v -> {
+            if (null != mListener) {
+                // Notify the active callbacks interface (the activity, if the
+                // fragment is attached to one) that an item has been selected.
+                mListener.onListFragmentInteraction(holder.mItem);
             }
         });
     }
@@ -53,11 +50,11 @@ public class DoctorRecordViewAdapter extends RecyclerView.Adapter<DoctorRecordVi
         return mValues.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public DoctorComments mItem;
+    class ViewHolder extends RecyclerView.ViewHolder {
+        final View mView;
+        DoctorComments mItem;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             mView = view;
         }

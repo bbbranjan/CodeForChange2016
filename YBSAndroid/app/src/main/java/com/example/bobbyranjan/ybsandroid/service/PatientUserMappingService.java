@@ -14,7 +14,7 @@ public class PatientUserMappingService extends Service {
         persistModel(pum);
     }
 
-    public static void getAllPatients(String userId,final AsyncResultTask task){
+    public static void getAllPatients(String userId, final FirebaseMultiValueListener<PatientUserMapping> task) {
         String path = Model.PATIENT_USER+userId;
         retrieveModels(path,PatientUserMapping.class,task);
     }

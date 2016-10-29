@@ -9,12 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.bobbyranjan.ybsandroid.models.PatientMedicalHistory;
-import com.example.bobbyranjan.ybsandroid.service.AsyncResultListener;
-import com.example.bobbyranjan.ybsandroid.service.AsyncResultTask;
 import com.example.bobbyranjan.ybsandroid.service.PatientMedicalHistoryService;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,9 +19,8 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class PatientMedicalHistoryListFragment extends Fragment implements AsyncResultListener {
+public class PatientMedicalHistoryListFragment extends Fragment {
 
-    private static final String ARG_COLUMN_COUNT = "column-count";
     String patientId;
     private OnListFragmentInteractionListener mListener;
     private RecyclerView recyclerView;
@@ -37,8 +32,6 @@ public class PatientMedicalHistoryListFragment extends Fragment implements Async
     public PatientMedicalHistoryListFragment() {
     }
 
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
     public static PatientMedicalHistoryListFragment newInstance(String patientId) {
         PatientMedicalHistoryListFragment fragment = new PatientMedicalHistoryListFragment();
         Bundle args = new Bundle();
@@ -64,8 +57,7 @@ public class PatientMedicalHistoryListFragment extends Fragment implements Async
         // Set the adapter
         if (view instanceof RecyclerView) {
             recyclerView = (RecyclerView) view;
-            AsyncResultTask task = new AsyncResultTask(this);
-            PatientMedicalHistoryService.getAllMedicalHistoriesForPatient(patientId, task);
+            PatientMedicalHistoryService.getAllMedicalHistoriesForPatient(patientId, this::setViewItems);
         }
         return view;
     }
@@ -89,18 +81,6 @@ public class PatientMedicalHistoryListFragment extends Fragment implements Async
         recyclerView.setAdapter(new PatientMedicalHistoryListViewAdapter(patientMedicalHistoryList, mListener));
     }
 
-    @Override
-    public void processResult(Object result) {
-        PatientMedicalHistory[] patients = {(PatientMedicalHistory) result};
-        setViewItems(new ArrayList<PatientMedicalHistory>(Arrays.asList(patients)));
-    }
-
-    @Override
-    public void processResults(Object... results) {
-        PatientMedicalHistory[] patientMedicalHistories = Arrays.copyOf(results, results.length, PatientMedicalHistory[].class);
-        setViewItems(new ArrayList<PatientMedicalHistory>(Arrays.asList(patientMedicalHistories)));
-    }
-
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -112,7 +92,6 @@ public class PatientMedicalHistoryListFragment extends Fragment implements Async
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(PatientMedicalHistory item, Constants.ActionType actionType);
     }
 }

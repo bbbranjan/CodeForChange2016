@@ -15,7 +15,7 @@ public class DoctorCommentsService extends Service {
         persistModel(dc);
     }
 
-    public static void getComments(String patientId,String patientHistoryId,final AsyncResultTask task){
+    public static void getComments(String patientId, String patientHistoryId, final FirebaseMultiValueListener<DoctorComments> task) {
         String path = Model.DOCTOR_COMMENTS+patientId+"/"+patientHistoryId;
         retrieveModels(path,DoctorComments.class,task);
     }

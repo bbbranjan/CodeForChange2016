@@ -4,31 +4,25 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.transition.Explode;
 
-public class AddCommentActivity extends AppCompatActivity implements AddDoctorCommentFragment.OnFragmentInteractionListener{
+public class AddCommentActivity extends BaseActivity implements AddDoctorCommentFragment.OnFragmentInteractionListener {
 
     String patientId;
     String historyId;
-    private Toolbar toolbar;
-    private DrawerLayout drawer;
-    private ActionBarDrawerToggle toggle;
-    private ActionBar supportActionBar;
+
+    public AddCommentActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_add_comment);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setUpAnimation();
 
-        setupToolbar();
+        setupToolbar(toolbar);
         addFragments();
 
     }
@@ -48,18 +42,8 @@ public class AddCommentActivity extends AppCompatActivity implements AddDoctorCo
         fragmentTransaction.commit();
     }
 
-    private void setupToolbar() {
-        setSupportActionBar(toolbar);
-        supportActionBar = getSupportActionBar();
-        supportActionBar.setDisplayHomeAsUpEnabled(true);
-    }
 
-    private void setUpAnimation() {
 
-        Explode enterTransition = new Explode();
-        enterTransition.setDuration(getResources().getInteger(R.integer.anim_duration));
-        getWindow().setEnterTransition(enterTransition);
-    }
 
 
     @Override

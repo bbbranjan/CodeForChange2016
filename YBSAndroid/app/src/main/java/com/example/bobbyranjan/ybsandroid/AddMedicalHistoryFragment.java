@@ -1,5 +1,6 @@
 package com.example.bobbyranjan.ybsandroid;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -10,13 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.bobbyranjan.ybsandroid.models.Model;
-import com.example.bobbyranjan.ybsandroid.models.Patient;
-import com.example.bobbyranjan.ybsandroid.service.AsyncResultListener;
-import com.example.bobbyranjan.ybsandroid.service.AsyncResultTask;
 import com.example.bobbyranjan.ybsandroid.service.PatientMedicalHistoryService;
 import com.example.bobbyranjan.ybsandroid.service.PatientService;
 
@@ -32,7 +29,7 @@ import java.util.Calendar;
  * Use the {@link AddMedicalHistoryFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddMedicalHistoryFragment extends Fragment implements AsyncResultListener{
+public class AddMedicalHistoryFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -62,11 +59,8 @@ public class AddMedicalHistoryFragment extends Fragment implements AsyncResultLi
 
     // TODO: Rename and change types of parameters
     private String patientId;
-    private String unusedForNow;
 
 
-
-    private OnFragmentInteractionListener mListener;
     private View view;
     public AddMedicalHistoryFragment() {
         // Required empty public constructor
@@ -95,7 +89,6 @@ public class AddMedicalHistoryFragment extends Fragment implements AsyncResultLi
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             patientId = getArguments().getString("patientId");
-            unusedForNow = getArguments().getString("NA");
         }
     }
 
@@ -127,14 +120,9 @@ public class AddMedicalHistoryFragment extends Fragment implements AsyncResultLi
 
         mSave = (Button) view.findViewById(R.id.mr_saveButton);
 
-        mSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveMedHist();
-            }
-        });
+        mSave.setOnClickListener(v -> saveMedHist());
 
-        PatientService.getPatient(patientId, new AsyncResultTask(this));
+        PatientService.getPatient(patientId, result -> patientName.setText(result.getName()));
 
         return view;
     }
@@ -152,7 +140,7 @@ public class AddMedicalHistoryFragment extends Fragment implements AsyncResultLi
         String WTB = mWTB.getText().toString();
         String TD = mTD.getText().toString();
         String LILA = mLILA.getText().toString();
-        String numvisit = mNumVisit.getText().toString();
+        String numberOfVisits = mNumVisit.getText().toString();
         String SF = mSF.getText().toString();
         String HPHT = mHPHT.getText().toString();
         String TP = mTP.getText().toString();
@@ -160,30 +148,21 @@ public class AddMedicalHistoryFragment extends Fragment implements AsyncResultLi
         String info = mInfo.getText().toString();
 
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         String currDate;
         currDate = df.format(c.getTime());
 
         String id = PatientMedicalHistoryService.getKey(Model.PATIENT_HISTORY+patientId);
-        PatientMedicalHistoryService.persistPatientMedicalHistory(id,patientId,currDate,rtwt,pG,pP,pA,pAH,IR,UK,Varices,Oedema,WTB,TD,LILA,numvisit,SF,HPHT,TP,complaints,info);
+        PatientMedicalHistoryService.persistPatientMedicalHistory(id, patientId, currDate, rtwt, pG, pP, pA, pAH, IR, UK, Varices, Oedema, WTB, TD, LILA, numberOfVisits, SF, HPHT, TP, complaints, info);
         Intent intent = new Intent(view.getContext(), PatientMedicalHistoryActivity.class);
         intent.putExtra(Constants.PATIENT_ID,patientId);
         startActivity(intent);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
+        if (!(context instanceof OnFragmentInteractionListener)) {
             throw new RuntimeException(context.toString()
                     + " must implement OnAddNewPatient");
         }
@@ -192,21 +171,6 @@ public class AddMedicalHistoryFragment extends Fragment implements AsyncResultLi
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
-    }
-
-    @Override
-    public void processResult(Object result) {
-        if(result instanceof Patient){
-            Patient p = (Patient) result;
-            patientName.setText(p.getName());
-        }
-
-    }
-
-    @Override
-    public void processResults(Object... results) {
-
     }
 
     /**

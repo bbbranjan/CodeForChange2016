@@ -36,13 +36,13 @@ public class UserService extends Service {
         return auth.getCurrentUser().getEmail();
     }
 
-    public static void getUser(String uid, final AsyncResultTask task) {
+    public static void getUser(String uid, final FirebaseSingleValueListener<User> task) {
         User u = new User();
         u.setId(uid);
         retrieveModel(u.path(), User.class, task);
     }
 
-    public static void getAllUsers(final AsyncResultTask task) {
+    public static void getAllUsers(final FirebaseMultiValueListener<User> task) {
         retrieveModels(Model.USERS, User.class, task);
     }
 
