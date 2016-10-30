@@ -1,7 +1,7 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin">8dp</dimen>
+    <dimen name="activity_vertical_margin">8dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
@@ -15,4 +15,5 @@
     <dimen name="profile_image_size">56dp</dimen>
     <dimen name="width_between_controls">5dp</dimen>
     <dimen name="control_margin_top">18dp</dimen>
+    <dimen name="control_margin_add_patient">5dp</dimen>
 </resources>

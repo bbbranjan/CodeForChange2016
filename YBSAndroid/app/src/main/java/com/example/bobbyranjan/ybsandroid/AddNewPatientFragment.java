@@ -15,14 +15,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialogFragment;
 import com.example.bobbyranjan.ybsandroid.models.Model;
 import com.example.bobbyranjan.ybsandroid.service.PatientService;
 import com.example.bobbyranjan.ybsandroid.service.PatientUserMappingService;
 import com.example.bobbyranjan.ybsandroid.service.UserService;
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.Calendar;
-import java.util.TimeZone;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -51,10 +50,10 @@ public class AddNewPatientFragment extends Fragment {
     @Bind(R.id.etPhone) EditText etPhone;
     @Bind(R.id.ilPhone) TextInputLayout ilPhone;
     private View view;
-    private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
+    private CalendarDatePickerDialogFragment.OnDateSetListener datePickerListener = new CalendarDatePickerDialogFragment.OnDateSetListener() {
         @Override
-        public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-            etDateOfBirth.setText(String.format("%s-%s-%s", year, monthOfYear, dayOfMonth));
+        public void onDateSet(CalendarDatePickerDialogFragment dialog, int year, int monthOfYear, int dayOfMonth) {
+            etDateOfBirth.setText(String.format("%s-%02d-%02d", year, monthOfYear + 1, dayOfMonth));
         }
     };
 
@@ -94,17 +93,19 @@ public class AddNewPatientFragment extends Fragment {
             if (imm != null) {
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);  // hide the soft keyboard
             }
-            Calendar cal = Calendar.getInstance(TimeZone.getDefault()); // Get current date
-            // Create the DatePickerDialog instance
-            DatePickerDialog datePicker = DatePickerDialog.newInstance(datePickerListener, cal.get(Calendar.YEAR),
-                    cal.get(Calendar.MONTH),
-                    cal.get(Calendar.DAY_OF_MONTH));
-            datePicker.setCancelable(true);
-            datePicker.setTitle("Select Date Of Birth");
-            datePicker.show(this.getActivity().getFragmentManager(), "Select Date Of Birth");
             return true;
         });
         return view;
+    }
+
+    @OnClick(R.id.etDateOfBirth)
+    public void showDatePicker() {
+        Calendar now = Calendar.getInstance();
+        CalendarDatePickerDialogFragment cdp = new CalendarDatePickerDialogFragment()
+                .setOnDateSetListener(datePickerListener)
+                .setFirstDayOfWeek(Calendar.SUNDAY)
+                .setPreselectedDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH));
+        cdp.show(getFragmentManager(), "Select Date Of Birth");
     }
 
     @OnClick(R.id.btnSave)
@@ -167,8 +168,6 @@ public class AddNewPatientFragment extends Fragment {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
-
-
 
     /**
      * This interface must be implemented by activities that contain this
