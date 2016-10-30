@@ -2,7 +2,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    >
     <LinearLayout
         android:id="@+id/llHeader"
         android:layout_width="match_parent"
@@ -15,10 +16,29 @@
             android:text="@string/AddNewPatientTitle"
             android:textAppearance="?android:attr/textAppearanceLarge"/>
     </LinearLayout>
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/civPatientPhoto"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/llHeader"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_account_circle_blue_800_48dp"
+        app:civ_border_color="@android:color/darker_gray"
+        app:civ_border_width="1dp"
+        />
+    <ImageView
+        android:id="@+id/ivTakePhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/civPatientPhoto"
+        android:layout_below="@id/civPatientPhoto"
+        android:src="@drawable/ic_menu_camera"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/llHeader"
+        android:layout_below="@id/ivTakePhoto"
         android:orientation="vertical">
         <android.support.design.widget.TextInputLayout
             android:id="@+id/ilPatientName"

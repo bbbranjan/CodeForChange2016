@@ -2,17 +2,21 @@ package com.example.bobbyranjan.ybsandroid;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialogFragment;
@@ -21,11 +25,16 @@ import com.example.bobbyranjan.ybsandroid.service.PatientService;
 import com.example.bobbyranjan.ybsandroid.service.PatientUserMappingService;
 import com.example.bobbyranjan.ybsandroid.service.UserService;
 
+import org.joda.time.LocalDate;
+import org.joda.time.Years;
+
+import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,6 +45,7 @@ import butterknife.OnClick;
  * create an instance of this fragment.
  */
 public class AddNewPatientFragment extends Fragment {
+    private static final int REQUEST_IMAGE_CAPTURE = 111;
     @Bind(R.id.llHeader) LinearLayout llHeader;
     @Bind(R.id.etPatientName) EditText etPatientName;
     @Bind(R.id.ilPatientName) TextInputLayout ilPatientName;
@@ -49,13 +59,20 @@ public class AddNewPatientFragment extends Fragment {
     @Bind(R.id.ilAge) TextInputLayout ilAge;
     @Bind(R.id.etPhone) EditText etPhone;
     @Bind(R.id.ilPhone) TextInputLayout ilPhone;
+    @Bind(R.id.civPatientPhoto) CircleImageView civPatientPhoto;
+    @Bind(R.id.ivTakePhoto) ImageView ivTakePhoto;
     private View view;
     private CalendarDatePickerDialogFragment.OnDateSetListener datePickerListener = new CalendarDatePickerDialogFragment.OnDateSetListener() {
         @Override
         public void onDateSet(CalendarDatePickerDialogFragment dialog, int year, int monthOfYear, int dayOfMonth) {
+            LocalDate dob = new LocalDate(year, monthOfYear + 1, dayOfMonth);
+            LocalDate now = LocalDate.now();
+            Years age = Years.yearsBetween(dob, now);
+            etAge.setText(String.valueOf(age.getYears()));
             etDateOfBirth.setText(String.format("%s-%02d-%02d", year, monthOfYear + 1, dayOfMonth));
         }
     };
+    private String imageEncoded;
 
     public AddNewPatientFragment() {
         // Required empty public constructor
@@ -119,7 +136,7 @@ public class AddNewPatientFragment extends Fragment {
         if (validateData(name, etAgeText, dob)) {
             String id = PatientService.getKey(Model.PATIENT);
             int age = Integer.valueOf(etAgeText);
-            PatientService.persistPatient(id, name, husband, village, age, dob, phone, 1, false, false);
+            PatientService.persistPatient(id, name, husband, village, age, dob, phone, imageEncoded, 1, false, false);
             String user = UserService.getCurrentUserUUID();
             PatientUserMappingService.persistPatientUserMapping(user, id);
             startActivity(new Intent(view.getContext(), PatientListActivity.class));
@@ -167,6 +184,30 @@ public class AddNewPatientFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    @OnClick(R.id.ivTakePhoto)
+    public void onTakePhotoClick() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == getActivity().RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            civPatientPhoto.setImageBitmap(imageBitmap);
+            encodeBitmap(imageBitmap);
+        }
+    }
+
+    public void encodeBitmap(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        imageEncoded = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
     }
 
     /**

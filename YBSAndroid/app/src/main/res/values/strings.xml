@@ -12,7 +12,6 @@
     <string name="action_new_user" translatable="false">New user? Click to register</string>
     <string name="action_sign_in_short" translatable="false">Sign in</string>
     <string name="action_save" translatable="false">Save</string>
-    <string name="error_invalid_email" translatable="false">This email address is invalid</string>
     <string name="error_invalid_password" translatable="false">This password is too short</string>
     <string name="error_incorrect_password" translatable="false">This password is incorrect</string>
     <string name="error_field_required" translatable="false">This field is required</string>
@@ -90,7 +89,7 @@
     <string name="separator" formatted="true">" : "</string>
     <string name="error_logon_failed">Login Failed. Please try again!!!</string>
     <string name="select_a_role">Select a role</string>
-    <string name="error_email_msg">Please enter email</string>
+    <string name="error_email_msg">Please enter an email</string>
     <string name="error_password_msg">Please enter password</string>
     <string name="error_passwords_mismatch">Passwords do not match</string>
     <string name="msg_register_success">Successfully registered</string>
@@ -100,5 +99,7 @@
     <string name="error_patient_name">Please enter Patient Name</string>
     <string name="error_age">Please enter Age</string>
     <string name="error_dob">Please select Date Of Birth</string>
+    <string name="error_invalid_email">Please enter a valid email address</string>
+    <string name="error_blank_name">Please enter your name</string>
     <!-- End strings related to "Add Doctor Comments" -->
 </resources>
