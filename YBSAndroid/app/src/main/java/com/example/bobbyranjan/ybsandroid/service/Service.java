@@ -20,8 +20,8 @@ import java.util.Map;
 public class Service {
 
     public static FirebaseAuth auth = FirebaseAuth.getInstance();
-    static DatabaseReference db;
     static DatabaseReference presence;
+    private static DatabaseReference db;
 
     static {
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);

@@ -5,32 +5,32 @@ import java.util.HashMap;
 /**
  * Created by hari on 24/9/16.
  */
-
 public class Patient extends Model {
-
-    String name;
-    String husbandsName;
-    String location;
-    int age;
-    String dateOfBirth;
-    int numPregnancy;
-
-    boolean critical;
-    boolean needsMoreGuidance;
+    private String name;
+    private String husbandsName;
+    private String location;
+    private int age;
+    private String dateOfBirth;
+    private String phone;
+    private int numPregnancy;
+    private boolean critical;
+    private boolean needsMoreGuidance;
 
     {
         pathPrefix = PATIENT;
     }
 
     public Patient() {
+
     }
 
-    public Patient(String name, String husbandsName, String location, int age, String dateOfBirth, int numPregnancy, boolean critical, boolean needsMoreGuidance) {
+    public Patient(String name, String husbandsName, String location, int age, String dateOfBirth, String phone, int numPregnancy, boolean critical, boolean needsMoreGuidance) {
         this.name = name;
         this.husbandsName = husbandsName;
         this.location = location;
         this.age = age;
         this.dateOfBirth = dateOfBirth;
+        this.phone = phone;
         this.numPregnancy = numPregnancy;
         this.critical = critical;
         this.needsMoreGuidance = needsMoreGuidance;
@@ -124,5 +124,11 @@ public class Patient extends Model {
         super.setId(id);
     }
 
+    public String getPhone() {
+        return phone;
+    }
 
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }
