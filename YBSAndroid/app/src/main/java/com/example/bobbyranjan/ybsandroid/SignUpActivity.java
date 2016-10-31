@@ -4,11 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bobbyranjan.ybsandroid.service.UserService;
@@ -83,12 +81,6 @@ public class SignUpActivity extends BaseActivity {
 
     private boolean validateData(String name, String email, String password, String cfm_password) {
         boolean isValidationSuccess = true;
-        View selectedView = spRole.getSelectedView();
-        if (selectedView != null && selectedView instanceof TextView) {
-            TextView selectedTextView = (TextView) selectedView;
-            selectedTextView.setError(getString(R.string.error_select_role));
-            isValidationSuccess = false;
-        }
         if (TextUtils.isEmpty(name)) {
             ilName.setError(getString(R.string.error_blank_name));
             isValidationSuccess = false;
