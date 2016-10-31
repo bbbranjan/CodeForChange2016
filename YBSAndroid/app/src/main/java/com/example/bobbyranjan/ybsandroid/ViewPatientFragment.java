@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,23 +13,29 @@ import android.widget.TextView;
 import com.example.bobbyranjan.ybsandroid.models.Patient;
 import com.example.bobbyranjan.ybsandroid.service.PatientService;
 
+import java.io.IOException;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ViewPatientFragment.OnFragmentInteractionListener} interface
+ * {@link OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link ViewPatientFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class ViewPatientFragment extends Fragment {
-
-    TextView mName;
-    TextView mHusbandName;
-    TextView mVillage;
-    TextView mDOB;
-    TextView mAge;
     View view;
+    @Bind(R.id.civProfileImage) CircleImageView civProfileImage;
+    @Bind(R.id.tvPatientName) TextView tvPatientName;
+    @Bind(R.id.tvAge) TextView tvAge;
+    @Bind(R.id.tvHusbandName) TextView tvHusbandName;
+    @Bind(R.id.tvDateOfBirth) TextView tvDateOfBirth;
+    @Bind(R.id.tvPhoneNumber) TextView tvPhoneNumber;
+    @Bind(R.id.tvLocation) TextView tvLocation;
     private String patientId;
 
     public ViewPatientFragment() {
@@ -62,14 +69,9 @@ public class ViewPatientFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view =  inflater.inflate(R.layout.fragment_view_patient, container, false);
-        mName = (TextView)view.findViewById(R.id.VNPPatientName);
-        mHusbandName = (TextView)view.findViewById(R.id.VNPHusbandName);
-        mVillage = (TextView)view.findViewById(R.id.VNPVillage);
-        mDOB = (TextView)view.findViewById(R.id.VNPDOB);
-        mAge = (TextView)view.findViewById(R.id.VNPAge);
+        view = inflater.inflate(R.layout.fragment_view_patient, container, false);
+        ButterKnife.bind(this, view);
         PatientService.getPatient(patientId, this::processResult);
-
         return view;
     }
 
@@ -87,14 +89,30 @@ public class ViewPatientFragment extends Fragment {
         super.onDetach();
     }
 
-    public void processResult(Patient result) {
-        mName.setText(result.getName());
-        mHusbandName.setText(result.getHusbandsName());
-        mVillage.setText(result.getLocation());
-        mDOB.setText(result.getDateOfBirth());
-        mAge.setText(String.valueOf(result.getAge()));
+    public void processResult(Patient patient) {
+        try {
+            String profileImage = patient.getProfileImage();
+            if (profileImage != null && !TextUtils.isEmpty(profileImage)) {
+                civProfileImage.setImageBitmap(Util.decodeFromFirebaseBase64(profileImage));
+            } else {
+                civProfileImage.setImageResource(R.drawable.ic_pregnant_woman_64dp);
+            }
+        } catch (IOException e) {
+            civProfileImage.setImageResource(R.drawable.ic_pregnant_woman_64dp);
+        }
+        tvPatientName.setText(patient.getName());
+        tvHusbandName.setText(patient.getHusbandsName());
+        tvLocation.setText(patient.getLocation());
+        tvDateOfBirth.setText(patient.getDateOfBirth());
+        tvAge.setText(String.valueOf(patient.getAge()));
+        tvPhoneNumber.setText(String.valueOf(patient.getPhone()));
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
 
     /**
      * This interface must be implemented by activities that contain this
