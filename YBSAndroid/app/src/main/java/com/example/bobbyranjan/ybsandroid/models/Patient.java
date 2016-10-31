@@ -6,6 +6,7 @@ import java.util.HashMap;
  * Created by hari on 24/9/16.
  */
 public class Patient extends Model {
+    private String profileImage;
     private String name;
     private String husbandsName;
     private String location;
@@ -24,13 +25,14 @@ public class Patient extends Model {
 
     }
 
-    public Patient(String name, String husbandsName, String location, int age, String dateOfBirth, String phone, int numPregnancy, boolean critical, boolean needsMoreGuidance) {
+    public Patient(String name, String husbandsName, String location, int age, String dateOfBirth, String phone, String profileImageEncoded, int numPregnancy, boolean critical, boolean needsMoreGuidance) {
         this.name = name;
         this.husbandsName = husbandsName;
         this.location = location;
         this.age = age;
         this.dateOfBirth = dateOfBirth;
         this.phone = phone;
+        this.profileImage = profileImageEncoded;
         this.numPregnancy = numPregnancy;
         this.critical = critical;
         this.needsMoreGuidance = needsMoreGuidance;
@@ -44,6 +46,8 @@ public class Patient extends Model {
         map.put("location", location);
         map.put("age", age);
         map.put("dateOfBirth", dateOfBirth);
+        map.put("phone", phone);
+        map.put("profileImage", profileImage);
         map.put("numPregnancy", numPregnancy);
         map.put("critical", critical);
         map.put("needsMoreGuidance", needsMoreGuidance);
@@ -130,5 +134,13 @@ public class Patient extends Model {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
     }
 }

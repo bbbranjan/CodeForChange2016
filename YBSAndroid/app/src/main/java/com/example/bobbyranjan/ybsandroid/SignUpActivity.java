@@ -90,13 +90,16 @@ public class SignUpActivity extends BaseActivity {
             isValidationSuccess = false;
         }
         if (TextUtils.isEmpty(name)) {
-            ilName.setError(getString(R.string.error_email_msg));
+            ilName.setError(getString(R.string.error_blank_name));
             isValidationSuccess = false;
         } else {
             ilName.setErrorEnabled(false);
         }
         if (TextUtils.isEmpty(email)) {
             ilEmail.setError(getString(R.string.error_email_msg));
+            isValidationSuccess = false;
+        } else if (android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            ilEmail.setError(getString(R.string.error_invalid_email));
             isValidationSuccess = false;
         } else {
             ilEmail.setErrorEnabled(false);
