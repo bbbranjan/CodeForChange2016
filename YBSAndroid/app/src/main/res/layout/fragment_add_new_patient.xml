@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@id/civPatientPhoto"
         android:layout_below="@id/civPatientPhoto"
-        android:src="@drawable/ic_menu_camera"
+        android:src="@drawable/ic_add_a_photo"
         />
     <LinearLayout
         android:layout_width="match_parent"

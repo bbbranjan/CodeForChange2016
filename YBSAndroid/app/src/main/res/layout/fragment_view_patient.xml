@@ -1,83 +1,120 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:fitsSystemWindows="true"
-            tools:context=".ViewPatientFragment">
-
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffff">
-
-        <LinearLayout
-            android:id="@+id/VNPHeader"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:padding="0dp"
+                tools:context=".ViewPatientFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        >
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civProfileImage"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_pregnant_woman_64dp"
+            app:civ_border_color="@android:color/darker_gray"
+            app:civ_border_width="1dp"
+            />
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
+            android:background="@android:color/white"
+            android:paddingBottom="20dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:paddingTop="10dp">
-
+            android:paddingTop="20dp">
             <TextView
-                android:id="@+id/VNPTitle"
+                android:id="@+id/tvPatientName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/ViewPatientTitle"
-                android:textAppearance="?android:attr/textAppearanceLarge"/>
-        </LinearLayout>
-
-        <LinearLayout
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:text="@string/ANPName"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tvAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/tvPatientName"
+                android:text="@string/ANPAge"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tvHusbandName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tvPatientName"
+                android:layout_centerHorizontal="true"
+                android:drawableLeft="@drawable/ic_heartbeat"
+                android:drawablePadding="4dp"
+                android:gravity="center"
+                android:text="@string/ANPHusbandName"
+                android:textColor="@color/colorSecondaryText"
+                android:textStyle="italic"/>
+        </RelativeLayout>
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/VNPHeader"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/VNPPatientName"
+            android:layout_height="match_parent">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:ems="10"
-                android:inputType="none"/>
-
-            <TextView
-                android:id="@+id/VNPVillage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:ems="10"
-                android:inputType="none"/>
-
-            <TextView
-                android:id="@+id/VNPHusbandName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:ems="10"
-                android:inputType="none"/>
-
-            <TextView
-                android:id="@+id/VNPDOB"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:ems="10"
-                android:inputType="none"/>
-
-            <TextView
-                android:id="@+id/VNPAge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:ems="10"
-                android:inputType="none"/>
-
-
-        </LinearLayout>
-
-
-    </RelativeLayout>
-</ScrollView>
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingTop="20dp">
+                <TextView
+                    android:id="@+id/tvDateOfBirth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:drawableLeft="@drawable/ic_cake"
+                    android:drawablePadding="4dp"
+                    android:gravity="center"
+                    android:text="@string/ANPDOB"
+                    android:textColor="@color/colorTextIcons"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/tvPhoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:drawableLeft="@drawable/ic_phone"
+                    android:drawablePadding="4dp"
+                    android:gravity="center"
+                    android:text="@string/phone_number"
+                    android:textColor="@color/colorTextIcons"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/tvLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:drawableLeft="@drawable/ic_map"
+                    android:drawablePadding="4dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/ANPVillage"
+                    android:textColor="@color/colorTextIcons"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>
 
