@@ -79,6 +79,7 @@ public class AddDoctorCommentFragment extends Fragment {
             String path = Model.DOCTOR_COMMENTS + patientId + "/" + historyId;
             String id = DoctorCommentsService.getKey(path);
             DoctorCommentsService.persistDoctorComments(id, patientId, historyId, mComments.getText().toString());
+            this.getActivity().finish();
         });
         return view;
     }

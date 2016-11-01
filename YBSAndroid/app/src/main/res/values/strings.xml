@@ -101,5 +101,6 @@
     <string name="error_dob">Please select Date Of Birth</string>
     <string name="error_invalid_email">Please enter a valid email address</string>
     <string name="error_blank_name">Please enter your name</string>
+    <string name="doctor_s_comments">Doctor\'s Comments</string>
     <!-- End strings related to "Add Doctor Comments" -->
 </resources>

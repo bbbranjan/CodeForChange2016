@@ -8,19 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.bobbyranjan.ybsandroid.models.DoctorComments;
 import com.example.bobbyranjan.ybsandroid.models.PatientMedicalHistory;
 import com.example.bobbyranjan.ybsandroid.service.DoctorCommentsService;
-import com.example.bobbyranjan.ybsandroid.service.FirebaseMultiValueListener;
 import com.example.bobbyranjan.ybsandroid.service.FirebaseSingleValueListener;
 import com.example.bobbyranjan.ybsandroid.service.PatientMedicalHistoryService;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,8 +46,7 @@ public class ViewMedicalHistoryFragment extends Fragment {
     TextView mTP;
     TextView mComplaints;
     TextView mInfo;
-
-    ListView dcListView;
+    ExpandableHeightListView dcListView;
 
     private String patientId;
     private String historyId;
@@ -103,7 +99,7 @@ public class ViewMedicalHistoryFragment extends Fragment {
         mComplaints = (TextView) view.findViewById(R.id.mr_Complaints);
         mInfo = (TextView) view.findViewById(R.id.mr_Information);
 
-        dcListView = (ListView) view.findViewById(R.id.docCommentsLV);
+        dcListView = (ExpandableHeightListView) view.findViewById(R.id.docCommentsLV);
 
         displayMedHist();
 
@@ -140,17 +136,15 @@ public class ViewMedicalHistoryFragment extends Fragment {
 
     private void displayDoctorComments() {
 
-        DoctorCommentsService.getComments(patientId, historyId, new FirebaseMultiValueListener<DoctorComments>() {
-            @Override
-            public void processResults(ArrayList<DoctorComments> results) {
-                List<String> dcList = new ArrayList<>();
-                for (Object o : results) {
-                    dcList.add(((DoctorComments) o).getComments());
+        DoctorCommentsService.getComments(patientId, historyId, results -> {
+            List<String> dcList = new ArrayList<>();
+            for (DoctorComments o : results) {
+                dcList.add(o.getComments());
 
-                }
-                ArrayAdapter<String> doctorCommentsArrayAdapter = new ArrayAdapter<>(getContext(), R.layout.fragment_view_medical_history, dcList);
-                dcListView.setAdapter(doctorCommentsArrayAdapter);
             }
+            ArrayAdapter<String> doctorCommentsArrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, dcList);
+            dcListView.setAdapter(doctorCommentsArrayAdapter);
+            dcListView.setExpanded(true);
         });
 
 

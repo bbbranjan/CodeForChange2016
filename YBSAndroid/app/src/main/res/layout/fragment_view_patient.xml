@@ -10,8 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:background="@color/colorPrimary"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civProfileImage"
             android:layout_width="200dp"
@@ -19,8 +18,7 @@
             android:layout_gravity="center_horizontal"
             android:src="@drawable/ic_pregnant_woman_64dp"
             app:civ_border_color="@android:color/darker_gray"
-            app:civ_border_width="1dp"
-            />
+            app:civ_border_width="1dp"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

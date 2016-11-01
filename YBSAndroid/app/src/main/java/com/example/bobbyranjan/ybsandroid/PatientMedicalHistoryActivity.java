@@ -27,17 +27,13 @@ public class PatientMedicalHistoryActivity extends BaseActivity implements Patie
         Constants.ActionType actionType = (Constants.ActionType) getIntent().getSerializableExtra(Constants.ACTION_TYPE);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         final String patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
+        final String pmhId = (String) getIntent().getSerializableExtra(Constants.MEDICAL_HISTORY_ID);
         fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(view -> {
-            Intent intent = new Intent(PatientMedicalHistoryActivity.this, AddMedicalHistoryActivity.class);
-            intent.putExtra("patientId", patientId);
-            startActivity(intent);
 
-        });
         setUpAnimation();
         fragmentManager = getSupportFragmentManager();
         setupToolbar();
-        manageFragments(actionType, patientId, null);
+        manageFragments(actionType, patientId, pmhId);
 
     }
 
@@ -54,9 +50,14 @@ public class PatientMedicalHistoryActivity extends BaseActivity implements Patie
             case PatientDetails:
                 break;
             case ViewMedicalHistoryList:
-                removeFragment(fragmentTransaction, vmhTag);
+                fab.setOnClickListener(view -> {
+                    Intent intent = new Intent(PatientMedicalHistoryActivity.this, AddMedicalHistoryActivity.class);
+                    intent.putExtra("patientId", patientId);
+                    startActivity(intent);
+                });
                 PatientMedicalHistoryListFragment medicalHistoryListFragment = PatientMedicalHistoryListFragment.newInstance(patientId);
-                fragmentTransaction.add(R.id.rlPatientMedicalHistory, medicalHistoryListFragment, pmhListTag);
+                fragmentTransaction.replace(R.id.rlPatientMedicalHistory, medicalHistoryListFragment, pmhListTag);
+                fragmentTransaction.addToBackStack(pmhListTag);
                 supportActionBar.setSubtitle(pmhListTag);
                 break;
             case ViewMedicalHistory:
@@ -72,7 +73,8 @@ public class PatientMedicalHistoryActivity extends BaseActivity implements Patie
                     startActivity(intent);
 
                 });
-                fragmentTransaction.add(R.id.rlPatientMedicalHistory, viewMedicalHistoryFragment, vmhTag);
+                fragmentTransaction.replace(R.id.rlPatientMedicalHistory, viewMedicalHistoryFragment, vmhTag);
+                fragmentTransaction.addToBackStack(vmhTag);
                 supportActionBar.setSubtitle(vmhTag);
                 break;
             case AddNewMedicalRecord:
