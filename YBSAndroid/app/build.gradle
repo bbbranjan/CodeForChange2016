@@ -36,6 +36,7 @@ android {
         jackOptions {
             enabled true
         }
+        setProperty("archivesBaseName", " Yayasan Balita Sehat-$versionName")
     }
 
     compileOptions {

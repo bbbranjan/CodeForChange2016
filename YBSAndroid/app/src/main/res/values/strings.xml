@@ -9,21 +9,13 @@
     <string name="prompt_phone" translatable="false">Phone</string>
     <string name="action_sign_in" translatable="false">Sign in</string>
     <string name="action_register" translatable="false">Register</string>
-    <string name="action_new_user" translatable="false">New user? Click to register</string>
-    <string name="action_sign_in_short" translatable="false">Sign in</string>
     <string name="action_save" translatable="false">Save</string>
-    <string name="error_invalid_password" translatable="false">This password is too short</string>
-    <string name="error_incorrect_password" translatable="false">This password is incorrect</string>
-    <string name="error_field_required" translatable="false">This field is required</string>
     <string name="prompt_new_user" translatable="false">New user? Click here to register</string>
     <string name="prompt_forgot_password" translatable="false">Forgot password?</string>
     <string-array name="roles_array">
         <item>Midwife</item>
         <item>Doctor</item>
     </string-array>
-    <string name="permission_rationale" translatable="false">"Contacts permissions are needed for providing email completions."
-    </string>
-    <string name="title_activity_scrolling" translatable="false">ScrollingActivity</string>
     <string name="action_settings" translatable="false">Settings</string>
     <string name="title_activity_main" translatable="false">Home</string>
 
@@ -33,9 +25,7 @@
     <!-- TODO: Remove or change this placeholder text -->
 
     <!-- Start strings related to "Add New Patient" -->
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="AddNewPatientTitle" translatable="false">Adding New Patient</string>
-    <string name="ViewPatientTitle" translatable="false">Patient profile</string>
     <string name="ANPName">Patient Name</string>
     <string name="ANPVillage" translatable="false">Village</string>
     <string name="ANPHusbandName">Husband Name</string>
@@ -45,7 +35,6 @@
     <!-- End strings related to "Add New Patient" -->
 
     <!-- Start strings related to "Add Medical Record" -->
-    <string name="med_ScreenHeader" translatable="false">Add a Medical Record</string>
     <string name="med_PatientName" translatable="false">Patient Name</string>
     <string name="med_SubHeader1">Pregnancy</string>
     <string name="med_G" translatable="false">G</string>
@@ -66,8 +55,6 @@
     <string name="med_Complaints" translatable="false">Complaints</string>
     <string name="med_varField12" translatable="false">Information</string>
     <string name="med_varField13" translatable="false">RT WT</string>
-    <string name="med_saveButton" translatable="false">Save Button</string>
-    <string name="med_cancelButton" translatable="false">Cancel Button</string>
     <string name="list_of_pregnant_women" translatable="false">Pregnant Women\'s List</string>
     <string name="add_new_pregnant_woman">Add a New Pregnant Woman</string>
     <string name="add_new_medical_history">Add a New Medical History</string>
@@ -77,15 +64,12 @@
 
     <!-- Start strings related to "Add Doctor Comments" -->
     <string name="add_new_doctor_comment">Add New Doctor Comment</string>
-    <string name="andc_patient_id" translatable="false">Patient ID</string>
     <string name="title_activity_view_patient">ViewPatientActivity</string>
     <string name="title_activity_patient_medical_history">PatientMedicalHistoryActivity</string>
     <string name="title_activity_add_medical_history">AddMedicalHistoryActivity</string>
     <string name="patient_medical_history">Patient Medical History List</string>
     <!-- End strings related to "Add Doctor Comments" -->
     <!-- Start strings related to "Add Doctor Comments" -->
-    <string name="view_med_ScreenHeader" translatable="false">View Medical Record</string>
-    <string name="med_backButton" translatable="false">Back Button</string>
     <string name="separator" formatted="true">" : "</string>
     <string name="error_logon_failed">Login Failed. Please try again!!!</string>
     <string name="select_a_role">Select a Role</string>
@@ -95,7 +79,6 @@
     <string name="msg_register_success">Successfully registered</string>
     <string name="error_registration">Registration Error</string>
     <string name="phone_number">Phone Number</string>
-    <string name="error_select_role">Please select a Role</string>
     <string name="error_patient_name">Please enter Patient Name</string>
     <string name="error_age">Please enter Age</string>
     <string name="error_dob">Please select Date Of Birth</string>
