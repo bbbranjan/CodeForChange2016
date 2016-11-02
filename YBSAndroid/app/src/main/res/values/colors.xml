@@ -2,13 +2,9 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorPrimaryLight">#FFCCBC</color>
     <color name="colorTextIcons">#ffffff</color>
     <color name="colorAccent">#FF40</color>
-    <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#727272</color>
-    <color name="colorDivider">#B6B6B6</color>
-    <color name="grey_500">#9E9E9E</color>
     <color name="colorControlHighlight">#3F51B5</color>
     <color name="colorButtonNormal">#f955f3</color>
     <color name="colorControlActivated">#FF00C853</color>
