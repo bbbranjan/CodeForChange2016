@@ -104,8 +104,11 @@ public class Service {
 
     }
 
-    static <T> void retrieveModels(String path, final Class<T> model, final FirebaseMultiValueListener<T> task) {
-        db.child(path).orderByChild("id").addListenerForSingleValueEvent(new ValueEventListener() {
+    static <T> void retrieveModels(String path, final Class<T> model, final FirebaseMultiValueListener<T> task, String orderBy) {
+        if(orderBy==null){
+            orderBy="id";
+        }
+        db.child(path).orderByChild(orderBy).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ArrayList<T> results = new ArrayList<>();

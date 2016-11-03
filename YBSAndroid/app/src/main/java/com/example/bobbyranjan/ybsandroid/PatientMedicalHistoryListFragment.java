@@ -81,6 +81,10 @@ public class PatientMedicalHistoryListFragment extends Fragment {
         recyclerView.setAdapter(new PatientMedicalHistoryListViewAdapter(patientMedicalHistoryList, mListener));
     }
 
+    public void search(String patientId,String pattern){
+        PatientMedicalHistoryService.searchPatientMedicalHistory(patientId,this::setViewItems,pattern);
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
