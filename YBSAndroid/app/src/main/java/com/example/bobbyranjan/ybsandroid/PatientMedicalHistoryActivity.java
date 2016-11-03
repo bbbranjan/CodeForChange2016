@@ -1,5 +1,7 @@
 package com.example.bobbyranjan.ybsandroid;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,16 +10,25 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.bobbyranjan.ybsandroid.models.PatientMedicalHistory;
 
-public class PatientMedicalHistoryActivity extends BaseActivity implements PatientMedicalHistoryListFragment.OnListFragmentInteractionListener, ViewMedicalHistoryFragment.OnFragmentInteractionListener {
+public class PatientMedicalHistoryActivity extends BaseActivity implements PatientMedicalHistoryListFragment.OnListFragmentInteractionListener, ViewMedicalHistoryFragment.OnFragmentInteractionListener, SearchView.OnQueryTextListener {
 
     private Toolbar toolbar;
     private ActionBar supportActionBar;
     private FloatingActionButton fab;
     private FragmentManager fragmentManager;
+    private ViewMedicalHistoryFragment viewMedicalHistoryFragment;
+    private PatientMedicalHistoryListFragment medicalHistoryListFragment;
+
+    SearchView searchView;
+    MenuItem searchMenuItem;
+    private String patientId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +37,7 @@ public class PatientMedicalHistoryActivity extends BaseActivity implements Patie
         setContentView(R.layout.activity_patient_medical_history);
         Constants.ActionType actionType = (Constants.ActionType) getIntent().getSerializableExtra(Constants.ACTION_TYPE);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        final String patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
+        patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
         final String pmhId = (String) getIntent().getSerializableExtra(Constants.MEDICAL_HISTORY_ID);
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
@@ -35,6 +46,22 @@ public class PatientMedicalHistoryActivity extends BaseActivity implements Patie
         setupToolbar();
         manageFragments(actionType, patientId, pmhId);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_menu, menu);
+
+        SearchManager searchManager = (SearchManager)
+                getSystemService(Context.SEARCH_SERVICE);
+        searchMenuItem = menu.findItem(R.id.search);
+        searchView = (SearchView) searchMenuItem.getActionView();
+
+        searchView.setSearchableInfo(searchManager.
+                getSearchableInfo(getComponentName()));
+        searchView.setSubmitButtonEnabled(true);
+        searchView.setOnQueryTextListener(this);
+        return true;
     }
 
     private void manageFragments(Constants.ActionType actionType, final String patientId, final String pmhId) {
@@ -55,7 +82,7 @@ public class PatientMedicalHistoryActivity extends BaseActivity implements Patie
                     intent.putExtra("patientId", patientId);
                     startActivity(intent);
                 });
-                PatientMedicalHistoryListFragment medicalHistoryListFragment = PatientMedicalHistoryListFragment.newInstance(patientId);
+                medicalHistoryListFragment = PatientMedicalHistoryListFragment.newInstance(patientId);
                 fragmentTransaction.replace(R.id.rlPatientMedicalHistory, medicalHistoryListFragment, pmhListTag);
                 fragmentTransaction.addToBackStack(pmhListTag);
                 supportActionBar.setSubtitle(pmhListTag);
@@ -65,7 +92,7 @@ public class PatientMedicalHistoryActivity extends BaseActivity implements Patie
                     break;
                 }
                 removeFragment(fragmentTransaction, pmhListTag);
-                ViewMedicalHistoryFragment viewMedicalHistoryFragment = ViewMedicalHistoryFragment.newInstance(patientId, pmhId);
+                viewMedicalHistoryFragment = ViewMedicalHistoryFragment.newInstance(patientId, pmhId);
                 fab.setOnClickListener(view -> {
                     Intent intent = new Intent(PatientMedicalHistoryActivity.this, AddCommentActivity.class);
                     intent.putExtra(Constants.PATIENT_ID, patientId);
@@ -121,5 +148,16 @@ public class PatientMedicalHistoryActivity extends BaseActivity implements Patie
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String searchPattern) {
+        medicalHistoryListFragment.search(patientId,searchPattern);
+        return true;
     }
 }

@@ -43,7 +43,7 @@ public class UserService extends Service {
     }
 
     public static void getAllUsers(final FirebaseMultiValueListener<User> task) {
-        retrieveModels(Model.USERS, User.class, task);
+        retrieveModels(Model.USERS, User.class, task,null);
     }
 
 
