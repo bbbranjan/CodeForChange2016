@@ -21,4 +21,8 @@ public class PatientService extends Service {
     public static void getAllPatients(final FirebaseMultiValueListener<Patient> task) {
         retrieveModels(Model.PATIENT, Patient.class, task);
     }
+
+    public static void searchPatients(final FirebaseMultiValueListener<Patient> task,String pattern){
+        searchModel(Model.PATIENT,Patient.class, task, "name", pattern);
+    }
 }

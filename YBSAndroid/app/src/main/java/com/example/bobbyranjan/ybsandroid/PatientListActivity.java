@@ -1,7 +1,10 @@
 package com.example.bobbyranjan.ybsandroid;
 
 import android.app.ActivityOptions;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +18,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.support.v7.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,9 +26,13 @@ import com.example.bobbyranjan.ybsandroid.models.Patient;
 import com.example.bobbyranjan.ybsandroid.models.User;
 import com.example.bobbyranjan.ybsandroid.service.PresenceListener;
 import com.example.bobbyranjan.ybsandroid.service.UserService;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 public class PatientListActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener, PatientListFragment.OnListFragmentInteractionListener, PresenceListener {
+        implements NavigationView.OnNavigationItemSelectedListener, PatientListFragment.OnListFragmentInteractionListener, PresenceListener, SearchView.OnQueryTextListener {
 
     TextView navEmail;
     TextView navUser;
@@ -32,6 +40,15 @@ public class PatientListActivity extends BaseActivity
     private FloatingActionButton fab;
     private Toolbar toolbar;
     private DrawerLayout drawer;
+
+    SearchView searchView;
+    MenuItem searchMenuItem;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
+    private PatientListFragment patientListFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +61,9 @@ public class PatientListActivity extends BaseActivity
         hookEvents();
         addFragments();
         UserService.listenPresence(this);
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     private void setupToolbar() {
@@ -70,7 +90,8 @@ public class PatientListActivity extends BaseActivity
     private void addFragments() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.rlContent, new PatientListFragment(), "Patient List Fragment");
+        patientListFragment = new PatientListFragment();
+        fragmentTransaction.add(R.id.rlContent, patientListFragment, "Patient List Fragment");
         fragmentTransaction.commit();
     }
 
@@ -105,7 +126,18 @@ public class PatientListActivity extends BaseActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        //getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.search_menu, menu);
+
+        SearchManager searchManager = (SearchManager)
+                getSystemService(Context.SEARCH_SERVICE);
+        searchMenuItem = menu.findItem(R.id.search);
+        searchView = (SearchView) searchMenuItem.getActionView();
+
+        searchView.setSearchableInfo(searchManager.
+                getSearchableInfo(getComponentName()));
+        searchView.setSubmitButtonEnabled(true);
+        searchView.setOnQueryTextListener(this);
         return true;
     }
 
@@ -168,7 +200,7 @@ public class PatientListActivity extends BaseActivity
     @Override
     public void disconnected() {
         connected = false;
-        Toast.makeText(getApplicationContext(), "Disconnected from internet!", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), "Disconnected from internet!", Toast.LENGTH_LONG).show();
     }
 
     public void processResult(User result) {
@@ -179,4 +211,50 @@ public class PatientListActivity extends BaseActivity
     }
 
 
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("PatientList Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(client, getIndexApiAction());
+        client.disconnect();
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String searchPattern) {
+        patientListFragment.search(searchPattern);
+        return true;
+    }
 }

@@ -84,6 +84,10 @@ public class PatientListFragment extends Fragment {
         mListener = null;
     }
 
+    public void search(String pattern){
+        PatientService.searchPatients(this::setViewItems,pattern);
+    }
+
 
     /**
      * This interface must be implemented by activities that contain this
