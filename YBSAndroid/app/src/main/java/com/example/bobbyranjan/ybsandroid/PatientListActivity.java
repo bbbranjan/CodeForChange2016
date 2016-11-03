@@ -168,7 +168,7 @@ public class PatientListActivity extends BaseActivity
     @Override
     public void disconnected() {
         connected = false;
-        Toast.makeText(getApplicationContext(), "Disconnected from internet!", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), "Disconnected from internet!", Toast.LENGTH_LONG).show();
     }
 
     public void processResult(User result) {
