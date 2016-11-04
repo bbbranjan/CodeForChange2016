@@ -17,7 +17,7 @@ public class DoctorCommentsService extends Service {
 
     public static void getComments(String patientId, String patientHistoryId, final FirebaseMultiValueListener<DoctorComments> task) {
         String path = Model.DOCTOR_COMMENTS+patientId+"/"+patientHistoryId;
-        retrieveModels(path,DoctorComments.class,task);
+        retrieveModels(path,DoctorComments.class,task,null);
     }
 
 }

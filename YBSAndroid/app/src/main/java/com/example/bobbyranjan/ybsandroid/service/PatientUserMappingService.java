@@ -16,7 +16,7 @@ public class PatientUserMappingService extends Service {
 
     public static void getAllPatients(String userId, final FirebaseMultiValueListener<PatientUserMapping> task) {
         String path = Model.PATIENT_USER+userId;
-        retrieveModels(path,PatientUserMapping.class,task);
+        retrieveModels(path,PatientUserMapping.class,task,null);
     }
 
 }

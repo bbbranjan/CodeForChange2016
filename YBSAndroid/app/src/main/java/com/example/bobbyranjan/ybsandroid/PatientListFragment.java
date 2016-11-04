@@ -52,8 +52,7 @@ public class PatientListFragment extends Fragment {
         // Set the adapter
         if (view instanceof RecyclerView) {
             recyclerView = (RecyclerView) view;
-            //PatientService.getAllPatients(this::setViewItems);
-            PatientService.searchPatients(this::setViewItems,"Test");
+            PatientService.getAllPatients(this::setViewItems);
         }
         return view;
     }
@@ -61,8 +60,7 @@ public class PatientListFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        //PatientService.getAllPatients(this::setViewItems);
-        PatientService.searchPatients(this::setViewItems,"Test");
+        PatientService.getAllPatients(this::setViewItems);
     }
 
     void setViewItems(List<Patient> patients) {
@@ -84,6 +82,10 @@ public class PatientListFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void search(String pattern){
+        PatientService.searchPatients(this::setViewItems,pattern);
     }
 
 

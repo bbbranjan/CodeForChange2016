@@ -22,6 +22,10 @@ public class PatientMedicalHistoryService extends Service {
 
     public static void getAllMedicalHistoriesForPatient(String patientId, final FirebaseMultiValueListener<PatientMedicalHistory> task) {
         String path = Model.PATIENT_HISTORY+patientId;
-        retrieveModels(path,PatientMedicalHistory.class,task);
+        retrieveModels(path,PatientMedicalHistory.class,task,"date");
+    }
+
+    public static void searchPatientMedicalHistory(String patientId,final FirebaseMultiValueListener<PatientMedicalHistory> task, String pattern){
+        searchModel(Model.PATIENT_HISTORY+patientId,PatientMedicalHistory.class, task, "date", pattern);
     }
 }
