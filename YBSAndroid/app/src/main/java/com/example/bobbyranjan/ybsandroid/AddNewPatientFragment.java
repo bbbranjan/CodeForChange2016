@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -112,16 +113,37 @@ public class AddNewPatientFragment extends Fragment {
             }
             return true;
         });
+        etDateOfBirth.setOnFocusChangeListener((dobView, b) -> {
+            if (dobView.isFocused()) {
+                showDatePicker();
+            }
+        });
         return view;
     }
 
     @OnClick(R.id.etDateOfBirth)
     public void showDatePicker() {
         Calendar now = Calendar.getInstance();
+        int year = now.get(Calendar.YEAR);
+        int monthOfYear = now.get(Calendar.MONTH);
+        int dayOfMonth = now.get(Calendar.DAY_OF_MONTH);
+        if (etDateOfBirth.getText() != null) {
+            String dob = etDateOfBirth.getText().toString();
+            String[] dateParts = dob.split("-");
+            if (dateParts.length == 3) {
+                try {
+                    year = Integer.valueOf(dateParts[0]);
+                    monthOfYear = Integer.valueOf(dateParts[1]);
+                    dayOfMonth = Integer.valueOf(dateParts[2]);
+                } catch (NumberFormatException e) {
+                    if (BuildConfig.DEBUG) Log.d("AddNewPatientFragment", "e:" + e);
+                }
+            }
+        }
         CalendarDatePickerDialogFragment cdp = new CalendarDatePickerDialogFragment()
                 .setOnDateSetListener(datePickerListener)
                 .setFirstDayOfWeek(Calendar.SUNDAY)
-                .setPreselectedDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH));
+                .setPreselectedDate(year, monthOfYear, dayOfMonth);
         cdp.show(getFragmentManager(), "Select Date Of Birth");
     }
 

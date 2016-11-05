@@ -9,7 +9,10 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
+    android:clipToPadding="false"
+    android:paddingBottom="@dimen/fab_padding"
     app:layoutManager="LinearLayoutManager"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".PatientListFragment"
-    tools:listitem="@layout/fragment_patient_medical_history_list_view_adapter"/>
+    tools:listitem="@layout/fragment_patient_medical_history_list_view_adapter"
+    />

@@ -13,4 +13,5 @@
     <dimen name="width_between_controls">5dp</dimen>
     <dimen name="control_margin_top">18dp</dimen>
     <dimen name="control_margin_add_patient">5dp</dimen>
+    <dimen name="fab_padding">72dp</dimen>
 </resources>
