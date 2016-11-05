@@ -67,6 +67,13 @@ public class PatientMedicalHistoryActivity extends BaseActivity implements Patie
             case PatientDetails:
                 break;
             case ViewMedicalHistoryList:
+                if (searchView!=null && searchView.isShown()==false) {
+                    searchMenuItem.expandActionView();
+                    searchView.setQuery("", false);
+                }
+                if(searchMenuItem!=null && searchMenuItem.isVisible()==false){
+                    searchMenuItem.setVisible(true);
+                }
                 fab.setOnClickListener(view -> {
                     Intent intent = new Intent(PatientMedicalHistoryActivity.this, AddMedicalHistoryActivity.class);
                     intent.putExtra("patientId", patientId);
@@ -80,6 +87,13 @@ public class PatientMedicalHistoryActivity extends BaseActivity implements Patie
             case ViewMedicalHistory:
                 if (pmhId == null) {
                     break;
+                }
+                if(searchMenuItem!=null && searchMenuItem.isVisible()){
+                    searchMenuItem.setVisible(false);
+                }
+                if (searchView!=null && searchView.isShown()) {
+                    searchMenuItem.collapseActionView();
+                    searchView.setQuery("", false);
                 }
                 removeFragment(fragmentTransaction, pmhListTag);
                 viewMedicalHistoryFragment = ViewMedicalHistoryFragment.newInstance(patientId, pmhId);
