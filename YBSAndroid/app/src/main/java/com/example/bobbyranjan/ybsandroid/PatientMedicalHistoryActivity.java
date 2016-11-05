@@ -18,45 +18,38 @@ import android.view.MenuItem;
 import com.example.bobbyranjan.ybsandroid.models.PatientMedicalHistory;
 
 public class PatientMedicalHistoryActivity extends BaseActivity implements PatientMedicalHistoryListFragment.OnListFragmentInteractionListener, ViewMedicalHistoryFragment.OnFragmentInteractionListener, SearchView.OnQueryTextListener {
-
+    SearchView searchView;
+    MenuItem searchMenuItem;
     private Toolbar toolbar;
     private ActionBar supportActionBar;
     private FloatingActionButton fab;
     private FragmentManager fragmentManager;
     private ViewMedicalHistoryFragment viewMedicalHistoryFragment;
     private PatientMedicalHistoryListFragment medicalHistoryListFragment;
-
-    SearchView searchView;
-    MenuItem searchMenuItem;
     private String patientId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_patient_medical_history);
         Constants.ActionType actionType = (Constants.ActionType) getIntent().getSerializableExtra(Constants.ACTION_TYPE);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         patientId = (String) getIntent().getSerializableExtra(Constants.PATIENT_ID);
         final String pmhId = (String) getIntent().getSerializableExtra(Constants.MEDICAL_HISTORY_ID);
         fab = (FloatingActionButton) findViewById(R.id.fab);
-
         setUpAnimation();
         fragmentManager = getSupportFragmentManager();
         setupToolbar();
-        manageFragments(actionType, patientId, pmhId);
-
+        manageFragments(actionType == null ? Constants.ActionType.ViewMedicalHistoryList : actionType, patientId, pmhId);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search_menu, menu);
-
         SearchManager searchManager = (SearchManager)
                 getSystemService(Context.SEARCH_SERVICE);
         searchMenuItem = menu.findItem(R.id.search);
         searchView = (SearchView) searchMenuItem.getActionView();
-
         searchView.setSearchableInfo(searchManager.
                 getSearchableInfo(getComponentName()));
         searchView.setSubmitButtonEnabled(true);
@@ -65,13 +58,10 @@ public class PatientMedicalHistoryActivity extends BaseActivity implements Patie
     }
 
     private void manageFragments(Constants.ActionType actionType, final String patientId, final String pmhId) {
-
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         final String pmhListTag = getString(R.string.patient_medical_history);
         final String vmhTag = getString(R.string.view_medical_history);
-
         switch (actionType) {
-
             case AddNewPatient:
                 break;
             case PatientDetails:
@@ -98,7 +88,6 @@ public class PatientMedicalHistoryActivity extends BaseActivity implements Patie
                     intent.putExtra(Constants.PATIENT_ID, patientId);
                     intent.putExtra(Constants.MEDICAL_HISTORY_ID, pmhId);
                     startActivity(intent);
-
                 });
                 fragmentTransaction.replace(R.id.rlPatientMedicalHistory, viewMedicalHistoryFragment, vmhTag);
                 fragmentTransaction.addToBackStack(vmhTag);
@@ -107,18 +96,14 @@ public class PatientMedicalHistoryActivity extends BaseActivity implements Patie
             case AddNewMedicalRecord:
                 break;
         }
-
-
         fragmentTransaction.commit();
     }
 
     private void removeFragment(FragmentTransaction fragmentTransaction, String tag) {
         Fragment fragment = fragmentManager.findFragmentByTag(tag);
-
         if (fragment != null) {
             fragmentTransaction.remove(fragment);
             fragmentTransaction.addToBackStack(tag);
-
         }
     }
 
@@ -131,13 +116,11 @@ public class PatientMedicalHistoryActivity extends BaseActivity implements Patie
 
     @Override
     public void onListFragmentInteraction(PatientMedicalHistory item, Constants.ActionType actionType) {
-
         manageFragments(actionType, item.getPatientId(), item.getId());
     }
 
     @Override
     public void onBackPressed() {
-
         if (fragmentManager.getBackStackEntryCount() > 0) {
             fragmentManager.popBackStack();
         } else {
@@ -147,7 +130,6 @@ public class PatientMedicalHistoryActivity extends BaseActivity implements Patie
 
     @Override
     public void onFragmentInteraction(Uri uri) {
-
     }
 
     @Override
@@ -157,7 +139,7 @@ public class PatientMedicalHistoryActivity extends BaseActivity implements Patie
 
     @Override
     public boolean onQueryTextChange(String searchPattern) {
-        medicalHistoryListFragment.search(patientId,searchPattern);
+        medicalHistoryListFragment.search(patientId, searchPattern);
         return true;
     }
 }
