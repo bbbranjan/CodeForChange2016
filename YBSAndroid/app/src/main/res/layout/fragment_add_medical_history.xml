@@ -31,13 +31,20 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="30sp"
                 android:textStyle="bold" />
+        </android.support.design.widget.TextInputLayout>
 
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/Date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
             <TextView
                 android:id="@+id/med_Date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical|center_horizontal"
-                android:text=""
+                android:text="@string/med_Date"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -61,85 +68,101 @@
                 android:inputType="text" />
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/pregFields"
+        <LinearLayout
+            android:id="@+id/GP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-            <EditText
-                android:id="@+id/mr_pregField1"
-                android:layout_width="match_parent"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/pregFields"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_horizontal"
-                android:hint="@string/med_G"
-                android:inputType="textCapCharacters|textCapWords" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/pregFields1"
+                <EditText
+                    android:id="@+id/mr_pregField1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:hint="@string/med_G"
+                    android:inputType="textCapCharacters|textCapWords" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/pregFields1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/mr_pregField2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_P"
+                    android:inputType="textCapCharacters|textCapWords" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/AAH"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-            <EditText
-                android:id="@+id/mr_pregField2"
-                android:layout_width="match_parent"
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/pregFields2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_P"
-                android:inputType="textCapCharacters|textCapWords" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/pregFields2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:orientation="vertical">
+                <EditText
+                    android:id="@+id/mr_pregField3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:hint="@string/med_A"
+                    android:inputType="textCapCharacters|textCapWords" />
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/mr_pregField3"
-                android:layout_width="match_parent"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/pregFields3"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_horizontal"
-                android:hint="@string/med_A"
-                android:inputType="textCapCharacters|textCapWords" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/pregFields3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/mr_pregField4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_horizontal"
-                android:hint="@string/med_AH"
-                android:inputType="textCapCharacters|textCapWords" />
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/mr_pregField4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:hint="@string/med_AH"
+                    android:inputType="textCapCharacters|textCapWords" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/inspection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:orientation="vertical"
-            android:weightSum="1">
+            android:orientation="vertical">
 
             <EditText
                 android:id="@+id/mr_inspectionResults"
@@ -153,189 +176,228 @@
                 android:inputType="textMultiLine" />
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/varFields"
+        <LinearLayout
+            android:id="@+id/UK_Varices"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-            <EditText
-                android:id="@+id/mr_UK"
-                android:layout_width="match_parent"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/varFields"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_UK"
-                android:inputType="text|textCapCharacters" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/varFields_1"
+                <EditText
+                    android:id="@+id/mr_UK"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_UK"
+                    android:inputType="text|textCapCharacters" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/varFields_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/mr_Varices"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_Varies"
+                    android:inputType="text|textCapCharacters|textCapWords" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/oedema_wtb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-            <EditText
-                android:id="@+id/mr_Varices"
-                android:layout_width="match_parent"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/varFields1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_Varies"
-                android:inputType="text|textCapCharacters|textCapWords" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/varFields1"
+                <EditText
+                    android:id="@+id/mr_Oedema"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_Oedema"
+                    android:inputType="text|textCapCharacters|textCapWords" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/varFields1_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/mr_WTB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_BB_TB"
+                    android:inputType="text|textCapCharacters|textCapWords" />
+
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/TD_LILA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-            <EditText
-                android:id="@+id/mr_Oedema"
-                android:layout_width="match_parent"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/varFields2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_Oedema"
-                android:inputType="text|textCapCharacters|textCapWords" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/varFields1_1"
+                <EditText
+                    android:id="@+id/mr_TD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_TD"
+                    android:inputType="text|textCapCharacters|textCapWords" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/varFields2_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/mr_LILA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_Lila"
+                    android:inputType="text|textCapCharacters|textCapWords" />
+
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/visit_sf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-            <EditText
-                android:id="@+id/mr_WTB"
-                android:layout_width="match_parent"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/varFields3"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_BB_TB"
-                android:inputType="text|textCapCharacters|textCapWords" />
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/mr_NumVisit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_TotalVisits"
+                    android:inputType="textCapCharacters|textCapWords" />
+            </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/varFields2"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/varFields3_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/mr_SF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_SF"
+                    android:inputType="textCapCharacters|textCapWords" />
+
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/HPHT_TP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-            <EditText
-                android:id="@+id/mr_TD"
-                android:layout_width="match_parent"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/varFields4"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_TD"
-                android:inputType="text|textCapCharacters|textCapWords" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/varFields2_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:orientation="vertical">
+                <EditText
+                    android:id="@+id/mr_HPHT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_HPHT"
+                    android:inputType="date" />
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/mr_LILA"
-                android:layout_width="match_parent"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/varFields4_1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_Lila"
-                android:inputType="text|textCapCharacters|textCapWords" />
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
 
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/varFields3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/mr_NumVisit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_TotalVisits"
-                android:inputType="textCapCharacters|textCapWords" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/varFields3_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/mr_SF"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_SF"
-                android:inputType="textCapCharacters|textCapWords" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/varFields4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/mr_HPHT"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_HPHT"
-                android:inputType="date" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/varFields4_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/mr_TP"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_TP"
-                android:inputType="date" />
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/mr_TP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_TP"
+                    android:inputType="date" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/Complaints"
