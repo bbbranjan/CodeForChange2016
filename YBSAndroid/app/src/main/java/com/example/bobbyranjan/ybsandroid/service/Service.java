@@ -65,10 +65,6 @@ public class Service {
         return db.child(path).push().getKey();
     }
 
-    static void deleteModel(String path){
-        db.child(path).removeValue();
-    }
-
     static <T> void searchModel(String path,final Class<T> model, final FirebaseMultiValueListener<T> task, String key, String pattern){
         db.child(path).orderByChild(key).startAt(pattern).endAt(pattern+"\uf8ff").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
