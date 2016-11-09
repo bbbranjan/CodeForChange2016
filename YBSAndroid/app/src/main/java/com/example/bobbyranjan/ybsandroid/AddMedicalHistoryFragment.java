@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
@@ -38,8 +39,8 @@ public class AddMedicalHistoryFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    @Bind(R.id.med_PatientName)TextView patientName;
-    @Bind(R.id.med_Date)TextView date;
+    @Bind(R.id.mr_PatientName)TextView patientName;
+    @Bind(R.id.mr_Date)TextView mDate;
     @Bind(R.id.mr_rtwt)EditText mRTWT;
     @Bind(R.id.mr_pregField1)EditText mG;
     @Bind(R.id.mr_pregField2)EditText mP;
@@ -105,13 +106,14 @@ public class AddMedicalHistoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_add_medical_history, container, false);
+        ButterKnife.bind(this, view);
         PatientService.getPatient(patientId, result -> setNameAndDate(result.getName()));
         return view;
     }
 
     void setNameAndDate(String name){
         patientName.setText(name);
-        date.setText(currDate);
+        mDate.setText(currDate);
     }
 
     @OnClick(R.id.mr_saveButton)

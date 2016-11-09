@@ -23,7 +23,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/med_PatientName"
+                android:id="@+id/mr_PatientName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical|center_horizontal"
@@ -40,7 +40,7 @@
             android:layout_margin="5dp"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/med_Date"
+                android:id="@+id/mr_Date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical|center_horizontal"
