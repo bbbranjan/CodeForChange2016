@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp" />
 
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:id="@+id/PatientName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,9 +33,9 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="30sp"
                 android:textStyle="bold" />
-        </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:id="@+id/Date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,9 +50,9 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20sp"
                 android:textStyle="bold" />
-        </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:id="@+id/rtwt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,14 +60,23 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/vmr_rtwt_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:textColor="@color/colorSecondaryText"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:hint="@string/med_varField13"/>
+            <TextView
                 android:id="@+id/vmr_rtwt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:textSize="20sp"
                 android:ems="10"
-                android:gravity="center_horizontal"
-                android:hint="@string/med_varField13"/>
-        </android.support.design.widget.TextInputLayout>
+                android:gravity="center_horizontal"/>
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/GP"
@@ -76,24 +85,31 @@
             android:orientation="horizontal"
             android:weightSum="1">
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:id="@+id/pregFields"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="0.5"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/vmr_pregField1"
+                    android:id="@+id/vmr_pregField1_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="center_horizontal"
                     android:hint="@string/med_G"/>
-            </android.support.design.widget.TextInputLayout>
+                <TextView
+                    android:id="@+id/vmr_pregField1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textSize="20sp"
+                    android:gravity="center_horizontal"/>
+            </LinearLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:id="@+id/pregFields1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -102,13 +118,20 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/vmr_pregField2"
+                    android:id="@+id/vmr_pregField2_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="center_vertical|center_horizontal"
                     android:hint="@string/med_P"/>
-            </android.support.design.widget.TextInputLayout>
+                <TextView
+                    android:id="@+id/vmr_pregField2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textSize="20sp"
+                    android:gravity="center_vertical|center_horizontal"/>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -119,7 +142,7 @@
             android:weightSum="1">
 
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:id="@+id/pregFields2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -128,15 +151,22 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/vmr_pregField3"
+                    android:id="@+id/vmr_pregField3_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="center_horizontal"
                     android:hint="@string/med_A"/>
-            </android.support.design.widget.TextInputLayout>
+                <TextView
+                    android:id="@+id/vmr_pregField3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textSize="20sp"
+                    android:gravity="center_horizontal"/>
+            </LinearLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:id="@+id/pregFields3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -145,16 +175,23 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/vmr_pregField4"
+                    android:id="@+id/vmr_pregField4_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="center_horizontal"
                     android:hint="@string/med_AH"/>
-            </android.support.design.widget.TextInputLayout>
+                <TextView
+                    android:id="@+id/vmr_pregField4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textSize="20sp"
+                    android:gravity="center_horizontal"/>
+            </LinearLayout>
         </LinearLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:id="@+id/inspection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -162,15 +199,24 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/vmr_inspectionResults_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="11.85"
+                android:ems="10"
+                android:gravity="center_vertical|center_horizontal"
+                android:hint="@string/med_InspectionResult"/>
+            <TextView
                 android:id="@+id/vmr_inspectionResults"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_margin="5dp"
                 android:layout_weight="11.85"
                 android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_InspectionResult"/>
-        </android.support.design.widget.TextInputLayout>
+                android:textSize="20sp"
+                android:gravity="center_vertical|center_horizontal"/>
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/UK_Varices"
@@ -179,24 +225,31 @@
             android:orientation="horizontal"
             android:weightSum="1">
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:id="@+id/varFields"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="0.5"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/vmr_UK"
+                    android:id="@+id/vmr_UK_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="center_vertical|center_horizontal"
                     android:hint="@string/med_UK"/>
-            </android.support.design.widget.TextInputLayout>
+                <TextView
+                    android:id="@+id/vmr_UK"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textSize="20sp"
+                    android:gravity="center_vertical|center_horizontal"/>
+            </LinearLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:id="@+id/varFields_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -205,13 +258,20 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/vmr_Varices"
+                    android:id="@+id/vmr_Varices_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="center_vertical|center_horizontal"
                     android:hint="@string/med_Varies"/>
-            </android.support.design.widget.TextInputLayout>
+                <TextView
+                    android:id="@+id/vmr_Varices"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="20sp"/>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -221,24 +281,31 @@
             android:orientation="horizontal"
             android:weightSum="1">
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:id="@+id/varFields1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="0.5"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/vmr_Oedema_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_Oedema"/>
                 <TextView
                     android:id="@+id/vmr_Oedema"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="center_vertical|center_horizontal"
-                    android:hint="@string/med_Oedema"/>
-            </android.support.design.widget.TextInputLayout>
+                    android:textSize="20sp"/>
+            </LinearLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:id="@+id/varFields1_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -247,14 +314,21 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/vmr_WTB"
+                    android:id="@+id/vmr_WTB_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="center_vertical|center_horizontal"
                     android:hint="@string/med_BB_TB"/>
+                <TextView
+                    android:id="@+id/vmr_WTB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="20sp"/>
 
-            </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -264,24 +338,31 @@
             android:orientation="horizontal"
             android:weightSum="1">
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:id="@+id/varFields2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="0.5"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/vmr_TD_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_TD"/>
                 <TextView
                     android:id="@+id/vmr_TD"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="center_vertical|center_horizontal"
-                    android:hint="@string/med_TD"/>
-            </android.support.design.widget.TextInputLayout>
+                    android:textSize="20sp"/>
+            </LinearLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:id="@+id/varFields2_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -290,14 +371,21 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/vmr_LILA"
+                    android:id="@+id/vmr_LILA_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="center_vertical|center_horizontal"
                     android:hint="@string/med_Lila"/>
+                <TextView
+                    android:id="@+id/vmr_LILA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="20sp"/>
 
-            </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -307,24 +395,31 @@
             android:orientation="horizontal"
             android:weightSum="1">
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:id="@+id/varFields3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="0.5"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/vmr_NumVisit_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_TotalVisits"/>
                 <TextView
                     android:id="@+id/vmr_NumVisit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="center_vertical|center_horizontal"
-                    android:hint="@string/med_TotalVisits"/>
-            </android.support.design.widget.TextInputLayout>
+                    android:textSize="20sp"/>
+            </LinearLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:id="@+id/varFields3_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -333,14 +428,21 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/vmr_SF"
+                    android:id="@+id/vmr_SF_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="center_vertical|center_horizontal"
                     android:hint="@string/med_SF"/>
+                <TextView
+                    android:id="@+id/vmr_SF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="20sp"/>
 
-            </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -350,24 +452,31 @@
             android:orientation="horizontal"
             android:weightSum="1">
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:id="@+id/varFields4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="0.5"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/vmr_HPHT_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_HPHT"/>
                 <TextView
                     android:id="@+id/vmr_HPHT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="center_vertical|center_horizontal"
-                    android:hint="@string/med_HPHT"/>
-            </android.support.design.widget.TextInputLayout>
+                    android:textSize="20sp"/>
+            </LinearLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:id="@+id/varFields4_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -376,16 +485,23 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/vmr_TP"
+                    android:id="@+id/vmr_TP_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="center_vertical|center_horizontal"
                     android:hint="@string/med_TP"/>
-            </android.support.design.widget.TextInputLayout>
+                <TextView
+                    android:id="@+id/vmr_TP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="20sp"/>
+            </LinearLayout>
         </LinearLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:id="@+id/Complaints"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -393,16 +509,24 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/vmr_Complaints_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:gravity="center_vertical|center_horizontal"
+                android:hint="@string/med_Complaints"/>
+            <TextView
                 android:id="@+id/vmr_Complaints"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_margin="5dp"
                 android:ems="10"
                 android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_Complaints"/>
-        </android.support.design.widget.TextInputLayout>
+                android:textSize="20sp"/>
+        </LinearLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:id="@+id/Information"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -410,14 +534,22 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/vmr_Information_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:gravity="center_vertical|center_horizontal"
+                android:hint="@string/med_varField12"/>
+            <TextView
                 android:id="@+id/vmr_Information"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_margin="5dp"
                 android:ems="10"
                 android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_varField12"/>
-        </android.support.design.widget.TextInputLayout>
+                android:textSize="20sp"/>
+        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -443,7 +575,8 @@
                 android:cacheColorHint="#00000000"
                 android:fadingEdge="none"
                 android:focusable="false"
-                android:scrollbars="none"/>
+                android:scrollbars="none"
+                android:textSize="20sp"/>
 
         </LinearLayout>
     </LinearLayout>
