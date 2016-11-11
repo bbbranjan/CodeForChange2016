@@ -20,6 +20,10 @@ import com.example.bobbyranjan.ybsandroid.service.PatientService;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,31 +39,34 @@ public class AddMedicalHistoryFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    TextView patientName;
-    EditText mRTWT;
-    EditText mG;
-    EditText mP;
-    EditText mA;
-    EditText mAH;
-    EditText mInspectionResults;
-    EditText mUK;
-    EditText mVarices;
-    EditText mOedema;
-    EditText mWTB;
-    EditText mTD;
-    EditText mLILA;
-    EditText mNumVisit;
-    EditText mSF;
-    EditText mHPHT;
-    EditText mTP;
-    EditText mComplaints;
-    EditText mInfo;
+    @Bind(R.id.mr_PatientName)TextView patientName;
+    @Bind(R.id.mr_Date)TextView mDate;
+    @Bind(R.id.mr_rtwt)EditText mRTWT;
+    @Bind(R.id.mr_pregField1)EditText mG;
+    @Bind(R.id.mr_pregField2)EditText mP;
+    @Bind(R.id.mr_pregField3)EditText mA;
+    @Bind(R.id.mr_pregField4)EditText mAH;
+    @Bind(R.id.mr_inspectionResults)EditText mInspectionResults;
+    @Bind(R.id.mr_UK)EditText mUK;
+    @Bind(R.id.mr_Varices)EditText mVarices;
+    @Bind(R.id.mr_Oedema)EditText mOedema;
+    @Bind(R.id.mr_WTB)EditText mWTB;
+    @Bind(R.id.mr_TD)EditText mTD;
+    @Bind(R.id.mr_LILA)EditText mLILA;
+    @Bind(R.id.mr_NumVisit)EditText mNumVisit;
+    @Bind(R.id.mr_SF)EditText mSF;
+    @Bind(R.id.mr_HPHT)EditText mHPHT;
+    @Bind(R.id.mr_TP)EditText mTP;
+    @Bind(R.id.mr_Complaints)EditText mComplaints;
+    @Bind(R.id.mr_Information)EditText mInfo;
 
-    Button mSave;
+    @Bind(R.id.mr_saveButton)Button mSave;
 
     // TODO: Rename and change types of parameters
     private String patientId;
 
+    @SuppressLint("SimpleDateFormat") SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+    String currDate;
 
     private View view;
     public AddMedicalHistoryFragment() {
@@ -89,6 +96,8 @@ public class AddMedicalHistoryFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             patientId = getArguments().getString("patientId");
+            Calendar c = Calendar.getInstance();
+            currDate = df.format(c.getTime());
         }
     }
 
@@ -97,37 +106,18 @@ public class AddMedicalHistoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_add_medical_history, container, false);
-
-        mRTWT = (EditText) view.findViewById(R.id.mr_rtwt);
-        mG = (EditText) view.findViewById(R.id.mr_pregField1);
-        mP = (EditText) view.findViewById(R.id.mr_pregField2);
-        mA = (EditText) view.findViewById(R.id.mr_pregField3);
-        mAH = (EditText) view.findViewById(R.id.mr_pregField4);
-        mInspectionResults = (EditText) view.findViewById(R.id.mr_inspectionResults);
-        mUK = (EditText) view.findViewById(R.id.mr_UK);
-        mVarices = (EditText) view.findViewById(R.id.mr_Varices);
-        mOedema = (EditText) view.findViewById(R.id.mr_Oedema);
-        mWTB = (EditText) view.findViewById(R.id.mr_WTB);
-        mTD = (EditText) view.findViewById(R.id.mr_TD);
-        mLILA = (EditText) view.findViewById(R.id.mr_LILA);
-        mNumVisit = (EditText) view.findViewById(R.id.mr_NumVisit);
-        mSF = (EditText) view.findViewById(R.id.mr_SF);
-        mHPHT = (EditText) view.findViewById(R.id.mr_HPHT);
-        mTP = (EditText) view.findViewById(R.id.mr_TP);
-        mComplaints = (EditText) view.findViewById(R.id.mr_Complaints);
-        mInfo = (EditText) view.findViewById(R.id.mr_Information);
-        patientName = (TextView) view.findViewById(R.id.med_PatientName);
-
-        mSave = (Button) view.findViewById(R.id.mr_saveButton);
-
-        mSave.setOnClickListener(v -> saveMedHist());
-
-        PatientService.getPatient(patientId, result -> patientName.setText(result.getName()));
-
+        ButterKnife.bind(this, view);
+        PatientService.getPatient(patientId, result -> setNameAndDate(result.getName()));
         return view;
     }
 
-    private void saveMedHist() {
+    void setNameAndDate(String name){
+        patientName.setText(name);
+        mDate.setText(currDate);
+    }
+
+    @OnClick(R.id.mr_saveButton)
+    void saveMedHist() {
         String rtwt = mRTWT.getText().toString();
         String pG = mG.getText().toString();
         String pP = mP.getText().toString();
@@ -147,10 +137,7 @@ public class AddMedicalHistoryFragment extends Fragment {
         String complaints = mComplaints.getText().toString();
         String info = mInfo.getText().toString();
 
-        Calendar c = Calendar.getInstance();
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-        String currDate;
-        currDate = df.format(c.getTime());
+
 
         String id = PatientMedicalHistoryService.getKey(Model.PATIENT_HISTORY+patientId);
         PatientMedicalHistoryService.persistPatientMedicalHistory(id, patientId, currDate, rtwt, pG, pP, pA, pAH, IR, UK, Varices, Oedema, WTB, TD, LILA, numberOfVisits, SF, HPHT, TP, complaints, info);

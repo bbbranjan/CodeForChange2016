@@ -35,6 +35,7 @@
     <!-- End strings related to "Add New Patient" -->
 
     <!-- Start strings related to "Add Medical Record" -->
+    <string name="med_Date" translatable="false">Date</string>
     <string name="med_PatientName" translatable="false">Patient Name</string>
     <string name="med_SubHeader1">Pregnancy</string>
     <string name="med_G" translatable="false">G</string>

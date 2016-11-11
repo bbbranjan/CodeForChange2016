@@ -12,274 +12,545 @@
         android:orientation="vertical"
         android:paddingBottom="10dp"
         android:paddingTop="10dp">
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
         <LinearLayout
             android:id="@+id/PatientName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/border"
             android:orientation="vertical">
+
             <TextView
-                android:id="@+id/med_PatientName"
+                android:id="@+id/vmr_PatientName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:ems="10"
-                android:hint="@string/med_PatientName"
-                android:inputType="none"/>
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/ANPName"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="30sp"
+                android:textStyle="bold" />
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/vmr_Date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/med_Date"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
         <LinearLayout
             android:id="@+id/rtwt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/border"
             android:orientation="vertical">
+
             <TextView
-                android:id="@+id/mr_rtwt"
+                android:id="@+id/vmr_rtwt_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:textColor="@color/colorSecondaryText"
                 android:ems="10"
-                android:inputType="none"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/Header1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:orientation="vertical">
+                android:gravity="center_horizontal"
+                android:hint="@string/med_varField13"/>
             <TextView
-                android:id="@+id/PregHeader"
+                android:id="@+id/vmr_rtwt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="TextView"
-                android:inputType="none"
-                android:text="@string/med_SubHeader1"/>
+                android:layout_margin="5dp"
+                android:textSize="20sp"
+                android:ems="10"
+                android:gravity="center_horizontal"/>
         </LinearLayout>
+
         <LinearLayout
-            android:id="@+id/pregFields"
+            android:id="@+id/GP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@drawable/border"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/mr_pregField1"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:id="@+id/pregFields"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_horizontal"
-                android:inputType="none"/>
-            <TextView
-                android:id="@+id/mr_pregField2"
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/vmr_pregField1_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:hint="@string/med_G"/>
+                <TextView
+                    android:id="@+id/vmr_pregField1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textSize="20sp"
+                    android:gravity="center_horizontal"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pregFields1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:inputType="none"/>
-            <TextView
-                android:id="@+id/mr_pregField3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_horizontal"
-                android:hint="@string/med_A"
-                android:inputType="none"/>
-            <TextView
-                android:id="@+id/mr_pregField4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_horizontal"
-                android:inputType="none"/>
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/vmr_pregField2_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_P"/>
+                <TextView
+                    android:id="@+id/vmr_pregField2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textSize="20sp"
+                    android:gravity="center_vertical|center_horizontal"/>
+            </LinearLayout>
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/AAH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+
+            <LinearLayout
+                android:id="@+id/pregFields2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/vmr_pregField3_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:hint="@string/med_A"/>
+                <TextView
+                    android:id="@+id/vmr_pregField3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textSize="20sp"
+                    android:gravity="center_horizontal"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pregFields3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/vmr_pregField4_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:hint="@string/med_AH"/>
+                <TextView
+                    android:id="@+id/vmr_pregField4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textSize="20sp"
+                    android:gravity="center_horizontal"/>
+            </LinearLayout>
+        </LinearLayout>
+
         <LinearLayout
             android:id="@+id/inspection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/border"
-            android:orientation="vertical"
-            android:weightSum="1">
+            android:orientation="vertical">
+
             <TextView
-                android:id="@+id/mr_inspectionResults"
+                android:id="@+id/vmr_inspectionResults_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="11.85"
+                android:ems="10"
+                android:gravity="center_vertical|center_horizontal"
+                android:hint="@string/med_InspectionResult"/>
+            <TextView
+                android:id="@+id/vmr_inspectionResults"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_margin="5dp"
                 android:layout_weight="11.85"
                 android:ems="10"
-                android:inputType="none"/>
+                android:textSize="20sp"
+                android:gravity="center_vertical|center_horizontal"/>
         </LinearLayout>
+
         <LinearLayout
-            android:id="@+id/varFields"
+            android:id="@+id/UK_Varices"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/border"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/mr_UK"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:id="@+id/varFields"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_UK"
-                android:inputType="none"/>
-            <TextView
-                android:id="@+id/mr_Varices"
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/vmr_UK_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_UK"/>
+                <TextView
+                    android:id="@+id/vmr_UK"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textSize="20sp"
+                    android:gravity="center_vertical|center_horizontal"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/varFields_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_Varies"
-                android:inputType="none"/>
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/vmr_Varices_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_Varies"/>
+                <TextView
+                    android:id="@+id/vmr_Varices"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="20sp"/>
+            </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
-            android:id="@+id/varFields1"
+            android:id="@+id/oedema_wtb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@drawable/border"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/mr_Oedema"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:id="@+id/varFields1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_Oedema"
-                android:inputType="none"/>
-            <TextView
-                android:id="@+id/mr_WTB"
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/vmr_Oedema_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_Oedema"/>
+                <TextView
+                    android:id="@+id/vmr_Oedema"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/varFields1_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_BB_TB"
-                android:inputType="none"/>
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/vmr_WTB_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_BB_TB"/>
+                <TextView
+                    android:id="@+id/vmr_WTB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="20sp"/>
+
+            </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
-            android:id="@+id/varFields2"
+            android:id="@+id/TD_LILA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@drawable/border"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/mr_TD"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:id="@+id/varFields2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_TD"
-                android:inputType="none"/>
-            <TextView
-                android:id="@+id/mr_LILA"
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/vmr_TD_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_TD"/>
+                <TextView
+                    android:id="@+id/vmr_TD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/varFields2_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_Lila"
-                android:inputType="none"/>
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/vmr_LILA_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_Lila"/>
+                <TextView
+                    android:id="@+id/vmr_LILA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="20sp"/>
+
+            </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
-            android:id="@+id/varFields3"
+            android:id="@+id/visit_sf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@drawable/border"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/mr_NumVisit"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:id="@+id/varFields3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_TotalVisits"
-                android:inputType="none"/>
-            <TextView
-                android:id="@+id/mr_SF"
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/vmr_NumVisit_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_TotalVisits"/>
+                <TextView
+                    android:id="@+id/vmr_NumVisit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/varFields3_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_SF"
-                android:inputType="none"/>
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/vmr_SF_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_SF"/>
+                <TextView
+                    android:id="@+id/vmr_SF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="20sp"/>
+
+            </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
-            android:id="@+id/varFields4"
+            android:id="@+id/HPHT_TP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@drawable/border"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/mr_HPHT"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:id="@+id/varFields4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_HPHT"
-                android:inputType="none"/>
-            <TextView
-                android:id="@+id/mr_TP"
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/vmr_HPHT_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_HPHT"/>
+                <TextView
+                    android:id="@+id/vmr_HPHT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/varFields4_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/med_TP"
-                android:inputType="none"/>
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/vmr_TP_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/med_TP"/>
+                <TextView
+                    android:id="@+id/vmr_TP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="20sp"/>
+            </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/Complaints"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/border"
             android:orientation="vertical">
+
             <TextView
-                android:id="@+id/mr_Complaints"
+                android:id="@+id/vmr_Complaints_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:ems="10"
-                android:hint="@string/med_Complaints"
-                android:inputType="none"/>
+                android:gravity="center_vertical|center_horizontal"
+                android:hint="@string/med_Complaints"/>
+            <TextView
+                android:id="@+id/vmr_Complaints"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="20sp"/>
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/Information"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/border"
             android:orientation="vertical">
+
             <TextView
-                android:id="@+id/mr_Information"
+                android:id="@+id/vmr_Information_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:ems="10"
-                android:hint="@string/med_varField12"
-                android:inputType="none"/>
+                android:gravity="center_vertical|center_horizontal"
+                android:hint="@string/med_varField12"/>
+            <TextView
+                android:id="@+id/vmr_Information"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="20sp"/>
         </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -296,7 +567,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:background="@drawable/border"
             android:orientation="vertical">
             <com.example.bobbyranjan.ybsandroid.ExpandableHeightListView
                 android:id="@+id/docCommentsLV"
@@ -305,7 +575,8 @@
                 android:cacheColorHint="#00000000"
                 android:fadingEdge="none"
                 android:focusable="false"
-                android:scrollbars="none"/>
+                android:scrollbars="none"
+                android:textSize="20sp"/>
 
         </LinearLayout>
     </LinearLayout>
